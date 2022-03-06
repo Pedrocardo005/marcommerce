@@ -514,13 +514,13 @@ p {
   left: 0;
   width: 100%;
   z-index: 999;
-  background-color: #fff; }
+  background-color: #86B817; }
   .header_navbar.sticky {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
+    background-color: #86B817;
     -webkit-box-shadow: 0px 10px 25px 0px rgba(34, 34, 34, 0.15);
     -moz-box-shadow: 0px 10px 25px 0px rgba(34, 34, 34, 0.15);
     box-shadow: 0px 10px 25px 0px rgba(34, 34, 34, 0.15);
@@ -634,7 +634,7 @@ p {
     font-size: 16px;
     font-weight: 400;
     padding: 30px 0;
-    color: #222;
+    color: #fff;
     -webkit-transition: all 0.3s ease-out 0s;
     -moz-transition: all 0.3s ease-out 0s;
     -ms-transition: all 0.3s ease-out 0s;
@@ -664,7 +664,7 @@ p {
       position: absolute;
       width: 80%;
       height: 2px;
-      background-color: #FF4367;
+      background-color: #222;
       left: 0;
       bottom: 25px;
       opacity: 0; }
@@ -679,12 +679,12 @@ p {
         content: '';
         width: 3px;
         height: 2px;
-        background-color: #FF4367;
+        background-color: #222;
         right: -5px; }
       .navbar-nav li a .line::after {
         right: -10px; }
     .navbar-nav li a.active {
-      color: #FF4367; }
+      color: #222; }
       .navbar-nav li a.active span {
         opacity: 1; }
     .navbar-nav li a .sub-nav-toggler {
@@ -726,14 +726,15 @@ p {
         position: relative;
         top: -5px; }
   .navbar-nav li:hover > a {
-    color: #FF4367; }
+    color: #222; }
   .navbar-nav li .sub-menu {
     position: absolute;
     top: 120%;
     left: 0;
     width: 160px;
     background-color: #fff;
-    border-top: 2px solid #FF4367;
+    border: 2px solid #86B817;
+    border-top: none;
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s ease-out 0s;
@@ -799,10 +800,10 @@ p {
           float: right; }
         .navbar-nav li .sub-menu li a.active {
           color: #fff;
-          background-color: #FF4367; }
+          background-color: #86B817; }
       .navbar-nav li .sub-menu li:hover > a {
         color: #fff;
-        background-color: #FF4367; }
+        background-color: #86B817; }
         .navbar-nav li .sub-menu li:hover > a .sub-nav-toggler span {
           border-left-color: #fff;
           border-bottom-color: #fff; }
@@ -866,7 +867,7 @@ p {
     line-height: 40px;
     text-align: center;
     border-radius: 3px;
-    background-color: #FF4367;
+    background-color: #2978A0;
     color: #fff;
     -webkit-transition: all 0.3s ease-out 0s;
     -moz-transition: all 0.3s ease-out 0s;
@@ -881,10 +882,10 @@ p {
       .navbar_btn ul li .sign-up {
         display: block; } }
     .navbar_btn ul li .sign-up:hover {
-      background-color: rgba(255, 67, 103, 0.7); }
+      background-color: #3388b3;}
 .navbar_btn .dropdown a {
   padding: 28px 0;
-  color: #222;
+  color: #fff;
   font-size: 16px; }
   @media (max-width: 767px) {
     .navbar_btn .dropdown a {
@@ -895,8 +896,8 @@ p {
     .navbar_btn .dropdown a.dropdown-toggle::after {
       width: 8px;
       height: 8px;
-      border-left: 2px solid #222;
-      border-bottom: 2px solid #222;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
       border-top: 0;
       border-right: 0;
       right: -9px;
@@ -912,7 +913,8 @@ p {
   border: 0;
   width: 190px;
   background-color: #fff;
-  border-top: 2px solid #FF4367;
+  border: 2px solid #86B817;
+  border-top: none;
   -webkit-transition: all 0.3s ease-out 0s;
   -moz-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -951,10 +953,10 @@ p {
         margin-right: 5px; }
       .navbar_btn .dropdown .dropdown-menu ul li a.active {
         color: #fff;
-        background-color: #FF4367; }
+        background-color: #86B817; }
     .navbar_btn .dropdown .dropdown-menu ul li:hover > a {
       color: #fff;
-      background-color: #FF4367; }
+      background-color: #86B817; }
 
 /*===== Header Navbar transparent =====*/
 .navbar_transparent::before {
@@ -2079,7 +2081,7 @@ p {
     left: 0; }
 
 .footer_copyright {
-  background-color: #463CE5; }
+  background-color: #2978A0; }
 
 .copyright p, .copyright a {
   color: #fff; }
