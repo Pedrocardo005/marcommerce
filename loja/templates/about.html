@@ -1,6 +1,53 @@
 {% extends "base_site.html" %}
 {% load static %}
 
+{% block active-menu %}
+<ul class="navbar-nav m-auto">
+    <li>
+        <a href="{% url 'index' %}">Home <span class="line"></span></a>
+    </li>
+    <li>
+        <a href="#">Categories <span class="line"></span></a>
+    </li>
+    <li>
+        <a class="active" href="#">Pages <i class="fa fa-angle-down"></i> <span class="line"></span></a>
+
+        <ul class="sub-menu">
+            <li><a class="active" href="{% url 'about' %}">About</a></li>
+            <li><a href="#">Listing</a></li>
+            <li><a href="#">Product Details</a></li>
+            <li><a href="#">404</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">Sign Up</a></li>
+        </ul>
+    </li>
+
+    <li><a href="#">Blog <i class="fa fa-angle-down"></i> <span class="line"></span></a>
+        <ul class="sub-menu">
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Blog Details</a></li>
+        </ul>
+    </li>
+    <li><a href="{% url 'contact' %}">Contact <span class="line"></span></a></li>
+</ul>
+{% endblock %}
+
+{% block header-bottom %}
+<div class="page_banner bg_cover" style="background-image: url({% static 'img/page-banner.jpg' %})">
+    <div class="container">
+        <div class="page_banner_content">
+            <h3 class="title">About</h3>
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li>About</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block body %}
     <!--====== ABOUT PART START ======-->
 
