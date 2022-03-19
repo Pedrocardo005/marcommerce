@@ -867,7 +867,7 @@ p {
     line-height: 40px;
     text-align: center;
     border-radius: 3px;
-    background-color: #2978A0;
+    background-color: #315659;
     color: #fff;
     -webkit-transition: all 0.3s ease-out 0s;
     -moz-transition: all 0.3s ease-out 0s;
@@ -882,7 +882,7 @@ p {
       .navbar_btn ul li .sign-up {
         display: block; } }
     .navbar_btn ul li .sign-up:hover {
-      background-color: #3388b3;}
+      background-color: #407074;}
 .navbar_btn .dropdown a {
   padding: 28px 0;
   color: #fff;
@@ -2102,7 +2102,7 @@ p {
   height: 40px;
   line-height: 35px;
   border-radius: 5px;
-  background-color: #FF4367;
+  background-color: #315659;
   text-align: center;
   z-index: 99;
   -webkit-transition: all 0.3s ease-out 0s;
@@ -2113,7 +2113,7 @@ p {
   display: none; }
   .back-to-top:hover {
     color: #fff;
-    background-color: #FF4367; }
+    background-color: #315659; }
 
 /*===========================
        14.ABOUT css 
