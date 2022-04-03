@@ -2057,7 +2057,7 @@ p {
       -o-transition: all 0.3s ease-out 0s;
       transition: all 0.3s ease-out 0s; }
       .footer_link .link li a:hover {
-        color: #FF4367;
+        color: #253031;
         padding-left: 10px; }
 
 .footer_title {
@@ -2076,7 +2076,7 @@ p {
     content: '';
     width: 100px;
     height: 1px;
-    background-color: #FF4367;
+    background-color: #253031;
     bottom: 0;
     left: 0; }
 
