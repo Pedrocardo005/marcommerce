@@ -1023,7 +1023,7 @@ p {
     z-index: -1;
     background: -webkit-linear-gradient(left, rgba(103, 92, 255, 0.9) 40%, rgba(103, 92, 255, 0.3) 100%);
     background: -o-linear-gradient(left, rgba(103, 92, 255, 0.9) 40%, rgba(103, 92, 255, 0.3) 100%);
-    background: linear-gradient(to right, rgba(103, 92, 255, 0.9) 40%, rgba(103, 92, 255, 0.3) 100%); }
+    background: linear-gradient(to right, #2978A0 40%, rgba(103, 92, 255, 0.3) 100%); }
 
 .content_wrapper .title {
   font-size: 60px;
