@@ -1,0 +1,19 @@
+{% extends "base_site.html" %}
+{% load static %}
+
+{% block active-menu %}
+<ul class="navbar-nav m-auto">
+
+  <li>
+      <a class="active" href="{% url 'index' %}">Home <span class="line"></span></a>
+  </li>
+  <li>
+      <a href="#">Categories <span class="line"></span></a>
+  </li>
+  <li>
+      <a href="{% url 'about' %}">About <span class="line"></span></a>
+  </li>
+
+  <li><a href="{% url 'contact' %}">Contact <span class="line"></span></a></li>
+</ul>
+{% endblock %}
