@@ -1023,7 +1023,7 @@ p {
     z-index: -1;
     background: -webkit-linear-gradient(left, rgba(103, 92, 255, 0.9) 40%, rgba(103, 92, 255, 0.3) 100%);
     background: -o-linear-gradient(left, rgba(103, 92, 255, 0.9) 40%, rgba(103, 92, 255, 0.3) 100%);
-    background: linear-gradient(to right, #2978A0 40%, rgba(103, 92, 255, 0.3) 100%); }
+    background: linear-gradient(to right, #3b7695c2 40%, rgba(103, 92, 255, 0.3) 100%); }
 
 .content_wrapper .title {
   font-size: 60px;
@@ -1050,7 +1050,7 @@ p {
 
 .header_search {
   background-color: #fff;
-  background-color: #463CE5;
+  background-color: #2978A0;
   padding: 5px 10px 20px;
   border-radius: 5px;
   margin-top: 70px; }
@@ -1323,7 +1323,7 @@ p {
     margin: 0 auto;
     width: 80%;
     height: 90%;
-    background-color: #FF4367;
+    background-color: #315659;
     opacity: 0;
     filter: blur(10px);
     -webkit-transition: all 0.3s ease-out 0s;
@@ -1363,7 +1363,7 @@ p {
     left: 0;
     z-index: 5; }
   .single_category:hover {
-    background-color: #FF4367; }
+    background-color: #315659; }
     .single_category:hover::before {
       opacity: 0.5; }
     .single_category:hover .icon i {
@@ -1380,7 +1380,7 @@ p {
     04.ADS CARD css 
 ===========================*/
 .tabs_menu .nav {
-  background-color: #FF4367;
+  background-color: #315659;
   display: -webkit-inline-flex;
   display: -moz-inline-flex;
   display: -ms-inline-flex;
@@ -1453,7 +1453,7 @@ p {
         content: '';
         width: 50px;
         height: 1px;
-        background-color: #FF4367;
+        background-color: #315659;
         bottom: -1px;
         left: 0; }
       .single_ads_card .ads_card_content .meta p {
@@ -1465,7 +1465,7 @@ p {
     .single_ads_card .ads_card_content .title a {
       font-size: 16px;
       font-weight: 500;
-      color: #463CE5;
+      color: #2978A0;
       margin-top: 20px;
       -webkit-transition: all 0.3s ease-out 0s;
       -moz-transition: all 0.3s ease-out 0s;
@@ -1473,7 +1473,7 @@ p {
       -o-transition: all 0.3s ease-out 0s;
       transition: all 0.3s ease-out 0s; }
       .single_ads_card .ads_card_content .title a:hover {
-        color: #FF4367; }
+        color: #315659; }
     .single_ads_card .ads_card_content p {
       margin-top: 5px; }
       .single_ads_card .ads_card_content p i {
@@ -1483,7 +1483,7 @@ p {
       .single_ads_card .ads_card_content .ads_price_date .price {
         font-size: 20px;
         font-weight: 700;
-        color: #FF4367;
+        color: #315659;
         margin-top: 10px; }
         @media only screen and (min-width: 992px) and (max-width: 1199px) {
           .single_ads_card .ads_card_content .ads_price_date .price {
@@ -1699,7 +1699,7 @@ p {
   padding-top: 400px; }
 
 .counter_wrapper {
-  background-color: #463CE5;
+  background-color: #2978A0;
   padding: 25px;
   padding-top: 0;
   border-radius: 5px; }
@@ -1774,7 +1774,7 @@ p {
     margin: 0 auto;
     width: 80%;
     height: 90%;
-    background-color: #FF4367;
+    background-color: #315659;
     opacity: 0;
     filter: blur(10px);
     -webkit-transition: all 0.3s ease-out 0s;
@@ -1783,7 +1783,7 @@ p {
     -o-transition: all 0.3s ease-out 0s;
     transition: all 0.3s ease-out 0s; }
   .single_services .services_icon i {
-    color: #FF4367;
+    color: #315659;
     -webkit-transition: all 0.3s ease-out 0s;
     -moz-transition: all 0.3s ease-out 0s;
     -ms-transition: all 0.3s ease-out 0s;
@@ -1825,7 +1825,7 @@ p {
         margin-left: 5px;
         font-size: 18px; }
   .single_services:hover {
-    background-color: #FF4367; }
+    background-color: #315659; }
     .single_services:hover::before {
       opacity: 0.5; }
     .single_services:hover .services_icon i {
