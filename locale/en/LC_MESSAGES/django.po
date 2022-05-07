@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-05 07:33-0300\n"
+"PO-Revision-Date: 2022-05-05 10:42+0000\n"
+"Last-Translator:   <pedrocardo007@hotmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Translated-Using: django-rosetta 0.9.8\n"
+
+#: loja/models.py:8 loja/models.py:14
+msgid "nome"
+msgstr "name"
+
+#: loja/models.py:9
+msgid "ícone"
+msgstr "icon"
+
+#: loja/models.py:15
+msgid "preço"
+msgstr "price"
+
+#: loja/models.py:17
+msgid "categoria"
+msgstr "category"
+
+#: loja/templates/index.html:97
+msgid "TestDriven.io Categorias"
+msgstr "TestDriven.io Categorias"
+
+#: marcommerce/settings/base.py:121
+msgid "English"
+msgstr "English"
+
+#: marcommerce/settings/base.py:122
+msgid "Portuguese"
+msgstr "Portuguese"
+
+#: marcommerce/settings/base.py:123
+msgid "Spanish"
+msgstr "Spanish"
