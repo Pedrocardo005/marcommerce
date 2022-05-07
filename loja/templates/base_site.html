@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -72,9 +73,43 @@
                     </button>
 
                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                        {% block active-menu %}
-                        
-                        {% endblock %}
+                        <ul class="navbar-nav m-auto">
+                            {% with request.resolver_match.url_name as url_name %}
+                            <li>
+                                {% if url_name == 'index' %}
+                                    <a class="active" href="#">
+                                {% else %}
+                                    <a href="{% url 'index' %}">
+                                {% endif %}
+                                {% trans "Home" %}<span class="line"></span></a>
+                            </li>
+                            <li>
+                                {% if url_name == 'categories' %}
+                                    <a class="active" href="#">
+                                {% else %}
+                                    <a href="{% url 'categories' %}">
+                                {% endif %}
+                                {% trans "Categories" %} <span class="line"></span></a>
+                            </li>
+                            <li>
+                                {% if url_name == 'about' %}
+                                    <a class="active" href="#">
+                                {% else %}
+                                    <a href="{% url 'about' %}">
+                                {% endif %}
+                                {% trans "About" %} <span class="line"></span></a>
+                            </li>
+                          
+                            <li>
+                                {% if url_name == 'contact' %}
+                                    <a class="active" href="#">
+                                {% else %}
+                                    <a href="{% url 'contact' %}">
+                                {% endif %}
+                                {% trans "Contact" %} <span class="line"></span></a>
+                            </li>
+                            {% endwith %}
+                          </ul>
                     </div>
 
                     <div class="navbar_btn">

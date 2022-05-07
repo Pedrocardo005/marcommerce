@@ -1,22 +1,6 @@
 {% extends "base_site.html" %}
 {% load static %}
 
-{% block active-menu %}
-<ul class="navbar-nav m-auto">
-    <li>
-        <a href="{% url 'index' %}">Home <span class="line"></span></a>
-    </li>
-    <li>
-        <a href="{% url 'categories' %}">Categories <span class="line"></span></a>
-    </li>
-    <li>
-        <a class="active" href="#">About <span class="line"></span></a>
-    </li>
-    
-    <li><a href="{% url 'contact' %}">Contact <span class="line"></span></a></li>
-</ul>
-{% endblock %}
-
 {% block header-bottom %}
 <div class="page_banner bg_cover" style="background-image: url({% static 'img/page-banner.jpg' %})">
     <div class="container">
