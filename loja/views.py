@@ -16,3 +16,7 @@ def about(request):
 
 def categories(request):
     return render(request, 'categories.html')
+
+
+def languages(request):
+    return render(request, 'languages.html')
