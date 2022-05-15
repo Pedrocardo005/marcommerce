@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 07:33-0300\n"
+"POT-Creation-Date: 2022-05-07 14:40-0300\n"
 "PO-Revision-Date: 2022-05-05 10:42+0000\n"
 "Last-Translator:   <pedrocardo007@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,34 +19,196 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Translated-Using: django-rosetta 0.9.8\n"
 
-#: loja/models.py:8 loja/models.py:14
-msgid "nome"
-msgstr "name"
+#: loja/templates/base_site.html:84
+msgid "Home"
+msgstr ""
 
-#: loja/models.py:9
-msgid "ícone"
-msgstr "icon"
-
-#: loja/models.py:15
-msgid "preço"
-msgstr "price"
-
-#: loja/models.py:17
-msgid "categoria"
+#: loja/templates/base_site.html:92 loja/templates/index.html:80
+#, fuzzy
+#| msgid "categoria"
+msgid "Categories"
 msgstr "category"
 
-#: loja/templates/index.html:97
-msgid "TestDriven.io Categorias"
+#: loja/templates/base_site.html:100
+msgid "About"
+msgstr ""
+
+#: loja/templates/base_site.html:109
+msgid "Contact"
+msgstr ""
+
+#: loja/templates/index.html:11
+msgid "You're Using Free Version of ClassiFied"
+msgstr ""
+
+#: loja/templates/index.html:12
+msgid ""
+"Please, purchase full version of the template to get all pages, features and "
+"permission to use in commercial projects."
+msgstr ""
+
+#: loja/templates/index.html:14
+msgid "Purchase Now"
+msgstr ""
+
+#: loja/templates/index.html:25
+msgid "Select a Location"
+msgstr ""
+
+#: loja/templates/index.html:26 loja/templates/index.html:35
+msgid "Some option"
+msgstr ""
+
+#: loja/templates/index.html:27 loja/templates/index.html:36
+msgid "Another option"
+msgstr ""
+
+#: loja/templates/index.html:28 loja/templates/index.html:37
+msgid "Potato"
+msgstr ""
+
+#: loja/templates/index.html:34
+msgid "Select Category"
+msgstr ""
+
+#: loja/templates/index.html:44
+msgid "Type Your Keyword"
+msgstr ""
+
+#: loja/templates/index.html:47
+msgid "Search"
+msgstr ""
+
+#: loja/templates/index.html:80 loja/templates/index.html:213
+msgid "Popular"
+msgstr ""
+
+#: loja/templates/index.html:197
+msgid "View all Catagories"
+msgstr ""
+
+#: loja/templates/index.html:213
+msgid "and Featured Ads"
+msgstr ""
+
+#: loja/templates/index.html:218
+msgid "Popular Ads"
+msgstr ""
+
+#: loja/templates/index.html:221
+msgid "Featured Ads"
+msgstr ""
+
+#: loja/templates/index.html:568
+msgid "Why Choose Us"
+msgstr ""
+
+#: loja/templates/index.html:573
+msgid "Powerful feature one."
+msgstr ""
+
+#: loja/templates/index.html:574
+msgid "Much needed and important feature two."
+msgstr ""
+
+#: loja/templates/index.html:575
+msgid "Essential features to rock."
+msgstr ""
+
+#: loja/templates/index.html:577 loja/templates/index.html:836
+#: loja/templates/index.html:848 loja/templates/index.html:860
+#: loja/templates/index.html:872 loja/templates/index.html:884
+#: loja/templates/index.html:896
+msgid "Read More"
+msgstr ""
+
+#: loja/templates/index.html:607
+msgid "Published Ads Here"
+msgstr ""
+
+#: loja/templates/index.html:618
+msgid "Register User Using"
+msgstr ""
+
+#: loja/templates/index.html:629
+msgid "Verified User Using"
+msgstr ""
+
+#: loja/templates/index.html:646
+msgid "Recently"
+msgstr ""
+
+#: loja/templates/index.html:646
+msgid "Published Ads"
+msgstr ""
+
+#: loja/templates/index.html:808
+msgid "View all Ads"
+msgstr ""
+
+#: loja/templates/index.html:823
+msgid "ClassiFied"
+msgstr ""
+
+#: loja/templates/index.html:823
+msgid "Here for You"
+msgstr ""
+
+#: loja/templates/index.html:834
+msgid "Sell Your Item Safely"
+msgstr ""
+
+#: loja/templates/index.html:846
+msgid "Buy Directly"
+msgstr ""
+
+#: loja/templates/index.html:858
+msgid "Friendly Platform"
+msgstr ""
+
+#: loja/templates/index.html:870
+msgid "Pay in Person"
+msgstr ""
+
+#: loja/templates/index.html:882
+msgid "24/7 Support"
+msgstr ""
+
+#: loja/templates/index.html:894
+msgid "Verified Users"
+msgstr ""
+
+#: loja/templates/languages.html:42
+#, fuzzy
+#| msgid "TestDriven.io Categorias"
+msgid "TestDriven.io Courses"
 msgstr "TestDriven.io Categorias"
 
-#: marcommerce/settings/base.py:121
+#: loja/templates/languages.html:48
+msgid "Language"
+msgstr ""
+
+#: marcommerce/settings/base.py:123
 msgid "English"
 msgstr "English"
 
-#: marcommerce/settings/base.py:122
+#: marcommerce/settings/base.py:124
 msgid "Portuguese"
 msgstr "Portuguese"
 
-#: marcommerce/settings/base.py:123
+#: marcommerce/settings/base.py:125
 msgid "Spanish"
 msgstr "Spanish"
+
+#: marcommerce/urls.py:23
+msgid "admin/"
+msgstr ""
+
+#~ msgid "nome"
+#~ msgstr "name"
+
+#~ msgid "ícone"
+#~ msgstr "icon"
+
+#~ msgid "preço"
+#~ msgstr "price"

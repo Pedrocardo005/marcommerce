@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-05 07:33-0300\n"
+"POT-Creation-Date: 2022-05-07 14:40-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,197 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: loja/models.py:8 loja/models.py:14
-msgid "nome"
-msgstr "nome"
+#: loja/templates/base_site.html:84
+msgid "Home"
+msgstr "Início"
 
-#: loja/models.py:9
-msgid "ícone"
-msgstr "ícone"
-
-#: loja/models.py:15
-msgid "preço"
-msgstr "preço"
-
-#: loja/models.py:17
-msgid "categoria"
+#: loja/templates/base_site.html:92 loja/templates/index.html:80
+#, fuzzy
+#| msgid "categoria"
+msgid "Categories"
 msgstr "categoria"
 
-#: loja/templates/index.html:97
-msgid "TestDriven.io Categorias"
+#: loja/templates/base_site.html:100
+msgid "About"
+msgstr "Sobre"
+
+#: loja/templates/base_site.html:109
+msgid "Contact"
+msgstr "Contato"
+
+#: loja/templates/index.html:11
+msgid "You're Using Free Version of ClassiFied"
+msgstr "Você está usando uma versão grátis do ClassiFied"
+
+#: loja/templates/index.html:12
+msgid ""
+"Please, purchase full version of the template to get all pages, features and "
+"permission to use in commercial projects."
+msgstr "Por favor, adquira a versão completa do template para obter todas as páginas, " 
+"functionalidades e permissões para usar o projeto comercial."
+
+#: loja/templates/index.html:14
+msgid "Purchase Now"
+msgstr "Adquirir agora"
+
+#: loja/templates/index.html:25
+msgid "Select a Location"
+msgstr "Selecionar um local"
+
+#: loja/templates/index.html:26 loja/templates/index.html:35
+msgid "Some option"
+msgstr "Alguma opção"
+
+#: loja/templates/index.html:27 loja/templates/index.html:36
+msgid "Another option"
+msgstr "Outra opção"
+
+#: loja/templates/index.html:28 loja/templates/index.html:37
+msgid "Potato"
+msgstr "Batata"
+
+#: loja/templates/index.html:34
+msgid "Select Category"
+msgstr "Selecionar uma categoria"
+
+#: loja/templates/index.html:44
+msgid "Type Your Keyword"
+msgstr "Escreva sua palavra chave"
+
+#: loja/templates/index.html:47
+msgid "Search"
+msgstr "Pesquisar"
+
+#: loja/templates/index.html:80 loja/templates/index.html:213
+msgid "Popular"
+msgstr "Popular"
+
+#: loja/templates/index.html:197
+msgid "View all Catagories"
+msgstr "Ver todas as categorias"
+
+#: loja/templates/index.html:213
+msgid "and Featured Ads"
+msgstr "e anuncios em destaque"
+
+#: loja/templates/index.html:218
+msgid "Popular Ads"
+msgstr "Anúncios populares"
+
+#: loja/templates/index.html:221
+msgid "Featured Ads"
+msgstr "Anúncios em destaque"
+
+#: loja/templates/index.html:568
+msgid "Why Choose Us"
+msgstr "Por que escolher nós"
+
+#: loja/templates/index.html:573
+msgid "Powerful feature one."
+msgstr "Recurso poderoso."
+
+#: loja/templates/index.html:574
+msgid "Much needed and important feature two."
+msgstr "Muito necessário e importante"
+
+#: loja/templates/index.html:575
+msgid "Essential features to rock."
+msgstr "Características essenciais para detonar."
+
+#: loja/templates/index.html:577 loja/templates/index.html:836
+#: loja/templates/index.html:848 loja/templates/index.html:860
+#: loja/templates/index.html:872 loja/templates/index.html:884
+#: loja/templates/index.html:896
+msgid "Read More"
+msgstr "Leia mais"
+
+#: loja/templates/index.html:607
+msgid "Published Ads Here"
+msgstr "Anúncios publicados aqui"
+
+#: loja/templates/index.html:618
+msgid "Register User Using"
+msgstr "Registrar usuário usando"
+
+#: loja/templates/index.html:629
+msgid "Verified User Using"
+msgstr "Usuário verificado usando"
+
+#: loja/templates/index.html:646
+msgid "Recently"
+msgstr "Recentemente"
+
+#: loja/templates/index.html:646
+msgid "Published Ads"
+msgstr "Anúncios publicados"
+
+#: loja/templates/index.html:808
+msgid "View all Ads"
+msgstr "Ver todos os anúncios"
+
+#: loja/templates/index.html:823
+msgid "ClassiFied"
+msgstr "Classificados"
+
+#: loja/templates/index.html:823
+msgid "Here for You"
+msgstr "Aqui para você"
+
+#: loja/templates/index.html:834
+msgid "Sell Your Item Safely"
+msgstr "Venda seu item com segurança"
+
+#: loja/templates/index.html:846
+msgid "Buy Directly"
+msgstr "Compre diretamente"
+
+#: loja/templates/index.html:858
+msgid "Friendly Platform"
+msgstr "Plataforma amigável"
+
+#: loja/templates/index.html:870
+msgid "Pay in Person"
+msgstr "Pagamento em pessoa"
+
+#: loja/templates/index.html:882
+msgid "24/7 Support"
+msgstr "Suporte 24/7"
+
+#: loja/templates/index.html:894
+msgid "Verified Users"
+msgstr "Usuários verificados"
+
+#: loja/templates/languages.html:42
+#, fuzzy
+#| msgid "TestDriven.io Categorias"
+msgid "TestDriven.io Courses"
 msgstr "TestDriven.io de Categorias"
 
-#: marcommerce/settings/base.py:121
+#: loja/templates/languages.html:48
+msgid "Language"
+msgstr "Língua"
+
+#: marcommerce/settings/base.py:123
 msgid "English"
 msgstr "Inglês"
 
-#: marcommerce/settings/base.py:122
+#: marcommerce/settings/base.py:124
 msgid "Portuguese"
 msgstr "Português"
 
-#: marcommerce/settings/base.py:123
+#: marcommerce/settings/base.py:125
 msgid "Spanish"
 msgstr "Espanhol"
+
+#: marcommerce/urls.py:23
+msgid "admin/"
+msgstr ""
+
+#~ msgid "nome"
+#~ msgstr "nome"
+
+#~ msgid "ícone"
+#~ msgstr "ícone"
+
+#~ msgid "preço"
+#~ msgstr "preço"
