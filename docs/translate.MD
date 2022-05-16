@@ -24,3 +24,15 @@ Depois compile as traduções
 ```shell
 django-admin compilemessages --ignore=env
 ```
+
+### Deploy com o heroku
+
+Comando para adicionar os pacotes do gettext ao projeto
+```bash
+heroku buildpacks:add https://github.com/grauwoelfchen/heroku-buildpack-gettext
+```
+
+Depois de ter dado o comando, faça uma alteração no projeto e dê um commit:
+```bash
+git push heroku main
+```
