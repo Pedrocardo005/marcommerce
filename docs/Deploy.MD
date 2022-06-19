@@ -18,3 +18,10 @@ git push heroku main
 ```bash
 heroku run python3 manage.py createsuperuser
 ```
+
+### Comandos úties do heroku
+
+Abrir o projeto:
+```bash
+heroku open
+```
