@@ -956,7 +956,7 @@ p {
         background-color: #86B817; }
     .navbar_btn .dropdown .dropdown-menu ul li:hover > a {
       color: #fff;
-      background-color: #86B817; }
+      background-color: #508200; }
 
 /*===== Header Navbar transparent =====*/
 .navbar_transparent::before {
@@ -2360,5 +2360,9 @@ p {
     padding-left: 15px; }
     .single_info .info_content p {
       padding-top: 0; }
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
 
 /*# sourceMappingURL=style.css.map */

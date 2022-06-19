@@ -113,9 +113,34 @@
                     </div>
 
                     <div class="navbar_btn">
-                        <ul>
-                            <!-- Este botão somente deve aparecer enquanto estiver logado -->
-                            <li><a class="sign-up" href="#">Post Ads</a></li>
+                        <ul class="sub-menu">
+                            <!-- Exibe botão para logar a quem não estiver autenticado, ou
+                            um pequeno menu pros logados. -->
+                            {% if not user.is_authenticated %}
+                            <li><a class="sign-up" href="{% url 'admin:index' %}">Login</a></li>
+                            {% else %}
+                            <div class="navbar_btn">
+                                <ul>
+                                    <li>
+                                        <div class="dropdown">
+                                            <a href="#" class="sign-up" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="fasse">Usuário</a>
+            
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <ul>
+                                                    <li><a>Mensagens</a></li>
+                                                    <li><a>Anúncios</a></li>
+                                                    <li><a>Configurações</a></li>
+                                                    <li><a>Favoritos</a></li>
+                                                    <li><a>Lista de observações</a></li>
+                                                    <li><a>Usuários</a></li>
+                                                    <li><a>Buscas</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            {% endif %}
                         </ul>
                     </div>
                 </nav>
