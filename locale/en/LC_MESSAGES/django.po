@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-07 14:40-0300\n"
+"POT-Creation-Date: 2022-06-26 17:59-0300\n"
 "PO-Revision-Date: 2022-05-05 10:42+0000\n"
 "Last-Translator:   <pedrocardo007@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,38 @@ msgstr ""
 #: loja/templates/base_site.html:109
 msgid "Contact"
 msgstr ""
+
+#: loja/templates/base_site.html:126
+msgid "Usuário"
+msgstr "User"
+
+#: loja/templates/base_site.html:130
+msgid "Mensagens"
+msgstr "Messages"
+
+#: loja/templates/base_site.html:131
+msgid "Anúncios"
+msgstr "Adverts"
+
+#: loja/templates/base_site.html:132
+msgid "Configurações"
+msgstr "Settings"
+
+#: loja/templates/base_site.html:133
+msgid "Favoritos"
+msgstr "Favorites"
+
+#: loja/templates/base_site.html:134
+msgid "Lista de observações"
+msgstr "List of observations"
+
+#: loja/templates/base_site.html:135
+msgid "Usuários"
+msgstr "Users"
+
+#: loja/templates/base_site.html:136
+msgid "Buscas"
+msgstr "Searches"
 
 #: loja/templates/index.html:11
 msgid "You're Using Free Version of ClassiFied"

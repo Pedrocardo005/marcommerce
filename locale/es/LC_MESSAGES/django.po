@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-07 14:40-0300\n"
+"POT-Creation-Date: 2022-06-26 17:59-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,38 @@ msgstr "Acerca de"
 msgid "Contact"
 msgstr "Contacto"
 
+#: loja/templates/base_site.html:126
+msgid "Usuário"
+msgstr "Usuario"
+
+#: loja/templates/base_site.html:130
+msgid "Mensagens"
+msgstr "Mensajes"
+
+#: loja/templates/base_site.html:131
+msgid "Anúncios"
+msgstr "Anuncios"
+
+#: loja/templates/base_site.html:132
+msgid "Configurações"
+msgstr "Ajustes"
+
+#: loja/templates/base_site.html:133
+msgid "Favoritos"
+msgstr ""
+
+#: loja/templates/base_site.html:134
+msgid "Lista de observações"
+msgstr "Lista de observaciones"
+
+#: loja/templates/base_site.html:135
+msgid "Usuários"
+msgstr "Usuarios"
+
+#: loja/templates/base_site.html:136
+msgid "Buscas"
+msgstr "Búsquedas"
+
 #: loja/templates/index.html:11
 msgid "You're Using Free Version of ClassiFied"
 msgstr "Estás usando una versión gratuita de ClassiFied"
@@ -45,8 +77,8 @@ msgid ""
 "Please, purchase full version of the template to get all pages, features and "
 "permission to use in commercial projects."
 msgstr ""
-"Compre la versión completa de la plantilla para obtener todas las páginas, funciones y "
-"permiso de uso en proyectos comerciales."
+"Compre la versión completa de la plantilla para obtener todas las páginas, "
+"funciones y permiso de uso en proyectos comerciales."
 
 #: loja/templates/index.html:14
 msgid "Purchase Now"
