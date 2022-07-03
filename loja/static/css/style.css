@@ -2365,4 +2365,16 @@ p {
   display: block;
 }
 
+.single_categories {
+  background-color: #fff;
+  padding: 50px 10px;
+  border-radius: 10px;
+  position: relative;
+  -webkit-transition: all .3s ease-out 0s;
+  -moz-transition: all .3s ease-out 0s;
+  -ms-transition: all .3s ease-out 0s;
+  -o-transition: all .3s ease-out 0s;
+  transition: all .3s ease-out 0s;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from loja.models import Categoria
+
 # Create your views here.
 
 def index(request):
@@ -15,7 +17,22 @@ def about(request):
 
 
 def categories(request):
-    return render(request, 'categories.html')
+    categorias = Categoria.objects.all()
+    lista_categorias = []
+
+    for categoria in categorias:
+        c = {
+            'nome': categoria.nome,
+            'icone': categoria.icone
+        }
+
+        lista_categorias.append(c)
+
+    context = {
+        'categorias': lista_categorias
+    }
+
+    return render(request, 'categories.html', context)
 
 
 def languages(request):
