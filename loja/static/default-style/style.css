@@ -2377,4 +2377,8 @@ p {
   transition: all .3s ease-out 0s;
 }
 
+.single_categories:hover {
+  background-color: #86B817;
+  color: white;
+}
 /*# sourceMappingURL=style.css.map */

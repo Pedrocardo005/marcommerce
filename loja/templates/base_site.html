@@ -16,19 +16,21 @@
     <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
     <!--====== Nice Select CSS ======-->
-    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'default-style/nice-select.css' %}">
 
     <!--====== Font Awesome CSS ======-->
-    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'default-style/all.min.css' %}">
 
     <!--====== Bootstrap CSS ======-->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'default-style/bootstrap.min.css' %}">
 
     <!--====== Default CSS ======-->
-    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'default-style/default.css' %}">
 
     <!--====== Style CSS ======-->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'default-style/style.css' %}">
+
+    {% block css %}{% endblock %}
 
 </head>
 
@@ -257,7 +259,7 @@
     <!--====== Main js ======-->
     <script src="{% static 'js/main.js' %}"></script>
 
-    {% block others-js %}{% endblock %}
+    {% block js %}{% endblock %}
 
 </body>
 
