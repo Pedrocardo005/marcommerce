@@ -36,3 +36,15 @@ Depois de ter dado o comando, faça uma alteração no projeto e dê um commit:
 ```bash
 git push heroku main
 ```
+
+Descobri que é bom fazer filtro assim: Categoria.objects.language('pt').filter()
+
+Passos para criar uma categoria que funcionou no terminal:
+>>> c=Categoria()
+>>> c.nome='Imóveis e Casas'
+>>> c.set_current_language('pt')
+>>> c.nome='Imóveis e Casas'
+>>> c.icone='fa-home'
+>>> c.save()
+
+Documentação para ajuda: https://django-parler.readthedocs.io/en/stable/advanced/migrating.html

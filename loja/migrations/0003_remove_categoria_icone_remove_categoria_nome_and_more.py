@@ -6,46 +6,6 @@ import parler.fields
 import parler.models
 
 
-def populate_categorias(apps):
-    Categoria = apps.get_model('loja', 'categoria')
-    nomes = [
-        "Carros e Motocicletas", 
-        "Imóveis e Casas", 
-        "Casa e Jardim", 
-        "Moda e Beleza",
-        "Família, Criança e Bebê",
-        "Multimídia e Eletrônica",
-        "Empregos",
-        "Shows e Ingressos",
-        "Lazer, Hobby e Diversão",
-        "Música, Cinema e Livros",
-        "Doação e trocas",
-        "Animais",
-        "Aulas e Cursos"
-        ]
-    icones = [
-        "fa-motorcycle",
-        "fa-home",
-        "fa-tree",
-        "fa-tag",
-        "fa-child",
-        "fa-tablet",
-        "fa-suitcase",
-        "fa-ticket-alt",
-        "fa-gamepad",
-        "fa-book",
-        "fa-handshake",
-        "fa-paw",
-        "fa-graduation-cap"
-    ]
-    with transaction.atomic():
-        for idx, obj in enumerate(nomes):
-            Categoria.objects.create(
-                nome = obj,
-                icone = icones[idx]
-            )
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -112,5 +72,4 @@ class Migration(migrations.Migration):
             },
             bases = (parler.models.TranslatableModel, models.Model)
         ),
-        migrations.RunPython(populate_categorias),
     ]
