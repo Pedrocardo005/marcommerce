@@ -1234,10 +1234,8 @@ msgid "Home"
 msgstr "Início"
 
 #: loja/templates/base_site.html:94 loja/templates/index.html:80
-#, fuzzy
-#| msgid "categoria"
 msgid "Categories"
-msgstr "categoria"
+msgstr "Categoria"
 
 #: loja/templates/base_site.html:102
 msgid "About"
