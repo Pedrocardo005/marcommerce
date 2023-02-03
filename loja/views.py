@@ -1,7 +1,7 @@
 import traceback
 from django.shortcuts import render
 
-from loja.models import Categoria, CategoriaTranslation
+from loja.models import Categoria
 
 # Create your views here.
 
@@ -38,7 +38,7 @@ def categories(request):
     except Exception as error:
         print('O erro:', error)
         print(traceback.format_exc())
-        return render(request, 'categories.html')
+        return render(request, 'categories.html', status=500)
 
 
 def languages(request):

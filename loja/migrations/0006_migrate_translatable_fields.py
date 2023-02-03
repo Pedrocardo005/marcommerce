@@ -46,6 +46,7 @@ def populate_categorias(apps, schema_editor):
         categoria.icone=icones[idx]
         categoria.save()
 
+        # Naturalmente se cria um translation para cada categoria criada
         c=CategoriaTranslation()
         c.master_id=categoria.pk
         c.language_code=settings.LANGUAGE_CODE
