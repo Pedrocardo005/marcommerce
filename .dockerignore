@@ -1,0 +1,13 @@
+.git
+/bin
+/docs
+/env_project
+/include
+/lib
+/lib64
+db.sqlite3
+.gitignore
+Procfile
+pyvenv.cfg
+README.md
+runtime.txt
