@@ -25,3 +25,12 @@ Abrir o projeto:
 ```bash
 heroku open
 ```
+
+### Deploy no pythonanywhere
+
+Rode o comando
+```bash
+python manage.py collectstatic
+```
+
+Jogue o caminho que sair na variável STATIC_ROOT
