@@ -43,3 +43,7 @@ def categories(request):
 
 def languages(request):
     return render(request, 'languages.html')
+
+
+def product_details(request):
+    return render(request, 'product-details.html')
