@@ -38,3 +38,25 @@ class Produto(TranslatableModel):
 
     def __str__(self):
         return '{} {}'.format(self.id, self.nome)
+    
+    def save(self, *args, **kwargs):
+        
+        super().save(*args, **kwargs)
+
+        view = ProdutoView()
+        view.produto = self
+        view.save()
+    
+
+class ProdutoView(models.Model):
+
+    views = models.IntegerField(default=0, blank=False, null=False)
+
+    produto = models.OneToOneField(
+        Produto,
+        blank=False,
+        null=False,
+        on_delete=models.CASCADE,
+        related_name='view',
+        parent_link=False
+    )
