@@ -45,5 +45,5 @@ def languages(request):
     return render(request, 'languages.html')
 
 
-def product_details(request):
+def product_details(request, id):
     return render(request, 'product-details.html')
