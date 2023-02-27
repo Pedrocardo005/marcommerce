@@ -36,6 +36,14 @@ class Produto(TranslatableModel):
         ),
     )
 
+    endereco = models.ForeignKey(
+        'Endereco',
+        models.CASCADE,
+        blank=True,
+        null=True,
+        related_name='produtos'
+    )
+
     def __str__(self):
         return '{} {}'.format(self.id, self.nome)
     
@@ -60,3 +68,12 @@ class ProdutoView(models.Model):
         related_name='view',
         parent_link=False
     )
+
+
+class Endereco(models.Model):
+
+    bairro = models.CharField(max_length=255)
+
+    cidade = models.CharField(max_length=255)
+
+    estado = models.CharField(max_length=255)
