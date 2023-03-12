@@ -1,16 +1,5 @@
 # Informações importantes
 
-### Site em que estou me baseando
-
-demo001.kogao-marktplatz.com
-
-usuário: admin
-senha: admin123demo!!
-
-### Link do template que Marli mandou
-
-https://demo.graygrids.com/themes/classified/index.html
-
 ### Ambiente virtual
 
 Crie um ambiente virtual:
@@ -26,4 +15,15 @@ source env_project/bin/activate
 Instale as dependências:
 ```bash
 pip install -r requirements.txt
+```
+
+### Setando a localização
+```
+https://maps.google.com/maps?q=Mission%20District%2C%20San%20Francisco%2C%20CA%2C%20USA&t=&z=13&ie=UTF8&iwloc=&output=embed
+```
+
+Para setar a localização, troque o que está dentro da variável q pelo endereço que você deseja, ficando assim:
+
+```
+https://maps.google.com/maps?q=Paripe,Salvador,Bahia&t=&z=13&ie=UTF8&iwloc=&output=embed
 ```
