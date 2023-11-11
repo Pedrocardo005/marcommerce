@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:15.1
+    volumes:
+      - "bancodados:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    expose:
+      - 5432
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_without
+    stdin_open: true
+    tty: true
+    command: bash -c 'cd code && source env_project/bin/activate && pip install -r requirements.txt && python manage.py runserver 0.0.0.0:8080'
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DJANGO_SETTINGS_MODULE=marcommerce.settings.devp
+    depends_on:
+      - db
+
+volumes:
+   bancodados:
