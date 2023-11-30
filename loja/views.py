@@ -6,7 +6,10 @@ from loja.models import Categoria
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    try:
+        return render(request, 'index.html')
+    except:
+        return render(request, '404.html')
 
 
 def contact(request):
@@ -36,9 +39,9 @@ def categories(request):
 
         return render(request, 'categories.html', context)
     except Exception as error:
-        print('O erro:', error)
+        print('Erro:', error)
         print(traceback.format_exc())
-        return render(request, 'categories.html', status=500)
+        return render(request, '404.html', status=500)
 
 
 def languages(request):
