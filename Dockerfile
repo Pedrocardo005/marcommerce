@@ -6,6 +6,8 @@ COPY requirements.txt requirements.txt
 
 RUN mkdir -p code
 
+WORKDIR code
+
 RUN python -m venv env_project
 
 RUN env_project/bin/pip install -r requirements.txt
