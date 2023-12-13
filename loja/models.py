@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 from parler.models import TranslatableModel, TranslatedFields
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.utils import timezone
 
 
 class Categoria(TranslatableModel):
@@ -44,6 +45,8 @@ class Produto(TranslatableModel):
         null=True,
         related_name='produtos'
     )
+
+    created_date = models.DateTimeField(auto_now_add=True, blank=True)
 
     def __str__(self):
         return '{} {}'.format(self.id, self.nome)
