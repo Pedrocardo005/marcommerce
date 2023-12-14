@@ -36,6 +36,7 @@ class Produto(TranslatableModel):
             Categoria,
             on_delete=models.CASCADE
         ),
+        descricao=models.TextField(blank=True, null=True, max_length=1000)
     )
 
     endereco = models.ForeignKey(
