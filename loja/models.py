@@ -32,11 +32,15 @@ class Produto(TranslatableModel):
     translations = TranslatedFields(
         nome=models.CharField(max_length=255),
         preco=models.FloatField(blank=True, null=True, default=0),
-        categoria=models.ForeignKey(
-            Categoria,
-            on_delete=models.CASCADE
-        ),
         descricao=models.TextField(blank=True, null=True, max_length=1000)
+    )
+
+    categoria=models.ForeignKey(
+        Categoria,
+        models.CASCADE,
+        blank=True,
+        null=True,
+        related_name='produtos'
     )
 
     endereco = models.ForeignKey(
