@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
     'loja',
     'rosetta',
     'parler',
     'chatapp',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +156,15 @@ PARLER_LANGUAGES = {
         'hide_untranslated': False,
     }
 }
+
+ASGI_APPLICATION = 'marcommerce.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
+LOGIN_REDIRECT_URL = "chat-page"
+
+LOGOUT_REDIRECT_URL = "login-user"
