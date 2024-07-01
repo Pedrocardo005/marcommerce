@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'loja',
     'rosetta',
     'parler',
-    'chatapp',
     'channels',
 ]
 
