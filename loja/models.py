@@ -131,3 +131,13 @@ class CustomUser(AbstractUser):
     localizacao = models.ForeignKey(Endereco, on_delete=models.CASCADE, null=True)
 
     foto = models.ImageField(_(""), upload_to=None, height_field=None, width_field=None, max_length=None, null=True)
+
+
+class SubCategoria(models.Model):
+
+    nome = models.TextField()
+
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{} {}'.format(self.pk, self.nome)
