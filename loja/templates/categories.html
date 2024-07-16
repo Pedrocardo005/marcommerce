@@ -24,59 +24,18 @@
 {% block body %}
 <section class="categories_page pt-70 pb-120">
     <div class="container">
-        <div class="categories_top_bar d-flex align-items-center justify-content-between pb-30">
-            <div class="categories_story mt-50">
-                <select style="display: none;">
-                    <option value="0">Story by Acceding</option>
-                    <option value="1">Some option</option>
-                    <option value="2">Another option</option>
-                    <option value="4">Potato</option>
-                </select>
-                <div class="nice-select" tabindex="0"><span class="current">Story by Acceding</span>
-                    <ul class="list">
-                        <li data-value="0" class="option selected">Story by Acceding</li>
-                        <li data-value="1" class="option">Some option</li>
-                        <li data-value="2" class="option">Another option</li>
-                        <li data-value="4" class="option">Potato</li>
-                    </ul>
-                </div>
+        <div class="row">
+            {% for categoria in categorias %}
+            <div class="col-3">
+                <p>
+                    {{ categoria.nome }}
+                </p>
             </div>
-            <div class="categories_tab_menu mt-50">
-                <ul class="nav" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="active" id="grid-tab" data-toggle="tab" href="#grid" role="tab" aria-controls="grid"
-                            aria-selected="true">
-                            <i class="fal fa-th"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="list-tab" data-toggle="tab" href="#list" role="tab" aria-controls="list"
-                            aria-selected="false">
-                            <i class="fal fa-th-list"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
-                <div class="row">
-                    {% for categoria in categorias %}
-                    <div class="col-lg-3 col-6 categoria-item">
-                        <div class="single_categories text-center mt-30">
-                            <div class="categories_icon">
-                                <i class="fas {{categoria.icone}}"></i>
-                            </div>
-                            <div class="categories_content">
-                                <h5 class="title">{{categoria.nome}}</h5>
-                                <p>3 Ads</p>
-                            </div>
-                            <a href="product.html"></a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+            {% if forloop.counter|divisibleby:3 %}
+            </div><div class="row">
+            {% endif %}
+            {% if forloop.last %}</div>{% endif %}
+            {% endfor %}
         </div>
     </div>
 </section>
