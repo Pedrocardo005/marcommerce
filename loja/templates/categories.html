@@ -28,7 +28,7 @@
             {% for categoria in categorias %}
             <div class="col-3">
                 <p>
-                    {{ categoria.nome }}
+                    <strong>{{ categoria.nome }}</strong>
                 </p>
             </div>
             {% if forloop.counter|divisibleby:3 %}
