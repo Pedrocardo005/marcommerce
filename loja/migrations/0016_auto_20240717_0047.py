@@ -13,7 +13,8 @@ def populate_subcategorias(apps, schema_editor):
                   'Cozinhar assados', 'Esotérico e Espiritual', 'Cursos de informática', 'Beleza', 'Cursos de idiomas', 'Mais'],
         'Animais': ['Cães e acessórios', 'Mais', 'Aves e Acessórios', 'Animais desaparecidos', 'Cuidado e treinamento de animais',
                     'Cavalos e Acessórios', 'Pequenos animais e acessórios', 'Peixes e Acessórios', 'Gatos e acessórios',
-                    'Répteis e acessórios']
+                    'Répteis e acessórios'],
+        'Doação': ['Emprestar', 'Para trocar', 'Para doar']
     }
 
     for name in categorias_names:
