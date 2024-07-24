@@ -14,7 +14,9 @@ def populate_subcategorias(apps, schema_editor):
         'Animais': ['Cães e acessórios', 'Mais', 'Aves e Acessórios', 'Animais desaparecidos', 'Cuidado e treinamento de animais',
                     'Cavalos e Acessórios', 'Pequenos animais e acessórios', 'Peixes e Acessórios', 'Gatos e acessórios',
                     'Répteis e acessórios'],
-        'Doação': ['Emprestar', 'Para trocar', 'Para doar']
+        'Doação': ['Emprestar', 'Para trocar', 'Para doar'],
+        'Música': ['Livros e revistas', 'Filme e DVD', 'Escritório e papelaria', 'Histórias em quadrinhos',
+                   'Livros especializados, escola e estudos', 'Música e CDs', 'Instrumentos musicais', 'Adicional']
     }
 
     for name in categorias_names:
