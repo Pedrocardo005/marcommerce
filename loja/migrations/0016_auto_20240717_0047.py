@@ -16,7 +16,24 @@ def populate_subcategorias(apps, schema_editor):
                     'Répteis e acessórios'],
         'Doação': ['Emprestar', 'Para trocar', 'Para doar'],
         'Música': ['Livros e revistas', 'Filme e DVD', 'Escritório e papelaria', 'Histórias em quadrinhos',
-                   'Livros especializados, escola e estudos', 'Música e CDs', 'Instrumentos musicais', 'Adicional']
+                   'Livros especializados, escola e estudos', 'Música e CDs', 'Instrumentos musicais', 'Adicional'],
+        'Lazer': ['Arte e antiguidades', 'Perdidos e Achados', 'Lixo e caixas', 'Esportes e acampamento', 'Serviços de viagens e eventos',
+                  'Modelagem', 'Artesanato, artesanato e artes e ofícios', 'Amigos e parceiros de lazer', 'Comer Beber',
+                  'Esotérico e Espiritual', 'Coletar', 'Adicional'],
+        'Shows': ['Comédia e Cabaré', 'Esportes', 'Crianças', 'Clássico e Cultura', 'Mais', 'Concertos'],
+        'Empregos': [],
+        'Multimídia': ['Telemóveis e telecomunicações', 'Adicional', 'TV e vídeo', 'PC', 'Acessórios e software para PC', 'Jogos de vídeo e PC',
+                       'Cadernos', 'Consoles', 'Foto', 'Escritório, TI e serviços de TI', 'Áudio e Wi-fi', 'Eletrodomésticos', 'Tablets e leitores'],
+        'Família': ['Roupas para bebês e crianças', 'Brinquedo', 'Móveis de quarto infantil', 'Carrinhos', 'Assentos de bebê e cadeiras de criança',
+                    'Equipamento para bebês', 'Calçados para bebês e crianças', 'Cuidados com idosos', 'Babá e cuidado infantil', 'Adicional'],
+        'Moda': ['Acessórios e joias', 'Roupas femininas', 'Beleza'],
+        'Casa': ['Quarto', 'Serviços em casa e jardim', 'Lâmpadas e luz', 'Cozinha e sala de jantar', 'Faça você mesmo', 'Têxteis do lar',
+                 'Jardim e plantas', 'Decoração', 'Escritório', 'Banheiro', 'Sala de estar', 'Adicional'],
+        'Imóveis': ['Compre um apartamento', 'Compre uma casa', 'Imóveis comerciais', 'Mudanças e transporte', 'Alugar uma casa', 'Terreno e jardim',
+                    'Garagem e arrecadação', 'Apartamentos e casas de férias', 'Em caráter temporário e apartamento compartilhado', 'Alugar um apartamento',
+                    'Adicional'],
+        'Carros': ['Carros', 'Barcos e acessórios para barcos', 'Reparos e serviços', 'Caravanas e casas móveis', 'Peças automotivas e pneus', 'Ciclos',
+                   'Reboques e veículos comerciais', 'Motocicletas e peças', 'Scooters e peças', 'Lambreta']
     }
 
     for name in categorias_names:
