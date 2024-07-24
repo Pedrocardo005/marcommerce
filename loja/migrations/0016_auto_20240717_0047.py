@@ -11,6 +11,9 @@ def populate_subcategorias(apps, schema_editor):
     subcategories = {
         'Aulas': ['Tutoria', 'Educação continuada', 'Aulas de dança', 'Cursos de esportes', 'Música e canto', 'Design de arte',
                   'Cozinhar assados', 'Esotérico e Espiritual', 'Cursos de informática', 'Beleza', 'Cursos de idiomas', 'Mais'],
+        'Animais': ['Cães e acessórios', 'Mais', 'Aves e Acessórios', 'Animais desaparecidos', 'Cuidado e treinamento de animais',
+                    'Cavalos e Acessórios', 'Pequenos animais e acessórios', 'Peixes e Acessórios', 'Gatos e acessórios',
+                    'Répteis e acessórios']
     }
 
     for name in categorias_names:
