@@ -140,4 +140,4 @@ class SubCategoria(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} {}'.format(self.pk, self.nome)
+        return '{} - {}'.format(self.categoria.nome, self.nome)
