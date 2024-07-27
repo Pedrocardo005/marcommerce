@@ -18,3 +18,9 @@
     height: 100%;
     z-index: 5;
 }
+
+.categorias-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

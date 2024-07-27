@@ -1,0 +1,48 @@
+{% extends "base_site.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/categoria.css' %}">
+{% endblock  %}
+
+{% block header-bottom %}
+<div class="page_banner bg_cover" style="background-image: url(assets/images/page-banner.jpg)">
+    <div class="container">
+        <div class="page_banner_content">
+            <h3 class="title">Todas as categorias</h3>
+            <ul class="breadcrumb">
+                <li><a href="{% url 'index' %}">Início</a></li>
+                <li>Categorias</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!--====== BODY PART START ======-->
+{% block body %}
+<section class="categories_page pt-70 pb-120">
+    <div class="container categorias-container">
+        <div class="row">
+            {% for categoria in object_list %}
+            <div class="col-3">
+                <p>
+                    <strong>{{ categoria.nome }}</strong>
+                </p>
+                {% for subcategoria in categoria.subcategorias.all %}
+                <p>
+                    {{ subcategoria.nome }}
+                </p>
+                {% endfor %}
+            </div>
+            {% if forloop.counter|divisibleby:3 %}
+            </div><div class="row">
+            {% endif %}
+            {% if forloop.last %}</div>{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+<!--====== BODY PART ENDS ======-->

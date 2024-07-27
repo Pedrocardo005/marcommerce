@@ -137,7 +137,7 @@ class SubCategoria(models.Model):
 
     nome = models.TextField()
 
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='subcategorias')
 
     def __str__(self):
         return '{} - {}'.format(self.categoria.nome, self.nome)
