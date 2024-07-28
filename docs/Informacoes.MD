@@ -1,5 +1,9 @@
 # Informações importantes
 
+### Link do template
+
+https://demo.graygrids.com/themes/classified/index.html
+
 ### Ambiente virtual
 
 Crie um ambiente virtual:
