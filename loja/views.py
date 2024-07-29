@@ -23,3 +23,7 @@ def languages(request):
 
 def product_details(request, id):
     return render(request, 'product-details.html')
+
+
+def login(request):
+    return render(request, 'login.html')

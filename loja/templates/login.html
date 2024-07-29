@@ -1,0 +1,46 @@
+{% extends "base_site.html" %}
+{% load static %}
+
+{% block header-bottom %}
+<div class="page_banner bg_cover" style="background-image: url({% static 'img/page-banner.jpg' %})">
+    <div class="container">
+        <div class="page_banner_content">
+            <h3 class="title">Login</h3>
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li>Login</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+    <!--====== LOGIN PART START ======-->
+
+    <section class="login-area pt-70 pb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7 col-sm-9">
+                    <div class="login-form">
+                        <form>
+                            <div class="login-form-wrapper">
+                                <div class="single-form">
+                                    <input type="email" placeholder="Username"/>
+                                </div>
+                                <div class="single-form">
+                                    <input type="password" placeholder="Password"/>
+                                </div>
+                                <div class="single-form">
+                                    <button type="submit">Entrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== LOGIN PART ENDS ======-->
+{% endblock %}

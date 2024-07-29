@@ -121,7 +121,7 @@
                             <!-- Exibe botão para logar a quem não estiver autenticado, ou
                             um pequeno menu pros logados. -->
                             {% if not user.is_authenticated %}
-                            <li><a class="sign-up" href="{% url 'admin:index' %}">Login</a></li>
+                            <li><a class="sign-up" href="{% url 'loja.login' %}">Login</a></li>
                             {% else %}
                             <div class="navbar_btn">
                                 <ul>
