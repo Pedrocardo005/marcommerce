@@ -1,0 +1,42 @@
+.login-title > .title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #3C4559;
+    border-bottom: 1px solid rgba(210, 210, 210, 0.4);
+    position: relative;
+    padding: 10px 0;
+}
+
+.login-form {
+    padding: 20px;
+    padding-top: 0;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.login-form-wrapper > .single-form {
+    margin-top: 20px;
+    position: relative;
+}
+
+.single-form > input {
+    width: 100%;
+    height: 50px;
+    padding: 0 25px;
+    padding-left: 40px;
+    border-radius: 5px;
+    border: 1px solid #BCC1CE;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.login-form-wrapper > .single-form > i {
+    position: absolute;
+    top: 17px;
+    left: 15px;
+    font-size: 16px;
+    color: #6D7588;
+}
