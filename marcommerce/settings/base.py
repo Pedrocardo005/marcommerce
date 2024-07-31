@@ -163,7 +163,3 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer"
     }
 }
-
-LOGIN_REDIRECT_URL = "chat-page"
-
-LOGOUT_REDIRECT_URL = "login-user"
