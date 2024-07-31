@@ -40,3 +40,14 @@
     font-size: 16px;
     color: #6D7588;
 }
+
+.single-form > .btn-login {
+    background-color: #86B817;
+    border-color: #86B817;
+    color: white;
+}
+
+.single-form > .btn-login:hover {
+    background-color: #74a113;
+    border-color: #74a113;
+}
