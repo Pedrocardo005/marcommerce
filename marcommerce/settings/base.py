@@ -39,12 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'daphne',
     'django.contrib.staticfiles',
     'loja',
     'rosetta',
     'parler',
-    'channels',
 ]
 
 MIDDLEWARE = [
@@ -157,9 +155,3 @@ PARLER_LANGUAGES = {
 }
 
 ASGI_APPLICATION = 'marcommerce.asgi.application'
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
-}
