@@ -30,14 +30,15 @@
                         <div class="login-title pt-3">
                             <h5 class="title">Login</h5>
                         </div>
-                        <form>
+                        <form action="usuario/" method="POST">
+                            {% csrf_token %}
                             <div class="login-form-wrapper">
                                 <div class="single-form">
-                                    <input type="email" placeholder="E-mail do usuário"/>
+                                    <input type="text" name="username" placeholder="Nome do usuário"/>
                                     <i class="far fa-user"></i>
                                 </div>
                                 <div class="single-form">
-                                    <input type="password" placeholder="Senha do usuário"/>
+                                    <input type="password" name="password" placeholder="Senha do usuário"/>
                                     <i class="fas fa-key"></i>
                                 </div>
                                 <div class="single-form">
