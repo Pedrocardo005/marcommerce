@@ -28,6 +28,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - DJANGO_SETTINGS_MODULE=marcommerce.settings.devp
+      - PYTHONPATH=/code
     depends_on:
       - db
 
