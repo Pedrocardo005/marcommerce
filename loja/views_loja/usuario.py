@@ -14,4 +14,4 @@ def login_user(request):
         
         return render(request, 'login.html', { 'error': 'Usuário não encontrado' })
     except Exception:
-        return render(request, 'login.html', { 'error': 'Ocorreu um erro interno no servidor' })
+        return render(request, 'login.html', { 'error': 'Ocorreu um erro interno no servidor' }, status=500)
