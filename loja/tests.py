@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 from loja.models import Categoria
 
@@ -22,9 +23,9 @@ class CategoriaTestCase(TestCase):
         url_view = reverse('categories')
         
         response = self.client.get(url_view)
-        self.assertTemplateUsed(response, 'categories.html')
+        self.assertTemplateUsed(response, 'loja/categoria_list.html')
 
         Categoria.objects.all().delete()
 
         response = self.client.get(url_view)
-        self.assertTemplateUsed(response, 'categories.html')
+        self.assertTemplateUsed(response, 'loja/categoria_list.html')
