@@ -29,3 +29,28 @@ class CategoriaTestCase(TestCase):
 
         response = self.client.get(url_view)
         self.assertTemplateUsed(response, 'loja/categoria_list.html')
+
+    def test_login_user(self):
+        url_login = reverse('loja.login-usuario')
+
+        new_user = User()
+        new_user.username = 'testerum'
+        new_user.set_password('12345678')
+        new_user.save()
+
+        data = {
+            'username': 'testerum',
+            'password': '12345678'
+        }
+
+        response = self.client.post(url_login, data)
+
+        self.assertRedirects(response, '/pt/')
+
+        data = {
+            'password': '12345678'
+        }
+
+        response = self.client.post(url_login, data)
+
+        self.assertEquals(response.status_code, 500)
