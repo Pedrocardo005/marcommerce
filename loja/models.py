@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext as _
 from parler.models import TranslatableModel, TranslatedFields
 from django.contrib.auth.models import AbstractUser, Group, Permission
-from django.utils import timezone
 
 
 class Categoria(TranslatableModel):
