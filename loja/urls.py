@@ -11,6 +11,5 @@ urlpatterns = [
     path('categories/', CategoriaListView.as_view(), name='categories'),
     path('languages/', views.languages, name='loja.languages'),
     path('product-details/<int:id>', views.product_details, name='loja.product-details'),
-    path('login/', views.login, name='loja.login'),
-    path('login/usuario/', usuario.login_user, name='loja.login-usuario'),
+    path('login/', usuario.login_user, name='loja.login'),
 ]

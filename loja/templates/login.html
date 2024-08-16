@@ -36,7 +36,7 @@
                             {{ error }}
                         </div>
                         {% endif %}                        
-                        <form action="{% url 'loja.login-usuario' %}" method="POST">
+                        <form action="{% url 'loja.login' %}" method="POST">
                             {% csrf_token %}
                             <div class="login-form-wrapper">
                                 <div class="single-form">
