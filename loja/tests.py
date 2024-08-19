@@ -31,7 +31,7 @@ class CategoriaTestCase(TestCase):
         self.assertTemplateUsed(response, 'loja/categoria_list.html')
 
     def test_login_user(self):
-        url_login = reverse('loja.login-usuario')
+        url_login = reverse('loja.login')
 
         new_user = User()
         new_user.username = 'testerum'
