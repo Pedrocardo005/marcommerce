@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import redirect, render
 
 
-def login_user(request):
+def login_user(request: WSGIRequest):
     try:
         if request.method == 'GET':
+            if request.user.is_authenticated:
+                return redirect('index')
             return render(request, 'login.html')
         
         elif request.method == 'POST':
