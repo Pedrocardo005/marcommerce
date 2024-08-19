@@ -33,6 +33,10 @@ class CategoriaTestCase(TestCase):
     def test_login_user(self):
         url_login = reverse('loja.login')
 
+        response = self.client.get(url_login)
+
+        self.assertTemplateUsed(response, 'login.html')
+
         new_user = User()
         new_user.username = 'testerum'
         new_user.set_password('12345678')
