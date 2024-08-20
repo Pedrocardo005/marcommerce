@@ -9,13 +9,13 @@ class Categoria(TranslatableModel):
     class Meta:
         verbose_name = 'categoria'
         verbose_name_plural = 'categorias'
-    
+
     translations = TranslatedFields(
         nome=models.CharField(max_length=255),
         icone=models.CharField(max_length=255, blank=True, null=True),
     )
 
-    categoria=models.ForeignKey(
+    categoria = models.ForeignKey(
         'Categoria',
         on_delete=models.CASCADE,
         blank=True,
@@ -25,7 +25,7 @@ class Categoria(TranslatableModel):
 
     def __str__(self):
         return self.nome
-    
+
 
 class Produto(TranslatableModel):
     translations = TranslatedFields(
@@ -34,7 +34,7 @@ class Produto(TranslatableModel):
         descricao=models.TextField(blank=True, null=True, max_length=1000)
     )
 
-    categoria=models.ForeignKey(
+    categoria = models.ForeignKey(
         Categoria,
         models.CASCADE,
         blank=True,
@@ -54,15 +54,15 @@ class Produto(TranslatableModel):
 
     def __str__(self):
         return '{} {}'.format(self.id, self.nome)
-    
+
     def save(self, *args, **kwargs):
-        
+
         super().save(*args, **kwargs)
 
         view = ProdutoView()
         view.produto = self
         view.save()
-    
+
 
 class ProdutoView(models.Model):
 
@@ -100,11 +100,12 @@ class ImagemProduto(models.Model):
         related_name='imagens'
     )
 
-    imagem = models.ImageField(_(""), upload_to=None, height_field=None, width_field=None, max_length=None)
+    imagem = models.ImageField(
+        _(""), upload_to=None, height_field=None, width_field=None, max_length=None)
 
     def __str__(self) -> str:
         return '{} {}'.format(self.id, self.nome)
-    
+
 
 class CustomUser(AbstractUser):
 
@@ -126,17 +127,20 @@ class CustomUser(AbstractUser):
         help_text=_('Specific permissions for this user.'),
         related_name='customuser_user_permissions',  # Adicione essa linha
     )
-    
-    localizacao = models.ForeignKey(Endereco, on_delete=models.CASCADE, null=True)
 
-    foto = models.ImageField(_(""), upload_to=None, height_field=None, width_field=None, max_length=None, null=True)
+    localizacao = models.ForeignKey(
+        Endereco, on_delete=models.CASCADE, null=True)
+
+    foto = models.ImageField(_(""), upload_to=None, height_field=None,
+                             width_field=None, max_length=None, null=True)
 
 
 class SubCategoria(models.Model):
 
     nome = models.TextField()
 
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='subcategorias')
+    categoria = models.ForeignKey(
+        Categoria, on_delete=models.CASCADE, related_name='subcategorias')
 
     def __str__(self):
         return '{} - {}'.format(self.categoria.nome, self.nome)
