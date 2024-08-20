@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import redirect, render
 
@@ -21,3 +21,7 @@ def login_user(request: WSGIRequest):
             return render(request, 'login.html', { 'error': 'Usuário não encontrado' })
     except Exception:
         return render(request, 'login.html', { 'error': 'Ocorreu um erro interno no servidor' }, status=500)
+    
+
+def logout_user(request: WSGIRequest):
+    ...

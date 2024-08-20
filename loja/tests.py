@@ -58,3 +58,36 @@ class CategoriaTestCase(TestCase):
         response = self.client.post(url_login, data)
 
         self.assertEquals(response.status_code, 500)
+    
+    # Testa logout com redirect para o index
+    def test_logout_user_with_redirect(self):
+        url_login = reverse('loja.login')
+        url_logout = reverse('loja.logout')
+
+        response = self.client.get(url_login)
+
+        self.assertTemplateUsed(response, 'login.html')
+
+        new_user = User()
+        new_user.username = 'testerum'
+        new_user.set_password('12345678')
+        new_user.save()
+
+        data = {
+            'username': 'testerum',
+            'password': '12345678'
+        }
+
+        response = self.client.post(url_login, data)
+
+        self.assertRedirects(response, '/pt/')
+
+        response = self.client.get(url_login)
+
+        self.assertRedirects(response, '/pt/')
+
+        self.client.post(url_logout)
+
+        response = self.client.get(url_login)
+
+        self.assertTemplateUsed(response, 'login.html')
