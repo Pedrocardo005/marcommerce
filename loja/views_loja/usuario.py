@@ -24,4 +24,5 @@ def login_user(request: WSGIRequest):
 
 
 def logout_user(request: WSGIRequest):
-    ...
+    logout(request)
+    return render(request, 'loja/usuario/logout.html')
