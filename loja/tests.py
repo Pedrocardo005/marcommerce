@@ -87,7 +87,9 @@ class CategoriaTestCase(TestCase):
 
         self.assertRedirects(response, '/pt/')
 
-        self.client.post(url_logout)
+        response = self.client.post(url_logout)
+
+        self.assertTemplateUsed(response, 'loja/usuario/logout.html')
 
         response = self.client.get(url_login)
 
