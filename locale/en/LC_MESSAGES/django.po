@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: loja/models.py:104 loja/models.py:133
+#: loja/models.py:104 loja/models.py:134
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 01:16+0000\n"
+"POT-Creation-Date: 2024-08-21 02:32+0000\n"
 "PO-Revision-Date: 2022-05-05 10:42+0000\n"
 "Last-Translator:   <pedrocardo007@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1247,55 +1247,59 @@ msgstr ""
 msgid "Specific permissions for this user."
 msgstr ""
 
-#: loja/templates/base_site.html:88 loja/templates/login.html:14
+#: loja/templates/base_site.html:90 loja/templates/login.html:15
 msgid "Home"
 msgstr ""
 
-#: loja/templates/base_site.html:96 loja/templates/index.html:80
+#: loja/templates/base_site.html:98 loja/templates/index.html:80
 #, fuzzy
 #| msgid "categoria"
 msgid "Categories"
 msgstr "category"
 
-#: loja/templates/base_site.html:104
+#: loja/templates/base_site.html:106
 msgid "About"
 msgstr ""
 
-#: loja/templates/base_site.html:113
+#: loja/templates/base_site.html:115
 msgid "Contact"
 msgstr ""
 
-#: loja/templates/base_site.html:130
+#: loja/templates/base_site.html:132
 msgid "Usuário"
 msgstr "User"
 
-#: loja/templates/base_site.html:134
+#: loja/templates/base_site.html:136
 msgid "Mensagens"
 msgstr "Messages"
 
-#: loja/templates/base_site.html:135
+#: loja/templates/base_site.html:137
 msgid "Anúncios"
 msgstr "Adverts"
 
-#: loja/templates/base_site.html:136
+#: loja/templates/base_site.html:138
 msgid "Configurações"
 msgstr "Settings"
 
-#: loja/templates/base_site.html:137
+#: loja/templates/base_site.html:139
 msgid "Favoritos"
 msgstr "Favorites"
 
-#: loja/templates/base_site.html:138
+#: loja/templates/base_site.html:140
 msgid "Lista de observações"
 msgstr "List of observations"
 
-#: loja/templates/base_site.html:139
+#: loja/templates/base_site.html:141
 msgid "Usuários"
 msgstr "Users"
 
-#: loja/templates/base_site.html:140
+#: loja/templates/base_site.html:142
 msgid "Buscas"
 msgstr "Searches"
+
+#: loja/templates/base_site.html:143
+msgid "Sair"
+msgstr ""
 
 #: loja/templates/index.html:11
 msgid "You're Using Free Version of ClassiFied"
@@ -1448,20 +1452,20 @@ msgstr "TestDriven.io Categorias"
 msgid "Language"
 msgstr ""
 
-#: loja/templates/login.html:12 loja/templates/login.html:15
-#: loja/templates/login.html:31
+#: loja/templates/login.html:13 loja/templates/login.html:16
+#: loja/templates/login.html:32
 msgid "Login"
 msgstr ""
 
-#: loja/templates/login.html:42
+#: loja/templates/login.html:43
 msgid "Nome do usuário"
 msgstr ""
 
-#: loja/templates/login.html:46
+#: loja/templates/login.html:47
 msgid "Senha do usuário"
 msgstr ""
 
-#: loja/templates/login.html:50
+#: loja/templates/login.html:51
 msgid "Entrar"
 msgstr ""
 
