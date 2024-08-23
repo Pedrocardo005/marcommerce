@@ -1,4 +1,4 @@
-.login-title > .title {
+.login-title>.title {
     font-size: 18px;
     font-weight: 700;
     color: #3C4559;
@@ -14,12 +14,12 @@
     border-radius: 10px;
 }
 
-.login-form-wrapper > .single-form {
+.login-form-wrapper>.single-form {
     margin-top: 20px;
     position: relative;
 }
 
-.single-form > input {
+.single-form>input {
     width: 100%;
     height: 50px;
     padding: 0 25px;
@@ -33,7 +33,7 @@
     transition: all 0.3s ease-out 0s;
 }
 
-.login-form-wrapper > .single-form > i {
+.login-form-wrapper>.single-form>i {
     position: absolute;
     top: 17px;
     left: 15px;
@@ -41,13 +41,21 @@
     color: #6D7588;
 }
 
-.single-form > .btn-login {
+.single-form>.btn-login {
     background-color: #86B817;
     border-color: #86B817;
     color: white;
 }
 
-.single-form > .btn-login:hover {
+.single-form>.btn-login:hover {
     background-color: #74a113;
     border-color: #74a113;
+}
+
+.logout-title {
+    font-size: 60px;
+    font-weight: 700;
+    color: #315659;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

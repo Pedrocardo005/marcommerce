@@ -1,0 +1,29 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock  %}
+
+{% block header-bottom %}
+<div class="page_banner bg_cover" style="background-image: url(assets/images/page-banner.jpg)">
+    <div class="container">
+        <div class="page_banner_content">
+            <h3 class="title">Logout</h3>
+            <ul class="breadcrumb">
+                <li><a href="{% url 'index' %}">Início</a></li>
+                <li>Logout</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body %}
+<section class="content_wrapper d-flex justify-content-center">
+    <h5 class="logout-title">
+        Logout realizado com sucesso
+    </h5>
+</section>
+{% endblock  %}
