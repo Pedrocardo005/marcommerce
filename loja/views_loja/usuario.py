@@ -26,3 +26,7 @@ def login_user(request: WSGIRequest):
 def logout_user(request: WSGIRequest):
     logout(request)
     return render(request, 'loja/usuario/logout.html')
+
+
+def create_user(request: WSGIRequest):
+    pass

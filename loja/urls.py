@@ -14,4 +14,5 @@ urlpatterns = [
          name='loja.product-details'),
     path('login/', usuario.login_user, name='loja.login'),
     path('logout/', usuario.logout_user, name='loja.logout'),
+    path('create-user/', usuario.create_user, name='loja.create-user'),
 ]

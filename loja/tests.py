@@ -94,3 +94,10 @@ class CategoriaTestCase(TestCase):
         response = self.client.get(url_login)
 
         self.assertTemplateUsed(response, 'login.html')
+
+    def test_create_user(self):
+        url_create_user = reverse('loja.create-user')
+
+        response = self.client.get(url_create_user)
+
+        self.assertTemplateUsed(response, 'loja/usuario/signup.html')
