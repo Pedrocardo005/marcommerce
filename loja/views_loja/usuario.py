@@ -29,4 +29,5 @@ def logout_user(request: WSGIRequest):
 
 
 def create_user(request: WSGIRequest):
-    pass
+    if request.method == 'GET':
+        return render(request, 'loja/usuario/signup.html')
