@@ -97,7 +97,42 @@ class CategoriaTestCase(TestCase):
 
     def test_create_user(self):
         url_create_user = reverse('loja.create-user')
+        url_login = reverse('loja.login')
+        url_logout = reverse('loja.logout')
 
         response = self.client.get(url_create_user)
 
         self.assertTemplateUsed(response, 'loja/usuario/signup.html')
+
+        data = {
+            'username': 'user_test',
+            'email': 'teste@teste.com',
+            'password': '12345678'
+        }
+
+        response = self.client.post(url_create_user, data)
+
+        self.assertEquals(response.status_code, 200)
+
+        data = {
+            'username': 'user_test',
+            'password': '12345678'
+        }
+
+        response = self.client.post(url_login, data)
+
+        self.assertRedirects(response, '/pt/')
+
+        response = self.client.post(url_logout)
+
+        self.assertTemplateUsed(response, 'loja/usuario/logout.html')
+
+        data = {
+            'username': 'user_test',
+            'email': 'teste@hotmail.com',
+            'password': '12345678'
+        }
+
+        response = self.client.post(url_create_user, data)
+
+        self.assertEquals(response.status_code, 409)
