@@ -1,6 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import redirect, render
+from django.http import JsonResponse
+from django.db.utils import IntegrityError
 
 
 def login_user(request: WSGIRequest):
@@ -31,3 +34,26 @@ def logout_user(request: WSGIRequest):
 def create_user(request: WSGIRequest):
     if request.method == 'GET':
         return render(request, 'loja/usuario/signup.html')
+
+    if request.method == 'POST':
+        try:
+            username = request.POST['username']
+            email = request.POST['email']
+            password = request.POST['password']
+
+            user = User.objects.create_user(username, email, password)
+
+            user.save()
+
+            data = {
+                'usename': user.username,
+                'email': user.email
+            }
+
+            return JsonResponse(data, status=200)
+        except IntegrityError as error:
+            message = str(error)
+            return JsonResponse({'message': message}, status=409)
+
+        except Exception as error:
+            return JsonResponse({'message': 'Ocorreu um erro interno no servidor'}, status=500)
