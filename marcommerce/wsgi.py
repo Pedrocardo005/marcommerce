@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'marcommerce.settings.anywhere')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                      'marcommerce.settings.anywhere')
 
 application = get_wsgi_application()
