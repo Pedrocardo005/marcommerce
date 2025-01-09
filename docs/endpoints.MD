@@ -90,3 +90,51 @@ GET
     "email_anunciante": "abc@gmail.com"
 }
 ```
+
+### `loja/anuncio/subcategoria/{nome_subcategoria}`
+
+##### Trás anúncios pela subcategoria
+
+GET
+```json
+[
+    {
+        "id": 1,
+        "nome": "produto 1",
+        "preco": 11.08,
+        "descricao": "descricao qualquer",
+        "condicao": "condição do item"
+    },
+    {
+        "id": 2,
+        "nome": "produto 2",
+        "preco": 11.08,
+        "descricao": "descricao qualquer dois",
+        "condicao": "condição do item dois"
+    }
+]
+```
+
+### `loja/anuncio/categoria/{nome_categoria}`
+
+##### Trás anúncios pela categoria
+
+GET
+```json
+[
+    {
+        "id": 1,
+        "nome": "produto 1",
+        "preco": 11.08,
+        "descricao": "descricao qualquer",
+        "condicao": "condição do item"
+    },
+    {
+        "id": 2,
+        "nome": "produto 2",
+        "preco": 11.08,
+        "descricao": "descricao qualquer dois",
+        "condicao": "condição do item dois"
+    }
+]
+```
