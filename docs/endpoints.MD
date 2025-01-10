@@ -138,3 +138,21 @@ GET
     }
 ]
 ```
+
+### `loja/login`
+
+##### Faz login no site
+
+POST
+```json
+{
+    "email": "teste@gmail.com",
+    "senha": "12345678"
+}
+```
+retorno
+```json
+{
+    "token": "aofnaoisfjaiosfnaksn9au1jrf-0a"
+}
+```
