@@ -156,3 +156,30 @@ retorno
     "token": "aofnaoisfjaiosfnaksn9au1jrf-0a"
 }
 ```
+
+### `loja/register`
+
+##### Registra usuário no sistema
+
+POST
+```json
+{
+    "email": "nada@gmail.com",
+    "password": "abcdefg",
+    "repeat_password": "abcdefg",
+    "username": "Marinho",
+    "type": "privado"
+}
+```
+
+ou
+
+```json
+{
+    "email": "nada@gmail.com",
+    "password": "abcdefg",
+    "repeat_password": "abcdefg",
+    "username": "Marinho",
+    "type": "comercial"
+}
+```
