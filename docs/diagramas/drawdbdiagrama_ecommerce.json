@@ -67,7 +67,7 @@
     {
       "id": 1,
       "name": "Anuncio",
-      "x": 141.83572260374967,
+      "x": 135.9259008285935,
       "y": 53.18839597640641,
       "fields": [
         {
@@ -447,8 +447,8 @@
     {
       "id": 5,
       "name": "FotoAnuncio",
-      "x": 497.64802893582066,
-      "y": 158.70534674531245,
+      "x": 496.1705734920316,
+      "y": 133.58860420089832,
       "fields": [
         {
           "name": "id",
@@ -487,6 +487,20 @@
           "increment": false,
           "comment": "",
           "id": 2,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "url_imagem",
+          "type": "TEXT",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 3,
           "size": "",
           "values": []
         }
