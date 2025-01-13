@@ -183,3 +183,24 @@ ou
     "type": "comercial"
 }
 ```
+
+### `loja/anuncio/usuario/{id_usuario}`
+
+##### Trás anúncios pelo usuário
+
+GET
+```json
+[
+    {
+        "id": 1,
+        "ativo": true,
+        "views": 10,
+        "data_expirar": "25/12/2025",
+        "preco": 10.9,
+        "url_imagem": "https://aws.s3.com.br/09u1rnknfas9f0"
+    }
+]
+```
+
+Precisa estar autenticado
+Provavelmente retornará apenas se for vendedor
