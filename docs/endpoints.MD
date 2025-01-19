@@ -157,6 +157,19 @@ retorno
 }
 ```
 
+### `loja/logout`
+
+##### Faz logout no site
+
+POST
+```json
+{
+    "token": "aofnaoisfjaiosfnaksn9au1jrf-0a"
+}
+```
+
+Obs: Não precisa nem passar nada, irá automaticamente deslogar o usuário
+
 ### `loja/register`
 
 ##### Registra usuário no sistema
