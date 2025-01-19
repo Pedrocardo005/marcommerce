@@ -67,8 +67,8 @@
     {
       "id": 1,
       "name": "Anuncio",
-      "x": 135.9259008285935,
-      "y": 53.18839597640641,
+      "x": 134.44844538480447,
+      "y": -5.909821775156047,
       "fields": [
         {
           "name": "id",
@@ -294,10 +294,50 @@
           "unique": false,
           "notNull": false,
           "increment": false,
-          "comment": "",
+          "comment": " Campo indicando se é uma venda ou um procura-se.",
           "id": 16,
           "size": "",
           "values": []
+        },
+        {
+          "name": "tipo_oferta",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": " É um campo multipla escolha indicando o tipo da oferta.",
+          "id": 17,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "provedor",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 18,
+          "size": 255
+        },
+        {
+          "name": "telefone",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 19,
+          "size": 255
         }
       ],
       "comment": "",
