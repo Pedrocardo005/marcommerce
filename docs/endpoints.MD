@@ -77,7 +77,7 @@ GET
 
 ### `loja/anuncio/{id}`
 
-##### Trás um anúncio pelo seu id
+##### (GET) Trás um anúncio pelo seu id
 
 GET
 ```json
@@ -91,7 +91,7 @@ GET
 }
 ```
 
-##### Edita um anúncio
+##### (PUT) Edita um anúncio
 
 PUT
 ```json
@@ -118,6 +118,17 @@ PUT
     "numero": 12,
     "provedor": "Casas Bahia",
     "telefone": "71984287792"
+}
+```
+
+##### (DELETE) Remove um anúncio
+
+Remove um registro de anúncio. Mas somente se for o criador do anúncio.
+
+DELETE
+```json
+{
+    "id": 1,
 }
 ```
 
