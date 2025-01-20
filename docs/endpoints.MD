@@ -343,3 +343,13 @@ POST
     "id_anuncio": 1
 }
 ```
+
+##### (DELETE) Remove anúncio dos favoritos
+
+DELETE
+```json
+{
+    "id_usuario": 1,
+    "id_anuncio": 1
+}
+```
