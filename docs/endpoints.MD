@@ -289,3 +289,45 @@ POST
     "telefone": "71984287792"
 }
 ```
+
+### `loja/anuncio/change_status/{id_anuncio}`
+
+##### (PATCH) Desativa anuncio
+
+O usuário deve ser o criador do anúncio
+
+PATCH
+```json
+{
+    "id": 1,
+    "vendendo": false,
+}
+```
+
+retorno
+
+```json
+{
+    "id_categoria": 1,
+    "vendendo": false,
+    "titulo": "Fiat Palio",
+    "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
+    "tipo_oferta": 1,
+    "preco": 40000.00,
+    "fotos": [
+        {
+            "imagem1": "imagem em um formato lá para envio",
+            "ordem": 3
+        }
+    ],
+    "condicao": "Usado",
+    "envio": 2,
+    "pagamento_paypal": true,
+    "codigo_postal": "40000-000",
+    "cidade": "São Paulo",
+    "rua": "Rua São Marcelo",
+    "numero": 12,
+    "provedor": "Casas Bahia",
+    "telefone": "71984287792"
+}
+```
