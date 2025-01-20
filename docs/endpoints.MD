@@ -292,7 +292,7 @@ POST
 
 ### `loja/anuncio/change_status/{id_anuncio}`
 
-##### (PATCH) Desativa anuncio
+##### (PATCH) Desativa ou ativa anuncio
 
 O usuário deve ser o criador do anúncio
 
