@@ -353,3 +353,24 @@ DELETE
     "id_anuncio": 1
 }
 ```
+
+### `loja/anuncio/ofertados`
+
+##### (GET) Traz anuncios que tiveram ofertas
+
+GET
+```json
+[
+    {
+        "id": 1,
+        "valor": 1500.00,
+        "mensagem": "Interesse na sua oferta",
+        "anuncio": {
+            "id": 1,
+            "titulo": "Produto ofertado",
+            "preco": 10.5,
+            "views": 200
+        }
+    }
+]
+```
