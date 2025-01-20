@@ -331,3 +331,15 @@ retorno
     "telefone": "71984287792"
 }
 ```
+
+### `loja/anuncio/favorite`
+
+##### (POST) Favorita anuncio
+
+POST
+```json
+{
+    "id_usuario": 1,
+    "id_anuncio": 1
+}
+```
