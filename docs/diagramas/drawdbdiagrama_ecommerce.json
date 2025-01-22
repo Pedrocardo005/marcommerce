@@ -67,8 +67,8 @@
     {
       "id": 1,
       "name": "Anuncio",
-      "x": 134.44844538480447,
-      "y": -5.909821775156047,
+      "x": 124.10625727828096,
+      "y": -28.07165343199199,
       "fields": [
         {
           "name": "id",
@@ -338,6 +338,20 @@
           "comment": "",
           "id": 19,
           "size": 255
+        },
+        {
+          "name": "data_venda",
+          "type": "DATE",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 20,
+          "size": "",
+          "values": []
         }
       ],
       "comment": "",
@@ -747,6 +761,72 @@
       "indices": [],
       "color": "#175e7a",
       "key": 1735395419185
+    },
+    {
+      "id": 9,
+      "name": "Venda",
+      "x": 499.12548437961004,
+      "y": 613.761623432344,
+      "fields": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "id_anuncio",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "id_oferta",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "data_venda",
+          "type": "DATE",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 3,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1737511207218
     }
   ],
   "relationships": [
@@ -859,6 +939,28 @@
       "deleteConstraint": "No action",
       "name": "Favoritos_id_anuncio_fk",
       "id": 9
+    },
+    {
+      "startTableId": 9,
+      "startFieldId": 1,
+      "endTableId": 1,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_Venda_id_anuncio_Anuncio",
+      "id": 10
+    },
+    {
+      "startTableId": 9,
+      "startFieldId": 2,
+      "endTableId": 7,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_Venda_id_oferta_Oferta",
+      "id": 11
     }
   ],
   "notes": [],
