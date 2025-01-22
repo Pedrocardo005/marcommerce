@@ -374,3 +374,16 @@ GET
     }
 ]
 ```
+
+### `loja/anuncio/ofertar`
+
+##### (POST) Faz oferta pelo anúncio
+
+POST
+```json
+{
+    "id_anuncio": 1,
+    "valor": 1500.00,
+    "mensagem": "Mensagem indicando interesse no produto"
+}
+```
