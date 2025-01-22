@@ -75,7 +75,7 @@ GET
 ]
 ```
 
-### `loja/anuncio/{id}`
+### `loja/anuncios/{id}`
 
 ##### (GET) Trás um anúncio pelo seu id
 
@@ -132,7 +132,7 @@ DELETE
 }
 ```
 
-### `loja/anuncio/subcategoria/{nome_subcategoria}`
+### `loja/anuncios/subcategoria/{nome_subcategoria}`
 
 ##### Trás anúncios pela subcategoria
 
@@ -156,7 +156,7 @@ GET
 ]
 ```
 
-### `loja/anuncio/categoria/{nome_categoria}`
+### `loja/anuncios/categoria/{nome_categoria}`
 
 ##### Trás anúncios pela categoria
 
@@ -238,7 +238,7 @@ ou
 }
 ```
 
-### `loja/anuncio/usuario/{id_usuario}`
+### `loja/anuncios/usuario/{id_usuario}`
 
 ##### Trás anúncios pelo usuário
 
@@ -258,8 +258,9 @@ GET
 
 Precisa estar autenticado
 Provavelmente retornará apenas se for vendedor
+Provavelmente nem precisará do id do usuário porque o servidor consegue saber.
 
-### `loja/anuncio`
+### `loja/anuncios`
 
 ##### Cria um anúncio
 
@@ -290,7 +291,7 @@ POST
 }
 ```
 
-### `loja/anuncio/change_status/{id_anuncio}`
+### `loja/anuncios/change_status/{id_anuncio}`
 
 ##### (PATCH) Desativa ou ativa anuncio
 
@@ -332,7 +333,7 @@ retorno
 }
 ```
 
-### `loja/anuncio/favorite`
+### `loja/anuncios/favorite`
 
 ##### (POST) Favorita anuncio
 
@@ -354,7 +355,7 @@ DELETE
 }
 ```
 
-### `loja/anuncio/ofertados`
+### `loja/anuncios/ofertados`
 
 ##### (GET) Traz anuncios que tiveram ofertas
 
@@ -375,7 +376,7 @@ GET
 ]
 ```
 
-### `loja/anuncio/ofertar`
+### `loja/anuncios/ofertar`
 
 ##### (POST) Faz oferta pelo anúncio
 
