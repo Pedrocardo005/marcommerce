@@ -388,3 +388,15 @@ POST
     "mensagem": "Mensagem indicando interesse no produto"
 }
 ```
+
+### `loja/ofertas/aceitar`
+
+##### (POST) Aceita oferta pelo anúncio
+
+POST
+```json
+{
+    "id": 1,
+    "valor": 1500.00
+}
+```
