@@ -400,3 +400,15 @@ POST
     "valor": 1500.00
 }
 ```
+
+### `loja/usuarios/alterar_foto`
+
+##### (PATCH) Altera foto do usuário
+
+PATCH
+```json
+{
+    "id_usuario": 1,
+    "foto_usuario": "BYTE"
+}
+```
