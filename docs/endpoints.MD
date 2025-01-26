@@ -437,3 +437,16 @@ PATCH
     "legal_notice": "Texto longo qualquer"
 }
 ```
+
+### `loja/usuarios/alterar_senha`
+
+##### (PATCH) Altera senha do usuário
+
+```json
+{
+    "id": 1,
+    "old_password": "aslkfmmaksf",
+    "new_password": "12345678",
+    "repeat_password": "12345678"
+}
+```
