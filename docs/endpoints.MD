@@ -442,11 +442,23 @@ PATCH
 
 ##### (PATCH) Altera senha do usuário
 
+PATCH
 ```json
 {
     "id": 1,
     "old_password": "aslkfmmaksf",
     "new_password": "12345678",
     "repeat_password": "12345678"
+}
+```
+
+### `loja/usuarios/resetar_senha`
+
+##### (POST) Reseta senha do usuário
+
+POST
+```json
+{
+    "email": "exemplo@gmail.com"
 }
 ```
