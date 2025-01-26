@@ -412,3 +412,28 @@ PATCH
     "foto_usuario": "BYTE"
 }
 ```
+
+### `loja/usuarios/editar_usuario`
+
+##### (PUT) Edita informações do usuário
+
+```json
+{
+    "id": 1,
+    "email": "teste@gmail.com",
+    "account_type": 1,
+    "company_size": 1,
+    "company_name": "texto qualquer",
+    "first_name": "Primeiro nome",
+    "last_name": "Ultimo nome",
+    "street": "Rua a",
+    "street_number": 14,
+    "postcode": "40350-570",
+    "city": "São Paulo",
+    "commercial_provider": "Texto longo qualquer",
+    "right_withdrawal": "Texto longo qualquer",
+    "conditions": "Texto longo qualquer",
+    "protection_notice": "Texto longo qualquer",
+    "legal_notice": "Texto longo qualquer"
+}
+```
