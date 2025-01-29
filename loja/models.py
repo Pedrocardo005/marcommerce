@@ -1,7 +1,7 @@
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
 from django.utils.translation import gettext as _
 from parler.models import TranslatableModel, TranslatedFields
-from django.contrib.auth.models import AbstractUser, Group, Permission
 
 
 class Categoria(TranslatableModel):
@@ -13,14 +13,6 @@ class Categoria(TranslatableModel):
     translations = TranslatedFields(
         nome=models.CharField(max_length=255),
         icone=models.CharField(max_length=255, blank=True, null=True),
-    )
-
-    categoria = models.ForeignKey(
-        'Categoria',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        related_name='categorias'
     )
 
     def __str__(self):
