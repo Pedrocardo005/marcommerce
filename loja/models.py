@@ -136,3 +136,14 @@ class SubCategoria(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.categoria.nome, self.nome)
+
+
+class MarcaArte(models.Model):
+
+    nome = models.TextField()
+
+    sub_categoria = models.ForeignKey(
+        SubCategoria, on_delete=models.CASCADE, related_name='subcategorias')
+
+    def __str__(self):
+        return '{} - {}'.format(self.sub_categoria.nome, self.nome)
