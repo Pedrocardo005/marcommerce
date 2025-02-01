@@ -188,3 +188,11 @@ class Anuncio(models.Model):
     telefone = models.CharField(max_length=255)
 
     data_venda = models.DateTimeField(auto_now_add=True)
+
+
+class FotoAnuncio(models.Model):
+    anuncio = models.ForeignKey(Anuncio, on_delete=models.CASCADE, related_name="fotos")
+
+    ordem = models.IntegerField()
+
+    url_imagem = models.TextField()
