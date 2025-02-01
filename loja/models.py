@@ -216,3 +216,13 @@ class Venda(models.Model):
     oferta = models.ForeignKey(Oferta, on_delete=models.CASCADE, related_name="vendas")
 
     data_venda = models.DateTimeField(auto_now_add=True)
+
+
+class Favorito(models.Model):
+    usuario = models.ForeignKey(
+        CustomUser, on_delete=models.DO_NOTHING, related_name="favoritos"
+    )
+
+    anuncio = models.ForeignKey(
+        Anuncio, on_delete=models.CASCADE, related_name="favoritos"
+    )
