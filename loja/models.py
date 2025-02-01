@@ -187,4 +187,4 @@ class Anuncio(models.Model):
 
     telefone = models.CharField(max_length=255)
 
-    data_venda = models.DateTimeField()
+    data_venda = models.DateTimeField(auto_now_add=True)
