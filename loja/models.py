@@ -196,3 +196,13 @@ class FotoAnuncio(models.Model):
     ordem = models.IntegerField()
 
     url_imagem = models.TextField()
+
+
+class Oferta(models.Model):
+    anuncio = models.ForeignKey(
+        Anuncio, on_delete=models.CASCADE, related_name="ofertas"
+    )
+
+    valor = models.DecimalField(decimal_places=2, max_digits=10)
+
+    mensagem = models.TextField()
