@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext as _
 from parler.models import TranslatableModel, TranslatedFields
 
-from loja.fields import Conditions, Envios, Ofertas
+from loja.fields import AccountType, CompanySize, Conditions, Envios, Ofertas
 
 
 class Categoria(TranslatableModel):
@@ -122,6 +122,35 @@ class CustomUser(AbstractUser):
         max_length=None,
         null=True,
     )
+
+    # Campo já existente
+    # data_criacao = models.DateTimeField(auto_now_add=True)
+
+    account_type = models.IntegerField(
+        choices=AccountType.choices, default=AccountType.IS
+    )
+
+    company_size = models.IntegerField(choices=CompanySize.choices, default=0)
+
+    company_name = models.CharField(max_length=255, default="")
+
+    street = models.CharField(max_length=255, default="")
+
+    street_number = models.IntegerField(default=0)
+
+    postcode = models.CharField(max_length=20, default="")
+
+    city = models.CharField(max_length=255, default="")
+
+    commercial_provider = models.TextField(default="")
+
+    right_withdrawal = models.TextField(default="")
+
+    conditions = models.TextField(default="")
+
+    protection_notice = models.TextField(default="")
+
+    legal_notice = models.TextField(default="")
 
 
 class SubCategoria(models.Model):

@@ -34,3 +34,13 @@ class Ofertas(models.IntegerChoices):
     SD = 3, "Sob demanda"
 
     PRESENTE = 4, "Para dar de presente"
+
+
+class AccountType(models.IntegerChoices):
+    IS = 1, "Industrial supplier"
+
+
+class CompanySize(models.IntegerChoices):
+    SBO = 1, "Small business owner"
+
+    E = 2, "Entrepreneur (with VAT)"
