@@ -255,3 +255,17 @@ class Favorito(models.Model):
     anuncio = models.ForeignKey(
         Anuncio, on_delete=models.CASCADE, related_name="favoritos"
     )
+
+
+class Mensagem(models.Model):
+    remetente = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="enviadas"
+    )
+
+    destinatario = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, related_name="recebidas"
+    )
+
+    mensagem = models.TextField()
+
+    data_hora = models.DateTimeField(auto_now_add=True)
