@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "loja",
     "rosetta",
     "parler",
+    "rest_framework"
 ]
 
 MIDDLEWARE = [
