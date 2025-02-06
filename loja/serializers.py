@@ -15,3 +15,11 @@ class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
         fields = ['nome', 'subcategorias']
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        if not self.context.get('show_subcategorias', True):
+            representation.pop('subcategorias', None)
+
+        return representation

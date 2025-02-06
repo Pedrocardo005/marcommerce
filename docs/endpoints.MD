@@ -1,6 +1,6 @@
 # Documentação relativa aos endpoints da aplicação
 
-### `loja/cat-subcat/`
+### `api/cat-subcat/`
 ##### Trazer categorias e subcategorias.
 
 GET
