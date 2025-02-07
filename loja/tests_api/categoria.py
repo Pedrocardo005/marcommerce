@@ -31,3 +31,13 @@ class CategoriaTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(len(response), 13)
+
+        response = self.client.get(url, {'lang': 'en'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(response), 0)
+
+        response = self.client.get(url, {'lang': 'es'})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(response), 0)
