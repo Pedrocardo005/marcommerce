@@ -40,7 +40,7 @@ GET
 Necessário passar o idioma.
 Retornar no máximo 3 subcategorias de cada categoria.
 
-### `loja/categorias/`
+### `api/categorias/`
 
 ##### Trás todas as categorias
 

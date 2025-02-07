@@ -11,3 +11,12 @@ class CatSubCat(generics.GenericAPIView):
         categorias = Categoria.objects.translated(lang)
         data = CategoriaSerializer(categorias, many=True).data
         return Response(data)
+
+
+class AllCategorias(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        lang = request.query_params.get('lang', 'pt')
+        categorias = Categoria.objects.translated(lang)
+        data = CategoriaSerializer(categorias, many=True, context={
+                                   'show_subcategorias': False}).data
+        return Response(data)

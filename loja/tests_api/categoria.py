@@ -23,3 +23,11 @@ class CategoriaTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(len(response), 0)
+
+    def test_get_all_categorias(self):
+        url = reverse('loja.categorias')
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(response), 13)
