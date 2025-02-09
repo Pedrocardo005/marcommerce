@@ -60,7 +60,7 @@ Necessita passar o idioma também.
 
 ### `loja/listsearch?q=&city=`
 
-##### Trás anúncios pelo nome da categoria e pela cidade e código postal
+##### Trás anúncios pelo nome, pela cidade e código postal
 
 GET
 ```json
@@ -74,6 +74,8 @@ GET
     }
 ]
 ```
+
+O parâmetro `q` é o nome do anuncio, `city` é o nome da cidade ou código postal.
 
 ### `loja/anuncios/{id}`
 
