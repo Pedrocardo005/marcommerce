@@ -80,7 +80,8 @@ class ImagemProduto(models.Model):
 
     nome = models.CharField(max_length=255)
 
-    produto = models.ForeignKey(Produto, models.CASCADE, related_name="imagens")
+    produto = models.ForeignKey(
+        Produto, models.CASCADE, related_name="imagens")
 
     imagem = models.ImageField(
         _(""), upload_to=None, height_field=None, width_field=None, max_length=None
@@ -112,7 +113,8 @@ class CustomUser(AbstractUser):
         related_name="customuser_user_permissions",  # Adicione essa linha
     )
 
-    localizacao = models.ForeignKey(Endereco, on_delete=models.CASCADE, null=True)
+    localizacao = models.ForeignKey(
+        Endereco, on_delete=models.CASCADE, null=True)
 
     foto = models.ImageField(
         _(""),
@@ -202,6 +204,8 @@ class Anuncio(models.Model):
 
     envio = models.IntegerField(choices=Envios.choices)
 
+    codigo_postal = models.CharField(max_length=10, default='')
+
     cidade = models.CharField(max_length=255)
 
     rua = models.CharField(max_length=255)
@@ -220,7 +224,8 @@ class Anuncio(models.Model):
 
 
 class FotoAnuncio(models.Model):
-    anuncio = models.ForeignKey(Anuncio, on_delete=models.CASCADE, related_name="fotos")
+    anuncio = models.ForeignKey(
+        Anuncio, on_delete=models.CASCADE, related_name="fotos")
 
     ordem = models.IntegerField()
 
@@ -242,7 +247,8 @@ class Venda(models.Model):
         Anuncio, on_delete=models.CASCADE, related_name="vendas"
     )
 
-    oferta = models.ForeignKey(Oferta, on_delete=models.CASCADE, related_name="vendas")
+    oferta = models.ForeignKey(
+        Oferta, on_delete=models.CASCADE, related_name="vendas")
 
     data_venda = models.DateTimeField(auto_now_add=True)
 
