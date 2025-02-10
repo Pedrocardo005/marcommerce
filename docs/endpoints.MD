@@ -67,7 +67,7 @@ GET
 [
     {
         "id": 1,
-        "nome": "produto 1",
+        "titulo": "produto 1",
         "preco": 11.08,
         "descricao": "descricao qualquer",
         "condicao": "condição do item"
