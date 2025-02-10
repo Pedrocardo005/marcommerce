@@ -1,7 +1,7 @@
 import json
 
 from django.urls import reverse
-from django.utils.timezone import datetime
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -19,7 +19,7 @@ class AnuncioTestCase(APITestCase):
         anuncio = Anuncio(
             categoria=categoria,
             usuario=custom_user,
-            data_expirar=datetime.now(),
+            data_expirar=timezone.now(),
             ativo=True,
             views=0,
             titulo='Produto 1',
