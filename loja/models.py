@@ -23,7 +23,6 @@ class Categoria(TranslatableModel):
 class Produto(TranslatableModel):
     translations = TranslatedFields(
         nome=models.CharField(max_length=255),
-        preco=models.FloatField(blank=True, null=True, default=0),
         descricao=models.TextField(blank=True, null=True, max_length=1000),
     )
 
@@ -34,6 +33,8 @@ class Produto(TranslatableModel):
     endereco = models.ForeignKey(
         "Endereco", models.CASCADE, blank=True, null=True, related_name="produtos"
     )
+
+    preco = models.FloatField(blank=True, null=True, default=0)
 
     created_date = models.DateTimeField(auto_now_add=True, blank=True)
 
