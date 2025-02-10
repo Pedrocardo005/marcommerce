@@ -46,3 +46,8 @@ class AnuncioTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(len(response), 1)
+        anuncio = response[0]
+        self.assertEqual(anuncio['titulo'], 'Produto 1')
+        self.assertEqual(anuncio['descricao'], 'Descrição do produto 1')
+        self.assertEqual(anuncio['preco'], 100.7)
+        self.assertEqual(anuncio['condicao'], Conditions.NEW)

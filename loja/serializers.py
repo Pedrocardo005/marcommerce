@@ -6,7 +6,7 @@ from loja.models import Anuncio, Categoria, SubCategoria
 class SubCategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCategoria
-        fields = ['nome']
+        fields = ['name']
 
 
 class CategoriaSerializer(serializers.ModelSerializer):
@@ -26,6 +26,8 @@ class CategoriaSerializer(serializers.ModelSerializer):
 
 
 class SearchAnuncioSerializer(serializers.ModelSerializer):
+
+    preco = serializers.FloatField()
 
     class Meta:
         model = Anuncio
