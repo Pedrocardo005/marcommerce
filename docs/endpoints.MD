@@ -77,15 +77,15 @@ GET
 
 O parâmetro `q` é o nome do anuncio, `city` é o nome da cidade ou código postal.
 
-### `loja/anuncios/{id}`
+### `api/anuncios/{id}`
 
 ##### (GET) Trás um anúncio pelo seu id
 
 GET
 ```json
 {
-    "nome": "nome posto no anúncio",
-    "valor": 10.95,
+    "titulo": "nome posto no anúncio",
+    "preco": 10.95,
     "views": 5,
     "data_publicacao": "13/12/2024",
     "id_anunciante": 1,

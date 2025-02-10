@@ -51,3 +51,15 @@ class AnuncioTestCase(APITestCase):
         self.assertEqual(anuncio['descricao'], 'Descrição do produto 1')
         self.assertEqual(anuncio['preco'], 100.7)
         self.assertEqual(anuncio['condicao'], Conditions.NEW)
+
+    def test_get_anuncio(self):
+        url = reverse('loja.get-anuncio', kwargs={'pk': 1})
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['titulo'], 'Produto 1')
+        self.assertEqual(response['preco'], 100.7)
+        self.assertEqual(response['views'], 0)
+        self.assertEqual(response['id_anunciante'], 1)
+        self.assertEqual(response['email_anunciante'], '')

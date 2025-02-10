@@ -32,3 +32,23 @@ class SearchAnuncioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Anuncio
         fields = ['id', 'titulo', 'preco', 'descricao', 'condicao']
+
+
+class GetAnuncioSerializer(serializers.ModelSerializer):
+
+    preco = serializers.FloatField()
+
+    id_anunciante = serializers.IntegerField(
+        source='usuario.id',
+        read_only=True
+    )
+
+    email_anunciante = serializers.CharField(
+        source='usuario.email',
+        read_only=True
+    )
+
+    class Meta:
+        model = Anuncio
+        fields = ['titulo', 'preco', 'views', 'data_publicacao',
+                  'id_anunciante', 'email_anunciante']

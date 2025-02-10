@@ -3,7 +3,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from loja.models import Anuncio
-from loja.serializers import SearchAnuncioSerializer
+from loja.serializers import GetAnuncioSerializer, SearchAnuncioSerializer
 
 
 class SearchAnuncio(generics.GenericAPIView):
@@ -25,3 +25,9 @@ class SearchAnuncio(generics.GenericAPIView):
 
         data = SearchAnuncioSerializer(anuncios, many=True).data
         return Response(data)
+
+
+class GetAnuncio(generics.RetrieveAPIView):
+    serializer_class = GetAnuncioSerializer
+
+    queryset = Anuncio
