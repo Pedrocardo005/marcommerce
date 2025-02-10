@@ -155,9 +155,10 @@ class CustomUser(AbstractUser):
     legal_notice = models.TextField(default="")
 
 
-class SubCategoria(models.Model):
-
-    nome = models.TextField()
+class SubCategoria(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.CharField(max_length=123),
+    )
 
     categoria = models.ForeignKey(
         Categoria, on_delete=models.CASCADE, related_name="subcategorias"
