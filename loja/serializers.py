@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from loja.models import Categoria, SubCategoria
+from loja.models import Anuncio, Categoria, SubCategoria
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -23,3 +23,10 @@ class CategoriaSerializer(serializers.ModelSerializer):
             representation.pop('subcategorias', None)
 
         return representation
+
+
+class SearchAnuncioSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Anuncio
+        fields = ['id', 'titulo', 'preco', 'descricao', 'condicao']
