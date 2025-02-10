@@ -193,7 +193,7 @@ class Anuncio(models.Model):
 
     ativo = models.BooleanField()
 
-    views = models.IntegerField()
+    views = models.IntegerField(blank=True, default=0)
 
     titulo = models.CharField(max_length=255)
 
