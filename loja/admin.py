@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from parler.admin import TranslatableAdmin
 
-from .models import (Categoria, CustomUser, Endereco, ImagemProduto, Produto,
-                     SubCategoria)
+from .models import (Anuncio, Categoria, CustomUser, Endereco, ImagemProduto,
+                     Produto, SubCategoria)
 
 # Register your models here.
 
@@ -29,3 +29,4 @@ admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Endereco)
 admin.site.register(ImagemProduto)
 admin.site.register(SubCategoria, TranslatableAdmin)
+admin.site.register(Anuncio)

@@ -63,3 +63,32 @@ class AnuncioTestCase(APITestCase):
         self.assertEqual(response['views'], 0)
         self.assertEqual(response['id_anunciante'], 1)
         self.assertEqual(response['email_anunciante'], '')
+
+    def test_update_anuncio(self):
+        anuncio = Anuncio.objects.first()
+        url = reverse('loja.get-anuncio', kwargs={'pk': anuncio.pk})
+
+        data = {
+            "vendendo": True,
+            "titulo": "Fiat Palio",
+            "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
+            "tipo_oferta": 1,
+            "preco": 40000.00,
+            "condicao": Conditions.SECOND_HAND,
+            "envio": 2,
+            "pagamento_paypal": True,
+            "codigo_postal": "40000-000",
+            "cidade": "São Paulo",
+            "rua": "Rua São Marcelo",
+            "numero": 12,
+            "provedor": "Casas Bahia",
+            "telefone": "71984287792"
+        }
+
+        response = self.client.put(url, data)
+        self.assertEqual(response.status_code, 200)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['vendendo'], True)
+        self.assertEqual(response['titulo'], 'Fiat Palio')
+        self.assertEqual(response['codigo_postal'], '40000-000')
+        self.assertEqual(response['rua'], 'Rua São Marcelo')

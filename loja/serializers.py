@@ -52,3 +52,15 @@ class GetAnuncioSerializer(serializers.ModelSerializer):
         model = Anuncio
         fields = ['titulo', 'preco', 'views', 'data_publicacao',
                   'id_anunciante', 'email_anunciante']
+
+
+class UpdateAnuncioSerializer(serializers.ModelSerializer):
+
+    preco = serializers.FloatField(read_only=True)
+
+    class Meta:
+        model = Anuncio
+        fields = ['vendendo', 'titulo', 'descricao', 'tipo_oferta',
+                  'preco', 'condicao', 'envio', 'pagamento_paypal',
+                  'codigo_postal', 'cidade', 'rua', 'numero',
+                  'provedor', 'telefone']
