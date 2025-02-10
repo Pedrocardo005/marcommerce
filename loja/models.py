@@ -221,7 +221,7 @@ class Anuncio(models.Model):
 
     telefone = models.CharField(max_length=255)
 
-    data_venda = models.DateTimeField(auto_now_add=True)
+    data_publicacao = models.DateTimeField(auto_now_add=True)
 
 
 class FotoAnuncio(models.Model):
