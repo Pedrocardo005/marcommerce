@@ -14,7 +14,6 @@ class Categoria(TranslatableModel):
 
     translations = TranslatedFields(
         nome=models.CharField(max_length=255),
-        icone=models.CharField(max_length=255, blank=True, null=True),
     )
 
     def __str__(self):
