@@ -3,7 +3,7 @@ import json
 from django.urls import reverse
 from django.utils import timezone
 from rest_framework import status
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, force_authenticate
 
 from loja.fields import Conditions, Envios, Ofertas
 from loja.models import Anuncio, Categoria, CustomUser
@@ -13,6 +13,8 @@ class AnuncioTestCase(APITestCase):
     def setUp(self):
         categoria = Categoria.objects.first()
         custom_user = CustomUser()
+        custom_user.username = 'teste'
+        custom_user.set_password('secret')
 
         custom_user.save()
 
@@ -67,6 +69,7 @@ class AnuncioTestCase(APITestCase):
     def test_update_anuncio(self):
         anuncio = Anuncio.objects.first()
         url = reverse('loja.get-anuncio', kwargs={'pk': anuncio.pk})
+        self.client.login(username='teste', password='secret')
 
         data = {
             "vendendo": True,
@@ -92,3 +95,15 @@ class AnuncioTestCase(APITestCase):
         self.assertEqual(response['titulo'], 'Fiat Palio')
         self.assertEqual(response['codigo_postal'], '40000-000')
         self.assertEqual(response['rua'], 'Rua São Marcelo')
+
+        custom_user = CustomUser()
+        custom_user.username = 'teste 2'
+        custom_user.set_password('secret2')
+
+        custom_user.save()
+
+        self.client.logout()
+        self.client.login(username='teste 2', password='secret2')
+
+        response = self.client.put(url, data)
+        self.assertEqual(response.status_code, 403)

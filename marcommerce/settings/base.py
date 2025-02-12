@@ -163,3 +163,5 @@ PARLER_LANGUAGES = {
 }
 
 ASGI_APPLICATION = "marcommerce.asgi.application"
+
+AUTH_USER_MODEL = 'loja.CustomUser'

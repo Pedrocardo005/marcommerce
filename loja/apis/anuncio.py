@@ -1,5 +1,6 @@
 from django.db.models import Q
 from rest_framework import generics
+from rest_framework.exceptions import NotAuthenticated
 from rest_framework.response import Response
 
 from loja.models import Anuncio
@@ -31,6 +32,13 @@ class SearchAnuncio(generics.GenericAPIView):
 class GetAnuncio(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = Anuncio
+
+    def update(self, request, *args, **kwargs):
+        anuncio = Anuncio.objects.filter(pk=kwargs['pk']).first()
+        if request.user.id == anuncio.usuario.pk or \
+                self.request.user.is_superuser:
+            return super().update(request, *args, **kwargs)
+        raise NotAuthenticated
 
     def get_serializer_class(self):
         if self.request.method == 'PUT':

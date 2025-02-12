@@ -4,6 +4,7 @@ from django.utils.translation import gettext as _
 from parler.models import TranslatableModel, TranslatedFields
 
 from loja.fields import AccountType, CompanySize, Conditions, Envios, Ofertas
+from loja.managers import CustomUserManager
 
 
 class Categoria(TranslatableModel):
@@ -154,6 +155,8 @@ class CustomUser(AbstractUser):
 
     legal_notice = models.TextField(default="")
 
+    objects = CustomUserManager()
+
 
 class SubCategoria(TranslatableModel):
     translations = TranslatedFields(
@@ -165,7 +168,7 @@ class SubCategoria(TranslatableModel):
     )
 
     def __str__(self):
-        return "{} - {}".format(self.categoria.nome, self.nome)
+        return "{} - {}".format(self.categoria.nome, self.name)
 
 
 class MarcaArte(models.Model):
@@ -177,7 +180,7 @@ class MarcaArte(models.Model):
     )
 
     def __str__(self):
-        return "{} - {}".format(self.sub_categoria.nome, self.nome)
+        return "{} - {}".format(self.sub_categoria.name, self.nome)
 
 
 class Anuncio(models.Model):
