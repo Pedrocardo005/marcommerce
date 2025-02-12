@@ -70,9 +70,11 @@ class AnuncioTestCase(APITestCase):
         anuncio = Anuncio.objects.first()
         url = reverse('loja.get-anuncio', kwargs={'pk': anuncio.pk})
         self.client.login(username='teste', password='secret')
+        sub_categoria = SubCategoria.objects.last()
 
         data = {
             "vendendo": True,
+            "sub_categoria_id": sub_categoria.pk,
             "titulo": "Fiat Palio",
             "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
             "tipo_oferta": 1,
@@ -95,6 +97,7 @@ class AnuncioTestCase(APITestCase):
         self.assertEqual(response['titulo'], 'Fiat Palio')
         self.assertEqual(response['codigo_postal'], '40000-000')
         self.assertEqual(response['rua'], 'Rua São Marcelo')
+        self.assertEqual(response['sub_categoria_id'], sub_categoria.pk)
 
         custom_user = CustomUser()
         custom_user.username = 'teste 2'

@@ -58,9 +58,18 @@ class UpdateAnuncioSerializer(serializers.ModelSerializer):
 
     preco = serializers.FloatField(read_only=True)
 
+    sub_categoria_id = serializers.IntegerField(
+        source='sub_categoria.id'
+    )
+
     class Meta:
         model = Anuncio
         fields = ['vendendo', 'titulo', 'descricao', 'tipo_oferta',
                   'preco', 'condicao', 'envio', 'pagamento_paypal',
                   'codigo_postal', 'cidade', 'rua', 'numero',
-                  'provedor', 'telefone']
+                  'provedor', 'telefone', 'sub_categoria_id']
+
+    def update(self, instance, validated_data):
+        sub_categoria = validated_data.pop('sub_categoria')
+        instance.sub_categoria_id = sub_categoria.pop('id')
+        return super().update(instance, validated_data)
