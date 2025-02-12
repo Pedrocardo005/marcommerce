@@ -107,3 +107,28 @@ class AnuncioTestCase(APITestCase):
 
         response = self.client.put(url, data)
         self.assertEqual(response.status_code, 403)
+
+    def test_remove_anuncio(self):
+        anuncio = Anuncio.objects.first()
+        url = reverse('loja.get-anuncio', kwargs={'pk': anuncio.pk})
+
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, 403)
+
+        custom_user = CustomUser()
+        custom_user.username = 'teste 2'
+        custom_user.set_password('secret2')
+
+        custom_user.save()
+
+        self.client.login(username='teste 2', password='secret2')
+
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, 403)
+
+        self.client.logout()
+
+        self.client.login(username='teste', password='secret')
+
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

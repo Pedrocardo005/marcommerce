@@ -40,6 +40,13 @@ class GetAnuncio(generics.RetrieveUpdateDestroyAPIView):
             return super().update(request, *args, **kwargs)
         raise NotAuthenticated
 
+    def delete(self, request, *args, **kwargs):
+        anuncio = Anuncio.objects.filter(pk=kwargs['pk']).first()
+        if request.user.id == anuncio.usuario.pk or \
+                self.request.user.is_superuser:
+            return super().delete(request, *args, **kwargs)
+        raise NotAuthenticated
+
     def get_serializer_class(self):
         if self.request.method == 'PUT':
             return UpdateAnuncioSerializer
