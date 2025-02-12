@@ -208,6 +208,9 @@ class Anuncio(models.Model):
 
     envio = models.IntegerField(choices=Envios.choices)
 
+    custo_envio = models.DecimalField(
+        decimal_places=2, max_digits=10, default=0)
+
     pagamento_paypal = models.BooleanField(default=False)
 
     codigo_postal = models.CharField(max_length=10, default='')
