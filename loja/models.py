@@ -184,8 +184,8 @@ class MarcaArte(models.Model):
 
 
 class Anuncio(models.Model):
-    categoria = models.ForeignKey(
-        Categoria, on_delete=models.DO_NOTHING, related_name="anuncios"
+    sub_categoria = models.ForeignKey(
+        SubCategoria, on_delete=models.DO_NOTHING, related_name="anuncios", null=True
     )
 
     usuario = models.ForeignKey(

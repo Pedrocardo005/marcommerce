@@ -3,15 +3,15 @@ import json
 from django.urls import reverse
 from django.utils import timezone
 from rest_framework import status
-from rest_framework.test import APITestCase, force_authenticate
+from rest_framework.test import APITestCase
 
 from loja.fields import Conditions, Envios, Ofertas
-from loja.models import Anuncio, Categoria, CustomUser
+from loja.models import Anuncio, CustomUser, SubCategoria
 
 
 class AnuncioTestCase(APITestCase):
     def setUp(self):
-        categoria = Categoria.objects.first()
+        subcategoria = SubCategoria.objects.first()
         custom_user = CustomUser()
         custom_user.username = 'teste'
         custom_user.set_password('secret')
@@ -19,7 +19,7 @@ class AnuncioTestCase(APITestCase):
         custom_user.save()
 
         anuncio = Anuncio(
-            categoria=categoria,
+            sub_categoria=subcategoria,
             usuario=custom_user,
             data_expirar=timezone.now(),
             ativo=True,
