@@ -134,7 +134,7 @@ DELETE
 }
 ```
 
-### `loja/anuncios/edit/{id_anuncio}`
+### `api/anuncios/edit/{id_anuncio}`
 
 ##### (GET) Trás o anúncio com as suas informações editáveis
 
