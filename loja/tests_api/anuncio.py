@@ -160,3 +160,39 @@ class AnuncioTestCase(APITestCase):
         self.assertEqual(response["numero"], anuncio.numero)
         self.assertEqual(response["provedor"], anuncio.provedor)
         self.assertEqual(response["telefone"], anuncio.telefone)
+
+    def test_get_anuncios_by_sub_categoria(self):
+        subcategoria = SubCategoria.objects.last()
+        custom_user = CustomUser.objects.first()
+
+        for idx in range(0, 5):
+            anuncio = Anuncio(
+                sub_categoria=subcategoria,
+                usuario=custom_user,
+                data_expirar=timezone.now(),
+                ativo=True,
+                views=0,
+                titulo=f"Produto {idx + 2}",
+                descricao=f"Descrição do produto {idx + 2}",
+                preco=100.7,
+                condicao=Conditions.NEW,
+                envio=Envios.DHL,
+                codigo_postal="40000-500",
+                cidade="Salvador",
+                rua="Rua A",
+                numero=15,
+                vendendo=True,
+                tipo_oferta=Ofertas.FIXO,
+                provedor=f"Fábrica {idx + 2}",
+                telefone="75999999999",
+            )
+
+            anuncio.save()
+        url = reverse("loja.anuncios-subcategoria", kwargs={"pk": subcategoria.pk})
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode("utf-8"))
+        self.assertEqual(len(response), 5)
+
+        # TODO Fazer um for para verificar cada anuncio.

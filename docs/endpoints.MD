@@ -172,7 +172,7 @@ retorno
 }
 ```
 
-### `loja/anuncios/subcategoria/{nome_subcategoria}`
+### `api/anuncios/subcategoria/{nome_subcategoria}`
 
 ##### Trás anúncios pela subcategoria
 
@@ -181,14 +181,14 @@ GET
 [
     {
         "id": 1,
-        "nome": "produto 1",
+        "titulo": "produto 1",
         "preco": 11.08,
         "descricao": "descricao qualquer",
         "condicao": "condição do item"
     },
     {
         "id": 2,
-        "nome": "produto 2",
+        "titulo": "produto 2",
         "preco": 11.08,
         "descricao": "descricao qualquer dois",
         "condicao": "condição do item dois"

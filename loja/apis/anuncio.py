@@ -1,5 +1,5 @@
 from django.db.models import Q
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.exceptions import NotAuthenticated
 from rest_framework.response import Response
 
@@ -62,3 +62,11 @@ class EditAnuncio(generics.RetrieveAPIView):
         if request.user.id == anuncio.usuario.pk or self.request.user.is_superuser:
             return super().get(request, *args, **kwargs)
         raise NotAuthenticated
+
+
+class GetAllAnuncioSubCategoria(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        sub_categoria_id = kwargs["pk"]
+        anuncios = Anuncio.objects.filter(sub_categoria__id=sub_categoria_id)
+        data = SearchAnuncioSerializer(anuncios, many=True).data
+        return Response(data, status.HTTP_200_OK)
