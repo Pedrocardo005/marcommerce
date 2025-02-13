@@ -134,6 +134,44 @@ DELETE
 }
 ```
 
+### `loja/anuncios/edit/{id_anuncio}`
+
+##### (GET) Trás o anúncio com as suas informações editáveis
+
+GET
+
+retorno
+```json
+{
+    "categoria_name": "Lições e educação",
+    "sub_categoria_name": "Mais",
+    "tipo_oferta": 1,
+    "titulo": "Titulo qualquer",
+    "vendendo": true,
+    "preco": 10000,
+    "photos": [
+        {
+            "ordem": 1,
+            "url_imagem": "http://link.com.br/foto1"
+        },
+        {
+            "ordem": 2,
+            "url_imagem": "http://link.com.br/foto2"
+        }
+    ],
+    "condicao": "SH",
+    "envio": 1,
+    "custo_envio": 50.00,
+    "pagamento_paypal": true,
+    "codigo_postal": "40000000",
+    "cidade": "Salvador",
+    "rua": "Rua A",
+    "numero": 14,
+    "provedor": "Baianão",
+    "telefone": "7199999999"
+}
+```
+
 ### `loja/anuncios/subcategoria/{nome_subcategoria}`
 
 ##### Trás anúncios pela subcategoria
