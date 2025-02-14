@@ -165,6 +165,7 @@ class AnuncioTestCase(APITestCase):
         subcategoria = SubCategoria.objects.last()
         custom_user = CustomUser.objects.first()
 
+        anuncios = []
         for idx in range(0, 5):
             anuncio = Anuncio(
                 sub_categoria=subcategoria,
@@ -188,11 +189,18 @@ class AnuncioTestCase(APITestCase):
             )
 
             anuncio.save()
-        url = reverse("loja.anuncios-subcategoria", kwargs={"pk": subcategoria.pk})
+            anuncios.append(anuncio)
+        url = reverse("loja.anuncios-subcategoria",
+                      kwargs={"pk": subcategoria.pk})
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode("utf-8"))
         self.assertEqual(len(response), 5)
 
-        # TODO Fazer um for para verificar cada anuncio.
+        for idx, anuncio in enumerate(anuncios):
+            self.assertEqual(response[idx]['id'], anuncio.id)
+            self.assertEqual(response[idx]['titulo'], anuncio.titulo)
+            self.assertEqual(response[idx]['descricao'], anuncio.descricao)
+            self.assertEqual(response[idx]['preco'], anuncio.preco)
+            self.assertEqual(response[idx]['condicao'], anuncio.condicao)
