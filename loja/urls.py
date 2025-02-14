@@ -1,11 +1,8 @@
 from django.urls import path
 
-from loja.apis.anuncio import (
-    GetAnuncio,
-    SearchAnuncio,
-    EditAnuncio,
-    GetAllAnuncioSubCategoria,
-)
+from loja.apis.anuncio import (EditAnuncio, GetAllAnuncioCategoria,
+                               GetAllAnuncioSubCategoria, GetAnuncio,
+                               SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
 
 urlpatterns = [
@@ -19,4 +16,6 @@ urlpatterns = [
         GetAllAnuncioSubCategoria.as_view(),
         name="loja.anuncios-subcategoria",
     ),
+    path("anuncios/categoria/<int:pk>", GetAllAnuncioCategoria.as_view(),
+         name='loja.anuncios-categoria')
 ]

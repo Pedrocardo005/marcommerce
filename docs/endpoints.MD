@@ -172,7 +172,7 @@ retorno
 }
 ```
 
-### `api/anuncios/subcategoria/{nome_subcategoria}`
+### `api/anuncios/subcategoria/{id_subcategoria}`
 
 ##### Trás anúncios pela subcategoria
 
@@ -196,7 +196,7 @@ GET
 ]
 ```
 
-### `loja/anuncios/categoria/{nome_categoria}`
+### `api/anuncios/categoria/{id_categoria}`
 
 ##### Trás anúncios pela categoria
 

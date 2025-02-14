@@ -4,11 +4,8 @@ from rest_framework.exceptions import NotAuthenticated
 from rest_framework.response import Response
 
 from loja.models import Anuncio
-from loja.serializers import (
-    GetAnuncioSerializer,
-    SearchAnuncioSerializer,
-    UpdateAnuncioSerializer,
-)
+from loja.serializers import (GetAnuncioSerializer, SearchAnuncioSerializer,
+                              UpdateAnuncioSerializer)
 
 
 class SearchAnuncio(generics.GenericAPIView):
@@ -19,7 +16,8 @@ class SearchAnuncio(generics.GenericAPIView):
         # Verifica se é texto
         if city_or_postal_code.isalpha():
             anuncios = Anuncio.objects.filter(
-                Q(cidade__icontains=city_or_postal_code) | Q(titulo__icontains=title)
+                Q(cidade__icontains=city_or_postal_code) | Q(
+                    titulo__icontains=title)
             )
         else:
             anuncios = Anuncio.objects.filter(
@@ -68,5 +66,14 @@ class GetAllAnuncioSubCategoria(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         sub_categoria_id = kwargs["pk"]
         anuncios = Anuncio.objects.filter(sub_categoria__id=sub_categoria_id)
+        data = SearchAnuncioSerializer(anuncios, many=True).data
+        return Response(data, status.HTTP_200_OK)
+
+
+class GetAllAnuncioCategoria(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        categoria_id = kwargs["pk"]
+        anuncios = Anuncio.objects.filter(
+            sub_categoria__categoria__id=categoria_id).order_by('pk')
         data = SearchAnuncioSerializer(anuncios, many=True).data
         return Response(data, status.HTTP_200_OK)
