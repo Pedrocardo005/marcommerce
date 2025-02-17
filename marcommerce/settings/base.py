@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     "loja",
     "rosetta",
     "parler",
-    "rest_framework"
+    "rest_framework",
+    "knox"
 ]
 
 MIDDLEWARE = [
@@ -165,3 +166,7 @@ PARLER_LANGUAGES = {
 ASGI_APPLICATION = "marcommerce.asgi.application"
 
 AUTH_USER_MODEL = 'loja.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+}
