@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from loja.models import Anuncio, Categoria, SubCategoria
+from loja.models import Anuncio, Categoria, CustomUser, SubCategoria
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -38,9 +38,11 @@ class GetAnuncioSerializer(serializers.ModelSerializer):
 
     preco = serializers.FloatField()
 
-    id_anunciante = serializers.IntegerField(source="usuario.id", read_only=True)
+    id_anunciante = serializers.IntegerField(
+        source="usuario.id", read_only=True)
 
-    email_anunciante = serializers.CharField(source="usuario.email", read_only=True)
+    email_anunciante = serializers.CharField(
+        source="usuario.email", read_only=True)
 
     class Meta:
         model = Anuncio
@@ -95,3 +97,22 @@ class UpdateAnuncioSerializer(serializers.ModelSerializer):
         sub_categoria = validated_data.pop("sub_categoria")
         instance.sub_categoria_id = sub_categoria.pop("id")
         return super().update(instance, validated_data)
+
+
+class RegisterUserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(max_length=128, write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = [
+            'email',
+            'password',
+            'username',
+            'account_type'
+        ]
+
+    def create(self, validated_data):
+        user = super().create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user

@@ -220,7 +220,7 @@ GET
 ]
 ```
 
-### `loja/login`
+### `api/login`
 
 ##### Faz login no site
 
@@ -238,7 +238,7 @@ retorno
 }
 ```
 
-### `loja/logout`
+### `api/logout`
 
 ##### Faz logout no site
 
@@ -251,7 +251,7 @@ POST
 
 Obs: Não precisa nem passar nada, irá automaticamente deslogar o usuário
 
-### `loja/register`
+### `api/register`
 
 ##### Registra usuário no sistema
 
@@ -260,9 +260,8 @@ POST
 {
     "email": "nada@gmail.com",
     "password": "abcdefg",
-    "repeat_password": "abcdefg",
     "username": "Marinho",
-    "type": "privado"
+    "account_type": 2
 }
 ```
 
@@ -272,9 +271,8 @@ ou
 {
     "email": "nada@gmail.com",
     "password": "abcdefg",
-    "repeat_password": "abcdefg",
     "username": "Marinho",
-    "type": "comercial"
+    "account_type": 1
 }
 ```
 
