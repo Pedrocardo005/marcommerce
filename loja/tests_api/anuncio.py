@@ -72,7 +72,18 @@ class AnuncioTestCase(APITestCase):
     def test_update_anuncio(self):
         anuncio = Anuncio.objects.first()
         url = reverse("loja.get-anuncio", kwargs={"pk": anuncio.pk})
-        self.client.login(username="teste", password="secret")
+
+        # Faz login no sistema
+        url_login = reverse("knox_login")
+        data_login = {
+            'username': 'teste',
+            'password': 'secret'
+        }
+
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
+        # Fim do login
         sub_categoria = SubCategoria.objects.last()
 
         data = {
@@ -93,7 +104,9 @@ class AnuncioTestCase(APITestCase):
             "telefone": "71984287792",
         }
 
-        response = self.client.put(url, data)
+        response = self.client.put(url, data, headers={
+            'Authorization': f'Bearer {token}'
+        })
         self.assertEqual(response.status_code, 200)
         response = json.loads(response.content.decode("utf-8"))
         self.assertEqual(response["vendendo"], True)
@@ -108,18 +121,36 @@ class AnuncioTestCase(APITestCase):
 
         custom_user.save()
 
-        self.client.logout()
-        self.client.login(username="teste 2", password="secret2")
+        # Logout
+        url_logout = reverse("knox_logout")
+        self.client.post(url_logout, headers={
+            'Authorization': f'Bearer {token}'
+        })
+        # Fim logout
 
-        response = self.client.put(url, data)
-        self.assertEqual(response.status_code, 403)
+        # Faz login no sistema
+        url_login = reverse("knox_login")
+        data_login = {
+            'username': 'teste 2',
+            'password': 'secret2'
+        }
+
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
+        # Fim do login
+
+        response = self.client.put(url, data, headers={
+            'Authorization': f'Bearer {token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_remove_anuncio(self):
         anuncio = Anuncio.objects.first()
         url = reverse("loja.get-anuncio", kwargs={"pk": anuncio.pk})
 
         response = self.client.delete(url)
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
         custom_user = CustomUser()
         custom_user.username = "teste 2"
@@ -127,16 +158,38 @@ class AnuncioTestCase(APITestCase):
 
         custom_user.save()
 
-        self.client.login(username="teste 2", password="secret2")
+        url_login = reverse("knox_login")
+        data_login = {
+            'username': 'teste 2',
+            'password': 'secret2'
+        }
 
-        response = self.client.delete(url)
-        self.assertEqual(response.status_code, 403)
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
 
-        self.client.logout()
+        response = self.client.delete(url, headers={
+            'Authorization': f'Bearer {token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-        self.client.login(username="teste", password="secret")
+        url_logout = reverse("knox_logout")
+        self.client.post(url_logout, headers={
+            'Authorization': f'Bearer {token}'
+        })
 
-        response = self.client.delete(url)
+        data_login = {
+            'username': 'teste',
+            'password': 'secret'
+        }
+
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
+
+        response = self.client.delete(url, headers={
+            'Authorization': f'Bearer {token}'
+        })
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_edit_anuncio(self):
@@ -144,11 +197,22 @@ class AnuncioTestCase(APITestCase):
         url = reverse("loja.edit-anuncio", kwargs={"pk": anuncio.pk})
 
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
-        self.client.login(username="teste", password="secret")
+        # self.client.login(username="teste", password="secret")
+        url_login = reverse("knox_login")
+        data_login = {
+            'username': 'teste',
+            'password': 'secret'
+        }
 
-        response = self.client.get(url)
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
+
+        response = self.client.get(url, headers={
+            'Authorization': f'Bearer {token}'
+        })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode("utf-8"))
         self.assertEqual(response["titulo"], anuncio.titulo)
