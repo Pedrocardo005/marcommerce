@@ -170,3 +170,7 @@ AUTH_USER_MODEL = 'loja.CustomUser'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
+
+REST_KNOX = {
+    'AUTH_HEADER_PREFIX': 'Bearer'
+}
