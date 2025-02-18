@@ -38,6 +38,7 @@ class Ofertas(models.IntegerChoices):
 
 class AccountType(models.IntegerChoices):
     IS = 1, "Industrial supplier"
+    PP = 2, "Private provider"
 
 
 class CompanySize(models.IntegerChoices):
