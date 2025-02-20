@@ -276,7 +276,7 @@ ou
 }
 ```
 
-### `loja/anuncios/usuario/{id_usuario}`
+### `api/anuncios/usuario/{id_usuario}`
 
 ##### Trás anúncios pelo usuário
 
@@ -298,7 +298,7 @@ Precisa estar autenticado
 Provavelmente retornará apenas se for vendedor
 Provavelmente nem precisará do id do usuário porque o servidor consegue saber.
 
-### `loja/anuncios`
+### `api/anuncios`
 
 ##### Cria um anúncio
 
@@ -329,7 +329,7 @@ POST
 }
 ```
 
-### `loja/anuncios/change_status/{id_anuncio}`
+### `api/anuncios/change_status/{id_anuncio}`
 
 ##### (PATCH) Desativa ou ativa anuncio
 
@@ -371,7 +371,7 @@ retorno
 }
 ```
 
-### `loja/anuncios/favorite`
+### `api/anuncios/favorite`
 
 ##### (POST) Favorita anuncio
 
@@ -393,7 +393,7 @@ DELETE
 }
 ```
 
-### `loja/anuncios/ofertados`
+### `api/anuncios/ofertados`
 
 ##### (GET) Traz anuncios que tiveram ofertas
 
@@ -414,7 +414,7 @@ GET
 ]
 ```
 
-### `loja/anuncios/ofertar`
+### `api/anuncios/ofertar`
 
 ##### (POST) Faz oferta pelo anúncio
 
@@ -427,7 +427,7 @@ POST
 }
 ```
 
-### `loja/ofertas/aceitar`
+### `api/ofertas/aceitar`
 
 ##### (POST) Aceita oferta pelo anúncio
 
@@ -439,7 +439,7 @@ POST
 }
 ```
 
-### `loja/usuarios/alterar_foto`
+### `api/usuarios/alterar_foto`
 
 ##### (PATCH) Altera foto do usuário
 
@@ -451,7 +451,7 @@ PATCH
 }
 ```
 
-### `loja/usuarios/editar_usuario`
+### `api/usuarios/editar_usuario`
 
 ##### (PUT) Edita informações do usuário
 
@@ -476,7 +476,7 @@ PATCH
 }
 ```
 
-### `loja/usuarios/alterar_senha`
+### `api/usuarios/alterar_senha`
 
 ##### (PATCH) Altera senha do usuário
 
@@ -490,7 +490,7 @@ PATCH
 }
 ```
 
-### `loja/usuarios/resetar_senha`
+### `api/usuarios/resetar_senha`
 
 ##### (POST) Reseta senha do usuário
 
