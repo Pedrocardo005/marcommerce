@@ -313,3 +313,59 @@ class AnuncioTestCase(APITestCase):
             self.assertEqual(response[idx]['descricao'], anuncio.descricao)
             self.assertEqual(response[idx]['preco'], anuncio.preco)
             self.assertEqual(response[idx]['condicao'], anuncio.condicao)
+
+    def test_get_anuncio_by_usuario(self):
+        subcategoria = SubCategoria.objects.last()
+        custom_user = CustomUser.objects.first()
+        url = reverse('loja.anuncios-usuario', kwargs={
+            'pk': custom_user.pk
+        })
+
+        anuncios = []
+        for idx in range(0, 5):
+            anuncio = Anuncio(
+                sub_categoria=subcategoria,
+                usuario=custom_user,
+                data_expirar=timezone.now(),
+                ativo=True,
+                views=idx,
+                titulo=f"Produto {idx + 2}",
+                descricao=f"Descrição do produto {idx + 2}",
+                preco=100.7 + idx,
+                condicao=Conditions.NEW,
+                envio=Envios.DHL,
+                codigo_postal="40000-500",
+                cidade="Salvador",
+                rua="Rua A",
+                numero=15,
+                vendendo=True,
+                tipo_oferta=Ofertas.FIXO,
+                provedor=f"Fábrica {idx + 2}",
+                telefone="75999999999",
+            )
+
+            anuncio.save()
+            anuncios.append(anuncio)
+
+        url_login = reverse("knox_login")
+        data_login = {
+            'username': 'teste',
+            'password': 'secret'
+        }
+
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
+
+        response = self.client.get(url, headers={
+            'Authorization': f'Bearer {token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(response), 5)
+
+        for idx, anuncio in enumerate(anuncios):
+            self.assertEqual(response[idx]['id'], anuncio.id)
+            self.assertEqual(response[idx]['ativo'], anuncio.ativo)
+            self.assertEqual(response[idx]['views'], anuncio.views)
+            self.assertEqual(response[idx]['preco'], anuncio.preco)
