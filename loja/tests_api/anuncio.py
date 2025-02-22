@@ -316,7 +316,11 @@ class AnuncioTestCase(APITestCase):
 
     def test_get_anuncio_by_usuario(self):
         subcategoria = SubCategoria.objects.last()
-        custom_user = CustomUser.objects.first()
+        custom_user = CustomUser()
+        custom_user.username = "teste2"
+        custom_user.set_password("secret2")
+
+        custom_user.save()
         url = reverse('loja.anuncios-usuario', kwargs={
             'pk': custom_user.pk
         })
@@ -349,8 +353,8 @@ class AnuncioTestCase(APITestCase):
 
         url_login = reverse("knox_login")
         data_login = {
-            'username': 'teste',
-            'password': 'secret'
+            'username': 'teste2',
+            'password': 'secret2'
         }
 
         response_login = self.client.post(url_login, data_login)

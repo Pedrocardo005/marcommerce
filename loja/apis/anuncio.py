@@ -1,11 +1,12 @@
 from django.db.models import Q
 from rest_framework import generics, status
 from rest_framework.exceptions import NotAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from loja.models import Anuncio
-from loja.serializers import (GetAnuncioSerializer, SearchAnuncioSerializer,
-                              UpdateAnuncioSerializer)
+from loja.serializers import (AnuncioUsuarioSerializer, GetAnuncioSerializer,
+                              SearchAnuncioSerializer, UpdateAnuncioSerializer)
 
 
 class SearchAnuncio(generics.GenericAPIView):
@@ -77,3 +78,16 @@ class GetAllAnuncioCategoria(generics.GenericAPIView):
             sub_categoria__categoria__id=categoria_id).order_by('pk')
         data = SearchAnuncioSerializer(anuncios, many=True).data
         return Response(data, status.HTTP_200_OK)
+
+
+class GetAnunciosUsuario(generics.GenericAPIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        usuario_id = kwargs["pk"]
+        anuncios = Anuncio.objects.filter(
+            usuario__pk=usuario_id).order_by('pk')
+
+        serializer = AnuncioUsuarioSerializer(anuncios, many=True)
+        return Response(serializer.data)

@@ -116,3 +116,17 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+
+class AnuncioUsuarioSerializer(serializers.ModelSerializer):
+    data_expirar = serializers.SerializerMethodField()
+
+    preco = serializers.FloatField()
+
+    class Meta:
+        model = Anuncio
+        fields = ['id', 'ativo', 'views', 'data_expirar', 'preco']
+
+    def get_data_expirar(self, obj):
+        # Formata a data no formato "dd/mm/aaaa"
+        return obj.data_expirar.strftime('%d/%m/%Y')
