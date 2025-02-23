@@ -123,9 +123,11 @@ class AnuncioUsuarioSerializer(serializers.ModelSerializer):
 
     preco = serializers.FloatField()
 
+    url_foto = serializers.ReadOnlyField()
+
     class Meta:
         model = Anuncio
-        fields = ['id', 'ativo', 'views', 'data_expirar', 'preco']
+        fields = ['id', 'ativo', 'views', 'data_expirar', 'preco', 'url_foto']
 
     def get_data_expirar(self, obj):
         # Formata a data no formato "dd/mm/aaaa"

@@ -231,6 +231,13 @@ class Anuncio(models.Model):
 
     data_publicacao = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def url_foto(self):
+        foto = self.fotos.first()
+        if foto:
+            return foto.imagem.url
+        return ''
+
 
 class FotoAnuncio(models.Model):
     anuncio = models.ForeignKey(
@@ -239,6 +246,9 @@ class FotoAnuncio(models.Model):
     ordem = models.IntegerField()
 
     imagem = models.ImageField(upload_to='pictures/', null=True)
+
+    class Meta:
+        ordering = ['ordem']
 
 
 class Oferta(models.Model):
