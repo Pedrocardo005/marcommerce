@@ -238,7 +238,7 @@ class FotoAnuncio(models.Model):
 
     ordem = models.IntegerField()
 
-    url_imagem = models.TextField()
+    imagem = models.ImageField(upload_to='pictures/', null=True)
 
 
 class Oferta(models.Model):
