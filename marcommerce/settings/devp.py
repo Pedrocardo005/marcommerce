@@ -1,4 +1,5 @@
 from marcommerce.settings.base import *
+from marcommerce.settings.others_config import *
 
 # Override base.py settings here
 
