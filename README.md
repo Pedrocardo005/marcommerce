@@ -12,6 +12,10 @@ Docker
 
 Docker-compose
 
+AWS
+
+S3
+
 ### Iniciando o projeto
 
 1. Faça o clone do projeto no sua máquina com o comando:
