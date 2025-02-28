@@ -305,19 +305,21 @@ Provavelmente nem precisará do id do usuário porque o servidor consegue saber.
 POST
 ```json
 {
-    "id_categoria": 1,
+    "sub_categoria_id": 1,
+    "data_expirar": "24/10/2100",
+    "ativo": true,
     "vendendo": true,
     "titulo": "Fiat Palio",
     "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
     "tipo_oferta": 1,
     "preco": 40000.00,
-    "fotos": [
-        {
-            "imagem1": "imagem em um formato lá para envio",
-            "ordem": 3
-        }
-    ],
-    "condicao": "Usado",
+    // TODO "fotos": [
+    //    {
+    //        "imagem1": "imagem em um formato lá para envio",
+    //        "ordem": 3
+    //    }
+    // ],
+    "condicao": "SH",
     "envio": 2,
     "pagamento_paypal": true,
     "codigo_postal": "40000-000",
