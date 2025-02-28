@@ -1,7 +1,8 @@
 from django.urls import path
 from knox import views as knox_views
 
-from loja.apis.anuncio import (EditAnuncio, GetAllAnuncioCategoria,
+from loja.apis.anuncio import (CreateAnuncio, EditAnuncio,
+                               GetAllAnuncioCategoria,
                                GetAllAnuncioSubCategoria, GetAnuncio,
                                GetAnunciosUsuario, SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
@@ -24,5 +25,6 @@ urlpatterns = [
     path("logout/", knox_views.LogoutView.as_view(), name='knox_logout'),
     path("register/", RegisterUserView.as_view(), name='loja.register'),
     path("anuncios/usuario/<int:pk>", GetAnunciosUsuario.as_view(),
-         name='loja.anuncios-usuario')
+         name='loja.anuncios-usuario'),
+    path('anuncios/', CreateAnuncio.as_view(), name='loja.anuncios-criar')
 ]

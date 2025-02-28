@@ -5,7 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from loja.models import Anuncio
-from loja.serializers import (AnuncioUsuarioSerializer, GetAnuncioSerializer,
+from loja.serializers import (AnuncioUsuarioSerializer,
+                              CreateAnuncioSerializer, GetAnuncioSerializer,
                               SearchAnuncioSerializer, UpdateAnuncioSerializer)
 
 
@@ -91,3 +92,16 @@ class GetAnunciosUsuario(generics.GenericAPIView):
 
         serializer = AnuncioUsuarioSerializer(anuncios, many=True)
         return Response(serializer.data)
+
+
+class CreateAnuncio(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        anuncio = request.data.copy()
+        anuncio['usuario_id'] = request.user.id
+        serializer = CreateAnuncioSerializer(data=anuncio)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)

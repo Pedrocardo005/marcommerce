@@ -373,3 +373,58 @@ class AnuncioTestCase(APITestCase):
             self.assertEqual(response[idx]['ativo'], anuncio.ativo)
             self.assertEqual(response[idx]['views'], anuncio.views)
             self.assertEqual(response[idx]['preco'], anuncio.preco)
+
+    def test_create_anuncio(self):
+        url_login = reverse("knox_login")
+        data_login = {
+            'username': 'teste',
+            'password': 'secret'
+        }
+
+        response_login = self.client.post(url_login, data_login)
+        response_login = json.loads(response_login.content.decode('utf-8'))
+        token = response_login['token']
+
+        url = reverse('loja.anuncios-criar')
+
+        sub_categoria = SubCategoria.objects.last()
+
+        data = {
+            "sub_categoria_id": sub_categoria.pk,
+            "data_expirar": "24/10/2100",
+            "ativo": True,
+            "vendendo": True,
+            "titulo": "Fiat Palio 2015",
+            "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
+            "preco": 40000.00,
+            "tipo_oferta": 1,
+            "condicao": "SH",
+            "envio": 2,
+            "pagamento_paypal": True,
+            "codigo_postal": "40000-000",
+            "cidade": "São Paulo",
+            "rua": "Rua São Marcelo",
+            "numero": 12,
+            "provedor": "Casas Bahia",
+            "telefone": "71984287792"
+        }
+
+        response = self.client.post(url, data, headers={
+            'Authorization': f'Bearer {token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['ativo'], True)
+        self.assertEqual(response['vendendo'], True)
+        self.assertEqual(response['titulo'], "Fiat Palio 2015")
+        self.assertEqual(
+            response['descricao'], "Carro seminovo em perfeito estado, 10.000km rodados")
+        self.assertEqual(response['cidade'], "São Paulo")
+
+        data.pop('sub_categoria_id')
+
+        response = self.client.post(url, data, headers={
+            'Authorization': f'Bearer {token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        response = json.loads(response.content.decode('utf-8'))

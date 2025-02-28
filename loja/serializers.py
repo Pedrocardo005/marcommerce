@@ -132,3 +132,18 @@ class AnuncioUsuarioSerializer(serializers.ModelSerializer):
     def get_data_expirar(self, obj):
         # Formata a data no formato "dd/mm/aaaa"
         return obj.data_expirar.strftime('%d/%m/%Y')
+
+
+class CreateAnuncioSerializer(serializers.ModelSerializer):
+    data_expirar = serializers.DateTimeField(
+        format='%d/%m/%Y', input_formats=['%d/%m/%Y'])
+    sub_categoria_id = serializers.IntegerField()
+    usuario_id = serializers.IntegerField()
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Anuncio
+        fields = ['id', 'sub_categoria_id', 'usuario_id', 'data_expirar', 'ativo', 'vendendo',
+                  'titulo', 'descricao', 'preco', 'tipo_oferta', 'condicao',
+                  'envio', 'pagamento_paypal', 'codigo_postal', 'cidade',
+                  'rua', 'numero', 'provedor', 'telefone']
