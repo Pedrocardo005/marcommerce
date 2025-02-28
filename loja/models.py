@@ -194,7 +194,7 @@ class Anuncio(models.Model):
 
     data_expirar = models.DateTimeField()
 
-    ativo = models.BooleanField()
+    ativo = models.BooleanField(default=True)
 
     views = models.IntegerField(blank=True, default=0)
 
@@ -219,7 +219,7 @@ class Anuncio(models.Model):
 
     rua = models.CharField(max_length=255)
 
-    numero = models.IntegerField()
+    numero = models.IntegerField(default=0)
 
     vendendo = models.BooleanField(default=True)
 
