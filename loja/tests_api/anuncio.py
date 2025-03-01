@@ -6,7 +6,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from loja.fields import Conditions, Envios, Ofertas
-from loja.models import Anuncio, CustomUser, SubCategoria
+from loja.models import Anuncio, CustomUser, FotoAnuncio, SubCategoria
 
 
 class AnuncioTestCase(APITestCase):
@@ -428,3 +428,35 @@ class AnuncioTestCase(APITestCase):
         })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         response = json.loads(response.content.decode('utf-8'))
+
+        # Test criar anuncio com imagens
+
+        data['sub_categoria_id'] = sub_categoria.pk
+        from io import BytesIO
+
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        from PIL import Image
+
+        image_data = BytesIO()
+        image = Image.new('RGB', (100, 100), 'white')
+        image.save(image_data, format='png')
+        image_data.seek(0)
+
+        imagem1 = SimpleUploadedFile(
+            "test1.png", image_data.read(), content_type='image/png')
+        image_data.seek(0)  # Reinicia o ponteiro do arquivo
+        imagem2 = SimpleUploadedFile(
+            "test2.png", image_data.read(), content_type='image/png')
+
+        data['fotos[0].imagem'] = imagem1
+        data['fotos[0].ordem'] = 1
+        data['fotos[1].imagem'] = imagem2
+        data['fotos[1].ordem'] = 2
+
+        response = self.client.post(url, data, format='multipart', headers={
+            'Authorization': f'Bearer {token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        response = json.loads(response.content.decode('utf-8'))
+        fotos = response.get('fotos')
+        self.assertIsNotNone(fotos)

@@ -1,10 +1,11 @@
 from django.db.models import Q
 from rest_framework import generics, status
 from rest_framework.exceptions import NotAuthenticated
+from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from loja.models import Anuncio
+from loja.models import Anuncio, FotoAnuncio
 from loja.serializers import (AnuncioUsuarioSerializer,
                               CreateAnuncioSerializer, GetAnuncioSerializer,
                               SearchAnuncioSerializer, UpdateAnuncioSerializer)
@@ -96,10 +97,28 @@ class GetAnunciosUsuario(generics.GenericAPIView):
 
 class CreateAnuncio(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser]
 
     def post(self, request, *args, **kwargs):
         anuncio = request.data.copy()
         anuncio['usuario_id'] = request.user.id
+        fotos = []
+        for key, value in request.data.items():
+            if key.startswith('fotos[') and key.endswith('].imagem'):
+                # Extrai o índice da foto
+                index = key.split('[')[1].split(']')[0]
+                ordem = anuncio.pop(f'fotos[{index}].ordem')
+
+                anuncio.pop(f'fotos[{index}].imagem')
+
+                # Adiciona a foto à lista
+                fotos.append({
+                    'imagem': value,
+                    'ordem': ordem
+                })
+
+        if len(fotos):
+            anuncio['fotos'] = fotos
         serializer = CreateAnuncioSerializer(data=anuncio)
         if serializer.is_valid():
             serializer.save()

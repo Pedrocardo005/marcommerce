@@ -1,6 +1,9 @@
+import json
+
 from rest_framework import serializers
 
-from loja.models import Anuncio, Categoria, CustomUser, SubCategoria
+from loja.models import (Anuncio, Categoria, CustomUser, FotoAnuncio,
+                         SubCategoria)
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -134,16 +137,32 @@ class AnuncioUsuarioSerializer(serializers.ModelSerializer):
         return obj.data_expirar.strftime('%d/%m/%Y')
 
 
+class CreateFotoAnuncioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FotoAnuncio
+        fields = ['ordem', 'imagem']
+
+
 class CreateAnuncioSerializer(serializers.ModelSerializer):
     data_expirar = serializers.DateTimeField(
         format='%d/%m/%Y', input_formats=['%d/%m/%Y'])
     sub_categoria_id = serializers.IntegerField()
     usuario_id = serializers.IntegerField()
     id = serializers.IntegerField(read_only=True)
+    fotos = CreateFotoAnuncioSerializer(many=True, required=False)
 
     class Meta:
         model = Anuncio
         fields = ['id', 'sub_categoria_id', 'usuario_id', 'data_expirar', 'ativo', 'vendendo',
                   'titulo', 'descricao', 'preco', 'tipo_oferta', 'condicao',
                   'envio', 'pagamento_paypal', 'codigo_postal', 'cidade',
-                  'rua', 'numero', 'provedor', 'telefone']
+                  'rua', 'numero', 'provedor', 'telefone', 'fotos']
+
+    def create(self, validated_data):
+        anuncio = super().create(validated_data)
+        fotos = self.initial_data.pop('fotos', [])
+        for imgs in fotos:
+            for foto_data in imgs:
+                foto_data['ordem'] = int(foto_data['ordem'][0])
+                FotoAnuncio.objects.create(anuncio=anuncio, **foto_data)
+        return anuncio
