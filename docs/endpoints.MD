@@ -313,12 +313,12 @@ POST
     "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
     "tipo_oferta": 1,
     "preco": 40000.00,
-    // TODO "fotos": [
-    //    {
-    //        "imagem1": "imagem em um formato lá para envio",
-    //        "ordem": 3
-    //    }
-    // ],
+    "fotos": [
+        {
+            "imagem1": "imagem em um formato lá para envio",
+            "ordem": 3
+        }
+    ],
     "condicao": "SH",
     "envio": 2,
     "pagamento_paypal": true,
