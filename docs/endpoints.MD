@@ -502,3 +502,15 @@ POST
     "email": "exemplo@gmail.com"
 }
 ```
+
+### `api/usuarios/nova_senha/{token}`
+
+##### (POST) Cria uma nova senha para o usuário
+
+POST
+```json
+{
+    "new_password": "12345678",
+    "repeat_password": "12345678"
+}
+```
