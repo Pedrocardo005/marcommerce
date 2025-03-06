@@ -365,3 +365,80 @@ class AnuncioTestCase(BaseRegistredUser):
         response = json.loads(response.content.decode('utf-8'))
         fotos = response.get('fotos')
         self.assertIsNotNone(fotos)
+
+    def test_change_status(self):
+        self.login_loja()
+
+        url_create_anuncio = reverse('loja.anuncios-criar')
+
+        sub_categoria = SubCategoria.objects.last()
+
+        data = {
+            "sub_categoria_id": sub_categoria.pk,
+            "data_expirar": "24/10/2100",
+            "ativo": True,
+            "vendendo": True,
+            "titulo": "Fiat Palio 2015",
+            "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
+            "preco": 40000.00,
+            "tipo_oferta": 1,
+            "condicao": "SH",
+            "envio": 2,
+            "pagamento_paypal": True,
+            "codigo_postal": "40000-000",
+            "cidade": "São Paulo",
+            "rua": "Rua São Marcelo",
+            "numero": 12,
+            "provedor": "Casas Bahia",
+            "telefone": "71984287792"
+        }
+
+        response = self.client.post(url_create_anuncio, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        response = json.loads(response.content.decode('utf-8'))
+        anuncio_id = response['id']
+
+        url_change_status = reverse('loja.anuncio-change-status', kwargs={
+            'pk': anuncio_id
+        })
+
+        data = {
+            'vendendo': False
+        }
+        response = self.client.patch(url_change_status, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['vendendo'], False)
+
+        data = {
+            'vendendo': True
+        }
+        response = self.client.patch(url_change_status, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['vendendo'], True)
+
+        # Editar anúncio com outro usuário
+        self.logout_loja()
+
+        url_register_user = reverse('loja.register')
+
+        data = {
+            'email': 'teste@teste.com',
+            'password': '12345678',
+            'username': 'teste2',
+            'account_type': 1
+        }
+
+        response = self.client.post(url_register_user, data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        self.login_loja('teste2', '12345678')
+
+        data = {
+            'vendendo': False
+        }
+        response = self.client.patch(url_change_status, data)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
