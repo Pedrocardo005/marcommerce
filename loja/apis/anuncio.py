@@ -5,8 +5,9 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from loja.models import Anuncio, FotoAnuncio
+from loja.models import Anuncio
 from loja.serializers import (AnuncioUsuarioSerializer,
+                              ChangeStatusAnuncioSerializer,
                               CreateAnuncioSerializer, GetAnuncioSerializer,
                               SearchAnuncioSerializer, UpdateAnuncioSerializer)
 
@@ -124,3 +125,18 @@ class CreateAnuncio(generics.CreateAPIView):
             serializer.save()
             return Response(serializer.data, status.HTTP_201_CREATED)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+
+class ChangeStatusAnuncio(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, *args, **kwargs):
+        anuncio_id = kwargs["pk"]
+        anuncio = Anuncio.objects.filter(pk=anuncio_id).first()
+        if request.user.id == anuncio.usuario.pk or request.user.is_superuser:
+            vendendo = request.data['vendendo']
+            anuncio.vendendo = vendendo
+            anuncio.save()
+            data = ChangeStatusAnuncioSerializer(anuncio).data
+            return Response(data, status.HTTP_200_OK)
+        raise NotAuthenticated

@@ -166,3 +166,11 @@ class CreateAnuncioSerializer(serializers.ModelSerializer):
                 foto_data['ordem'] = int(foto_data['ordem'][0])
                 FotoAnuncio.objects.create(anuncio=anuncio, **foto_data)
         return anuncio
+
+
+class ChangeStatusAnuncioSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Anuncio
+        fields = ['id', 'vendendo']

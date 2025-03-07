@@ -407,18 +407,32 @@ class AnuncioTestCase(BaseRegistredUser):
         data = {
             'vendendo': False
         }
-        response = self.client.patch(url_change_status, data)
+        response = self.client.patch(url_change_status, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response['vendendo'], False)
 
         data = {
-            'vendendo': True
+            'vendendo': True,
+            'views': 12
         }
-        response = self.client.patch(url_change_status, data)
+        response = self.client.patch(url_change_status, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response['vendendo'], True)
+
+        # Verifica se alterou o número de visualizações
+        url_get_anuncio = reverse("loja.get-anuncio", kwargs={
+            'pk': anuncio_id
+        })
+        response = self.client.get(url_get_anuncio)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertNotEqual(response['views'], data['views'])
 
         # Editar anúncio com outro usuário
         self.logout_loja()
@@ -440,5 +454,7 @@ class AnuncioTestCase(BaseRegistredUser):
         data = {
             'vendendo': False
         }
-        response = self.client.patch(url_change_status, data)
+        response = self.client.patch(url_change_status, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
