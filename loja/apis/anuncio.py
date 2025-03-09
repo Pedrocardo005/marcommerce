@@ -5,11 +5,13 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from loja.models import Anuncio
+from loja.models import Anuncio, Favorito
 from loja.serializers import (AnuncioUsuarioSerializer,
                               ChangeStatusAnuncioSerializer,
-                              CreateAnuncioSerializer, GetAnuncioSerializer,
-                              SearchAnuncioSerializer, UpdateAnuncioSerializer)
+                              CreateAnuncioSerializer,
+                              CreateFavoriteAnuncioSerializer,
+                              GetAnuncioSerializer, SearchAnuncioSerializer,
+                              UpdateAnuncioSerializer)
 
 
 class SearchAnuncio(generics.GenericAPIView):
@@ -140,3 +142,24 @@ class ChangeStatusAnuncio(generics.UpdateAPIView):
             data = ChangeStatusAnuncioSerializer(anuncio).data
             return Response(data, status.HTTP_200_OK)
         raise NotAuthenticated
+
+
+class FavoriteAnuncio(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        try:
+            id_user = request.user.pk
+            id_anuncio = request.data['id_anuncio']
+            favorito = Favorito.objects.create(
+                usuario_id=id_user, anuncio_id=id_anuncio)
+            serializer = CreateFavoriteAnuncioSerializer(favorito)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        except:
+            return Response({'error': 'erro'}, status.HTTP_400_BAD_REQUEST)
+
+
+class DeteleFavoriteAnuncio(generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CreateFavoriteAnuncioSerializer
+    queryset = Favorito

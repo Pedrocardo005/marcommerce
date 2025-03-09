@@ -483,7 +483,10 @@ class AnuncioTestCase(BaseRegistredUser):
         })
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-        response = self.client.delete(url_favorite_anuncio + '/' + id_favorito, headers={
+        url_delete_favorite_anuncio = reverse('loja.delete-favorite-anuncio', kwargs={
+            'pk': id_favorito
+        })
+        response = self.client.delete(url_delete_favorite_anuncio, headers={
             'Authorization': f'Bearer {self.token}'
         })
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

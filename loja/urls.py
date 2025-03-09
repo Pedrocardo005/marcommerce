@@ -1,8 +1,9 @@
 from django.urls import path
 from knox import views as knox_views
 
-from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio, EditAnuncio,
-                               GetAllAnuncioCategoria,
+from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio,
+                               DeteleFavoriteAnuncio, EditAnuncio,
+                               FavoriteAnuncio, GetAllAnuncioCategoria,
                                GetAllAnuncioSubCategoria, GetAnuncio,
                                GetAnunciosUsuario, SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
@@ -28,5 +29,9 @@ urlpatterns = [
          name='loja.anuncios-usuario'),
     path('anuncios/', CreateAnuncio.as_view(), name='loja.anuncios-criar'),
     path('anuncios/change_status/<int:pk>',
-         ChangeStatusAnuncio.as_view(), name='loja.anuncio-change-status')
+         ChangeStatusAnuncio.as_view(), name='loja.anuncio-change-status'),
+    path('anuncios/favorite/', FavoriteAnuncio.as_view(),
+         name='loja.favorite-anuncio'),
+    path('anuncios/favorite/<int:pk>', DeteleFavoriteAnuncio.as_view(),
+         name='loja.delete-favorite-anuncio')
 ]

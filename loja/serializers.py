@@ -2,7 +2,7 @@ import json
 
 from rest_framework import serializers
 
-from loja.models import (Anuncio, Categoria, CustomUser, FotoAnuncio,
+from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
                          SubCategoria)
 
 
@@ -174,3 +174,13 @@ class ChangeStatusAnuncioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Anuncio
         fields = ['id', 'vendendo']
+
+
+class CreateFavoriteAnuncioSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    id_usuario = serializers.IntegerField(source='usuario.pk')
+    id_anuncio = serializers.IntegerField(source='anuncio.pk')
+
+    class Meta:
+        model = Favorito
+        fields = ['id', 'id_usuario', 'id_anuncio']
