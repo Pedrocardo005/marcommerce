@@ -472,12 +472,18 @@ class AnuncioTestCase(BaseRegistredUser):
         response = self.client.post(url_favorite_anuncio, data, headers={
             'Authorization': f'Bearer {self.token}'
         })
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response['id_anuncio'], data["id_anuncio"])
+        id_favorito = response['id']
 
         data = {}
         response = self.client.post(url_favorite_anuncio, data, headers={
             'Authorization': f'Bearer {self.token}'
         })
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        response = self.client.delete(url_favorite_anuncio + '/' + id_favorito, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
