@@ -8,6 +8,8 @@ from loja.fields import Conditions, Envios, Ofertas
 from loja.models import Anuncio, CustomUser, SubCategoria
 from loja.tests_api.baseRegistredUser import BaseRegistredUser
 
+url_favorite_anuncio = reverse('loja.favorite-anuncio')
+
 
 class AnuncioTestCase(BaseRegistredUser):
 
@@ -458,3 +460,24 @@ class AnuncioTestCase(BaseRegistredUser):
             'Authorization': f'Bearer {self.token}'
         })
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_favorite_anuncio(self):
+        self.login_loja()
+
+        anuncio = Anuncio.objects.first()
+
+        data = {
+            'id_anuncio': anuncio.pk
+        }
+        response = self.client.post(url_favorite_anuncio, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, 201)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['id_anuncio'], data["id_anuncio"])
+
+        data = {}
+        response = self.client.post(url_favorite_anuncio, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, 400)
