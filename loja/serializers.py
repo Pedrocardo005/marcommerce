@@ -3,7 +3,7 @@ import json
 from rest_framework import serializers
 
 from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
-                         SubCategoria)
+                         Oferta, SubCategoria)
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -184,3 +184,11 @@ class CreateFavoriteAnuncioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Favorito
         fields = ['id', 'id_usuario', 'id_anuncio']
+
+
+class CreateOfertaSerializer(serializers.ModelSerializer):
+    id_anuncio = serializers.IntegerField(source='anuncio.pk')
+
+    class Meta:
+        model = Oferta
+        fields = ['id_anuncio', 'valor', 'mensagem']

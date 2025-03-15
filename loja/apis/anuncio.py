@@ -5,13 +5,13 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from loja.models import Anuncio, Favorito
+from loja.models import Anuncio, Favorito, Oferta
 from loja.serializers import (AnuncioUsuarioSerializer,
                               ChangeStatusAnuncioSerializer,
                               CreateAnuncioSerializer,
                               CreateFavoriteAnuncioSerializer,
-                              GetAnuncioSerializer, SearchAnuncioSerializer,
-                              UpdateAnuncioSerializer)
+                              CreateOfertaSerializer, GetAnuncioSerializer,
+                              SearchAnuncioSerializer, UpdateAnuncioSerializer)
 
 
 class SearchAnuncio(generics.GenericAPIView):
@@ -163,3 +163,21 @@ class DeteleFavoriteAnuncio(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = CreateFavoriteAnuncioSerializer
     queryset = Favorito
+
+
+class CreateOferta(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        try:
+            anuncio_id = request.data['id_anuncio']
+            valor = request.data['valor']
+            mensagem = request.data['mensagem']
+            oferta = Oferta.objects.create(
+                anuncio_id=anuncio_id, valor=valor,
+                mensagem=mensagem
+            )
+            serializer = CreateOfertaSerializer(oferta)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        except Exception as error:
+            return Response({'error': 'erro'}, status.HTTP_400_BAD_REQUEST)

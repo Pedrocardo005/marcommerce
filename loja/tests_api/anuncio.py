@@ -5,7 +5,7 @@ from django.utils import timezone
 from rest_framework import status
 
 from loja.fields import Conditions, Envios, Ofertas
-from loja.models import Anuncio, CustomUser, SubCategoria
+from loja.models import Anuncio, CustomUser, Oferta, SubCategoria
 from loja.tests_api.baseRegistredUser import BaseRegistredUser
 
 url_favorite_anuncio = reverse('loja.favorite-anuncio')
@@ -517,6 +517,7 @@ class AnuncioTestCase(BaseRegistredUser):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         response = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response['mensagem'], data['mensagem'])
+        self.assertEqual(Oferta.objects.count(), 1)
 
         self.logout_loja()
 
