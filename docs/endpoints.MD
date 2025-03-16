@@ -399,12 +399,16 @@ DELETE
 
 ##### (GET) Traz anuncios que tiveram ofertas
 
+Só traz a última mensagem.
+Endpoint para a página `/messenger`
+
 GET
 ```json
 [
     {
         "id": 1,
         "valor": 1500.00,
+        "data_hora": "24/10/2024 12:00",
         "mensagem": "Interesse na sua oferta",
         "anuncio": {
             "id": 1,
@@ -412,6 +416,23 @@ GET
             "preco": 10.5,
             "views": 200
         }
+    }
+]
+```
+
+### `api/anuncios/ofertados/{id_anuncio}`
+
+Traz as mensagens daquela oferta (chat de conversa).
+Trazer ordenado do mais velho para o mais novo como última mensagem.
+
+GET
+```json
+[
+    {
+        "id": 1,
+        "remetente": "José",
+        "data_hora": "24/10/2024 12:00",
+        "mensagem": "teste 123"
     }
 ]
 ```
