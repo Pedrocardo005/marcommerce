@@ -260,6 +260,8 @@ class Oferta(models.Model):
 
     mensagem = models.TextField()
 
+    data_hora = models.DateTimeField(auto_now_add=True, null=True)
+
 
 class Venda(models.Model):
     anuncio = models.ForeignKey(
