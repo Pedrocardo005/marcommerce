@@ -1,5 +1,3 @@
-import json
-
 from rest_framework import serializers
 
 from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
@@ -192,3 +190,20 @@ class CreateOfertaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Oferta
         fields = ['id_anuncio', 'valor', 'mensagem']
+
+
+class AnuncioOfertadoSerializer(serializers.ModelSerializer):
+    preco = serializers.FloatField()
+    views = serializers.IntegerField()
+
+    class Meta:
+        model = Anuncio
+        fields = ['id', 'titulo', 'preco', 'views']
+
+
+class OfertaAnuncioSerializer(serializers.ModelSerializer):
+    anuncio = AnuncioOfertadoSerializer()
+
+    class Meta:
+        model = Oferta
+        fields = ['id', 'valor', 'data_hora', 'mensagem', 'anuncio']

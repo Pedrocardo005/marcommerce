@@ -6,7 +6,7 @@ from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio,
                                EditAnuncio, FavoriteAnuncio,
                                GetAllAnuncioCategoria,
                                GetAllAnuncioSubCategoria, GetAnuncio,
-                               GetAnunciosUsuario, SearchAnuncio)
+                               GetAnunciosUsuario, GetOfertas, SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
 from loja.apis.user import LoginView, RegisterUserView
 
@@ -35,5 +35,7 @@ urlpatterns = [
          name='loja.favorite-anuncio'),
     path('anuncios/favorite/<int:pk>', DeteleFavoriteAnuncio.as_view(),
          name='loja.delete-favorite-anuncio'),
-    path('anuncios/ofertar', CreateOferta.as_view(), name='loja.ofertar-anuncio')
+    path('anuncios/ofertar', CreateOferta.as_view(), name='loja.ofertar-anuncio'),
+    path('anuncios/ofertados', GetOfertas.as_view(),
+         name='loja.ofertados-anuncios')
 ]

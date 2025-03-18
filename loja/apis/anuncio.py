@@ -11,7 +11,8 @@ from loja.serializers import (AnuncioUsuarioSerializer,
                               CreateAnuncioSerializer,
                               CreateFavoriteAnuncioSerializer,
                               CreateOfertaSerializer, GetAnuncioSerializer,
-                              SearchAnuncioSerializer, UpdateAnuncioSerializer)
+                              OfertaAnuncioSerializer, SearchAnuncioSerializer,
+                              UpdateAnuncioSerializer)
 
 
 class SearchAnuncio(generics.GenericAPIView):
@@ -181,3 +182,12 @@ class CreateOferta(generics.CreateAPIView):
             return Response(serializer.data, status.HTTP_201_CREATED)
         except Exception as error:
             return Response({'error': 'erro'}, status.HTTP_400_BAD_REQUEST)
+
+
+class GetOfertas(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        ofertas = Oferta.objects.filter(anuncio__usuario_id=request.user.pk)
+        serializer = OfertaAnuncioSerializer(ofertas, many=True)
+        return Response(serializer.data, status.HTTP_200_OK)

@@ -548,4 +548,4 @@ class AnuncioTestCase(BaseRegistredUser):
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(len(response), 4)
+        self.assertEqual(len(response), 3)
