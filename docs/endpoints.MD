@@ -457,6 +457,7 @@ POST
 POST
 ```json
 {
+    "id_anuncio": 1,
     "id_oferta": 1
 }
 ```

@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
-                         Oferta, SubCategoria)
+                         Oferta, SubCategoria, Venda)
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -189,7 +189,7 @@ class CreateOfertaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Oferta
-        fields = ['id_anuncio', 'valor', 'mensagem']
+        fields = ['id', 'id_anuncio', 'valor', 'mensagem']
 
 
 class AnuncioOfertadoSerializer(serializers.ModelSerializer):
@@ -203,7 +203,19 @@ class AnuncioOfertadoSerializer(serializers.ModelSerializer):
 
 class OfertaAnuncioSerializer(serializers.ModelSerializer):
     anuncio = AnuncioOfertadoSerializer()
+    vendido = serializers.SerializerMethodField()
 
     class Meta:
         model = Oferta
-        fields = ['id', 'valor', 'data_hora', 'mensagem', 'anuncio']
+        fields = ['id', 'valor', 'data_hora', 'mensagem', 'anuncio', 'vendido']
+
+    def get_vendido(self, obj):
+        if obj.vendas.count() > 0:
+            return True
+        return False
+
+
+class AceitarOfertaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Venda
+        fields = ['id', 'anuncio_id', 'oferta_id']
