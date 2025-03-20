@@ -457,8 +457,7 @@ POST
 POST
 ```json
 {
-    "id": 1,
-    "valor": 1500.00
+    "id_oferta": 1
 }
 ```
 
