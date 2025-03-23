@@ -5,7 +5,7 @@ from django.utils import timezone
 from rest_framework import status
 
 from loja.fields import Conditions, Envios, Ofertas
-from loja.models import Anuncio, CustomUser, Oferta, SubCategoria
+from loja.models import Anuncio, CustomUser, SubCategoria
 from loja.tests_api.baseRegistredUser import BaseRegistredUser
 
 url_favorite_anuncio = reverse('loja.favorite-anuncio')
