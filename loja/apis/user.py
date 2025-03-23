@@ -1,10 +1,11 @@
 from django.contrib.auth import login
 from knox.views import LoginView as KnoxLoginView
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.response import Response
 
 from loja.models import CustomUser
-from loja.serializers import RegisterUserSerializer
+from loja.serializers import ChangeUserFotoSerializer, RegisterUserSerializer
 
 
 class LoginView(KnoxLoginView):
@@ -21,3 +22,11 @@ class LoginView(KnoxLoginView):
 class RegisterUserView(generics.CreateAPIView):
     queryset = CustomUser
     serializer_class = RegisterUserSerializer
+
+
+class ChangeUserFotoView(generics.UpdateAPIView):
+    def patch(self, request, *args, **kwargs):
+        request.user.foto = request.data['foto']
+        request.user.save()
+        serializer = ChangeUserFotoSerializer(request.user)
+        return Response(serializer.data, status.HTTP_200_OK)

@@ -14,7 +14,7 @@ class UsuarioTestCase(BaseRegistredUser):
         url = reverse('loja.register')
 
         data = {
-            'email': 'teste@teste.com',
+            'email': 'teste123@teste.com',
             'password': '12345678',
             'account_type': 1
         }
@@ -23,9 +23,9 @@ class UsuarioTestCase(BaseRegistredUser):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
         data = {
-            'email': 'teste@teste.com',
+            'email': 'teste123@teste.com',
             'password': '12345678',
-            'username': 'teste',
+            'username': 'teste123',
             'account_type': 1
         }
 
@@ -35,7 +35,7 @@ class UsuarioTestCase(BaseRegistredUser):
         self.assertEqual(response['email'], data['email'])
         self.assertEqual(response['username'], data['username'])
         self.assertEqual(response['account_type'], data['account_type'])
-        self.assertEqual(CustomUser.objects.count(), 1)
+        self.assertEqual(CustomUser.objects.count(), 2)
 
     def test_alterar_foto(self):
         self.login_loja()
@@ -61,3 +61,4 @@ class UsuarioTestCase(BaseRegistredUser):
         })
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
+        self.assertIsNotNone(response['foto'])

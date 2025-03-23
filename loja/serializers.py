@@ -219,3 +219,11 @@ class AceitarOfertaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venda
         fields = ['id', 'anuncio_id', 'oferta_id']
+
+
+class ChangeUserFotoSerializer(serializers.ModelSerializer):
+    id_usuario = serializers.IntegerField(read_only=True, source='pk')
+
+    class Meta:
+        model = CustomUser
+        fields = ['id_usuario', 'foto']

@@ -119,7 +119,7 @@ class CustomUser(AbstractUser):
 
     foto = models.ImageField(
         _(""),
-        upload_to=None,
+        upload_to='usuario/foto',
         height_field=None,
         width_field=None,
         max_length=None,

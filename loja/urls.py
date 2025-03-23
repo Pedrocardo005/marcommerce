@@ -8,7 +8,7 @@ from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio,
                                GetAnunciosUsuario, SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
 from loja.apis.oferta import AceitarOferta, CreateOferta, GetOfertas
-from loja.apis.user import LoginView, RegisterUserView
+from loja.apis.user import ChangeUserFotoView, LoginView, RegisterUserView
 
 urlpatterns = [
     path("cat-subcat/", CatSubCat.as_view(), name="loja.cat-subcat"),
@@ -38,5 +38,7 @@ urlpatterns = [
     path('anuncios/ofertar', CreateOferta.as_view(), name='loja.ofertar-anuncio'),
     path('anuncios/ofertados', GetOfertas.as_view(),
          name='loja.ofertados-anuncios'),
-    path('ofertas/aceitar', AceitarOferta.as_view(), name='loja.aceitar-ofertas')
+    path('ofertas/aceitar', AceitarOferta.as_view(), name='loja.aceitar-ofertas'),
+    path('usuario/alterar-foto', ChangeUserFotoView.as_view(),
+         name='loja.usuario-alterar-foto')
 ]
