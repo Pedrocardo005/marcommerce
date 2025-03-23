@@ -227,3 +227,14 @@ class ChangeUserFotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['id_usuario', 'foto']
+
+
+class EditUserSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'account_type', 'company_size', 'company_name',
+                  'first_name', 'last_name', 'street', 'street_number',
+                  'postcode', 'city', 'commercial_provider', 'right_withdrawal',
+                  'conditions', 'protection_notice', 'legal_notice']

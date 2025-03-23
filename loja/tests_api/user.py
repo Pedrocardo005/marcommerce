@@ -7,6 +7,7 @@ from loja.models import CustomUser
 from loja.tests_api.baseRegistredUser import BaseRegistredUser
 
 url_alterar_foto = reverse('loja.usuario-alterar-foto')
+url_editar_usuario = reverse('loja.editar-usuario')
 
 
 class UsuarioTestCase(BaseRegistredUser):
@@ -62,3 +63,59 @@ class UsuarioTestCase(BaseRegistredUser):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode('utf-8'))
         self.assertIsNotNone(response['foto'])
+
+    def test_editar_usuario(self):
+
+        data = {
+            "email": "teste@gmail.com",
+            "account_type": 1,
+            "company_size": 1,
+            "company_name": "texto qualquer",
+            "first_name": "Primeiro nome",
+            "last_name": "Ultimo nome",
+            "street": "Rua a",
+            "street_number": 14,
+            "postcode": "40350-570",
+            "city": "São Paulo",
+            "commercial_provider": "Texto longo qualquer",
+            "right_withdrawal": "Texto longo qualquer",
+            "conditions": "Texto longo qualquer",
+            "protection_notice": "Texto longo qualquer",
+            "legal_notice": "Texto longo qualquer"
+        }
+
+        response = self.client.put(url_editar_usuario, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+        self.login_loja()
+
+        response = self.client.put(url_editar_usuario, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['email'], "teste@gmail.com")
+        self.assertEqual(response['company_name'], "texto qualquer")
+        self.assertEqual(response['first_name'], "Primeiro nome")
+        self.assertEqual(response['last_name'], "Ultimo nome")
+        self.assertEqual(response['postcode'], "40350-570")
+        self.assertEqual(response['city'], "São Paulo")
+        self.assertEqual(
+            response['commercial_provider'], "Texto longo qualquer")
+        self.assertEqual(response['right_withdrawal'], "Texto longo qualquer")
+        self.assertEqual(response['conditions'], "Texto longo qualquer")
+        self.assertEqual(response['protection_notice'], "Texto longo qualquer")
+        self.assertEqual(response['legal_notice'], "Texto longo qualquer")
+
+        data = {
+            **data,
+            'legal_notice': 'Texto modificado'
+        }
+        response = self.client.put(url_editar_usuario, data, headers={
+            'Authorization': f'Bearer {self.token}'
+        })
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response['legal_notice'], 'Texto modificado')
