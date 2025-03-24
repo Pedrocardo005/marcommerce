@@ -1,13 +1,17 @@
 from django.contrib.auth import login
 from knox.views import LoginView as KnoxLoginView
-from rest_framework import generics, permissions, status
+from rest_framework import generics, permissions, status, exceptions
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.exceptions import MethodNotAllowed
 
 from loja.models import CustomUser
-from loja.serializers import (ChangeUserFotoSerializer, EditUserSerializer,
-                              RegisterUserSerializer)
+from loja.serializers import (
+    ChangeUserFotoSerializer,
+    EditUserSerializer,
+    RegisterUserSerializer,
+)
 
 
 class LoginView(KnoxLoginView):
@@ -16,7 +20,7 @@ class LoginView(KnoxLoginView):
     def post(self, request, format=None):
         serializer = AuthTokenSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.validated_data['user']
+        user = serializer.validated_data["user"]
         login(request, user)
         return super(LoginView, self).post(request, format)
 
@@ -30,7 +34,7 @@ class ChangeUserFotoView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def patch(self, request, *args, **kwargs):
-        request.user.foto = request.data['foto']
+        request.user.foto = request.data["foto"]
         request.user.save()
         serializer = ChangeUserFotoSerializer(request.user)
         return Response(serializer.data, status.HTTP_200_OK)
@@ -40,10 +44,12 @@ class EditUserView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def put(self, request, *args, **kwargs):
-        serializer = EditUserSerializer(
-            request.user, data=request.data)
+        serializer = EditUserSerializer(request.user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status.HTTP_200_OK)
         else:
             return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, *args, **kwargs):
+        raise MethodNotAllowed(method="PATCH")
