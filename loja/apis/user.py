@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from knox.views import LoginView as KnoxLoginView
-from rest_framework import generics, permissions, status, exceptions
+from rest_framework import generics, permissions, status
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -53,3 +53,25 @@ class EditUserView(generics.UpdateAPIView):
 
     def patch(self, request, *args, **kwargs):
         raise MethodNotAllowed(method="PATCH")
+
+
+class ChangeUserPassword(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, *args, **kwargs):
+        try:
+            old_password = request.data['old_password']
+            new_password = request.data['new_password']
+            repeat_password = request.data['repeat_password']
+
+            if new_password != repeat_password:
+                return Response({'msg': 'Senhas não conferem'}, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            if request.user.check_password(old_password):
+                request.user.set_password(new_password)
+                request.user.save()
+                return Response({'msg': 'Senha alterada com sucesso'}, status.HTTP_200_OK)
+            else:
+                return Response({'msg': 'Senha incorreta'}, status.HTTP_422_UNPROCESSABLE_ENTITY)
+            
+        except Exception as error:
+            return Response({'msg': f'Erro {str(error)}'}, status.HTTP_400_BAD_REQUEST)

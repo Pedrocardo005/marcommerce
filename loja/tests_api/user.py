@@ -123,3 +123,35 @@ class UsuarioTestCase(BaseRegistredUser):
             url_editar_usuario, data, headers={"Authorization": f"Bearer {self.token}"}
         )
         self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def test_alterar_senha_usuario(self):
+        self.login_loja()
+
+        data = {
+            "old_password": "secret",
+            "new_password": "senha12345678",
+            "repeat_password": "senha87654321",
+        }
+        response = self.client.patch(
+            url_alterar_senha, data, headers={"Authorization": f"Bearer {self.token}"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+        data = {
+            "new_password": "senha12345678",
+            "repeat_password": "senha12345678",
+        }
+        response = self.client.patch(
+            url_alterar_senha, data, headers={"Authorization": f"Bearer {self.token}"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        data = {
+            "old_password": "secret",
+            "new_password": "senha12345678",
+            "repeat_password": "senha12345678",
+        }
+        response = self.client.patch(
+            url_alterar_senha, data, headers={"Authorization": f"Bearer {self.token}"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
