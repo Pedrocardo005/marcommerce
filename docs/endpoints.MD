@@ -524,14 +524,16 @@ POST
 }
 ```
 
-### `api/usuarios/nova_senha/{token}`
+### `api/usuarios/confirm_resetar_senha`
 
 ##### (POST) Cria uma nova senha para o usuário
 
 POST
 ```json
 {
-    "new_password": "12345678",
-    "repeat_password": "12345678"
+    "uid": "uid-from-url",
+    "token": "token-from-url",
+    "new_password": "newpassword123",
+    "confirm_password": "newpassword123"
 }
 ```
