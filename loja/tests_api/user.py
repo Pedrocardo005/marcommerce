@@ -2,6 +2,7 @@ import json
 
 from django.urls import reverse
 from rest_framework import status
+from unittest.mock import patch
 
 from loja.models import CustomUser
 from loja.tests_api.baseRegistredUser import BaseRegistredUser
@@ -9,6 +10,12 @@ from loja.tests_api.baseRegistredUser import BaseRegistredUser
 url_alterar_foto = reverse("loja.usuario-alterar-foto")
 url_editar_usuario = reverse("loja.editar-usuario")
 url_alterar_senha = reverse("loja.alterar-senha")
+url_resetar_senha = reverse("loja.resetar-senha")
+url_confirmar_resetar_senha = reverse("loja.confirmar-resetar-senha")
+
+
+def mock_validate(self, attrs):
+    return {"user": CustomUser.objects.first(), "new_password": "newpassword123"}
 
 
 class UsuarioTestCase(BaseRegistredUser):
@@ -150,6 +157,41 @@ class UsuarioTestCase(BaseRegistredUser):
             "old_password": "secret",
             "new_password": "senha12345678",
             "repeat_password": "senha12345678",
+        }
+        response = self.client.patch(
+            url_alterar_senha, data, headers={"Authorization": f"Bearer {self.token}"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    @patch("loja.serializers.PasswordResetConfirmSerializer.validate", mock_validate)
+    def test_reset_senha_usuario(self):
+
+        data = {"email": "teste1@teste.com"}
+        response = self.client.post(url_resetar_senha, data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+        data = {"email": "teste@teste.com"}
+        response = self.client.post(url_resetar_senha, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        data = {
+            "uid": "uid-from-url",
+            "token": "token-from-url",
+            "new_password": "newpassword123",
+            "confirm_password": "newpassword123",
+        }
+        response = self.client.post(url_confirmar_resetar_senha, data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode("utf-8"))
+        self.assertEqual(response["detail"], "Password has been reset successfully")
+
+        self.login_loja("teste", "newpassword123")
+
+        # Testa se login foi funcionou
+        data = {
+            "old_password": "newpassword123",
+            "new_password": "senhaalterada",
+            "repeat_password": "senhaalterada",
         }
         response = self.client.patch(
             url_alterar_senha, data, headers={"Authorization": f"Bearer {self.token}"}

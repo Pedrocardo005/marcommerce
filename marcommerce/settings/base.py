@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "rosetta",
     "parler",
     "rest_framework",
-    "knox"
+    "knox",
 ]
 
 MIDDLEWARE = [
@@ -166,28 +166,37 @@ PARLER_LANGUAGES = {
 
 ASGI_APPLICATION = "marcommerce.asgi.application"
 
-AUTH_USER_MODEL = 'loja.CustomUser'
+AUTH_USER_MODEL = "loja.CustomUser"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
 }
 
-REST_KNOX = {
-    'AUTH_HEADER_PREFIX': 'Bearer'
-}
+REST_KNOX = {"AUTH_HEADER_PREFIX": "Bearer"}
 
-AWS_ACCESS_KEY_ID = 'your-access-key-id'
-AWS_SECRET_ACCESS_KEY = 'your-secret-access-key'
-AWS_STORAGE_BUCKET_NAME = 'your-region'  # e.g., us-east-1
-AWS_S3_REGION_NAME = 'us-east-1'
+AWS_ACCESS_KEY_ID = "your-access-key-id"
+AWS_SECRET_ACCESS_KEY = "your-secret-access-key"
+AWS_STORAGE_BUCKET_NAME = "your-region"  # e.g., us-east-1
+AWS_S3_REGION_NAME = "us-east-1"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-AWS_DEFAULT_ACL = 'public-read'
+AWS_DEFAULT_ACL = "public-read"
 AWS_QUERYSTRING_AUTH = False
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-if 'test' in sys.argv:
+if "test" in sys.argv:
     # store files in memory, no cleanup after tests are finished
-    DEFAULT_FILE_STORAGE = 'inmemorystorage.InMemoryStorage'
+    DEFAULT_FILE_STORAGE = "inmemorystorage.InMemoryStorage"
     # much faster password hashing, default one is super slow (on purpose)
-    PASSWORD_HASHERS = ['django.contrib.auth.hashers.MD5PasswordHasher']
+    PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "your@gmail.com"
+EMAIL_HOST_PASSWORD = "your-app-password"
+DEFAULT_FROM_EMAIL = "your@gmail.com"
+SITE_ID = 1
+
+FRONTEND_URL = ""

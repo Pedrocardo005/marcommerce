@@ -14,6 +14,7 @@ class BaseRegistredUser(APITestCase):
     def setUp(self):
         subcategoria = SubCategoria.objects.first()
         custom_user = CustomUser()
+        custom_user.email = "teste@teste.com"
         custom_user.username = "teste"
         custom_user.set_password("secret")
 
@@ -42,20 +43,15 @@ class BaseRegistredUser(APITestCase):
 
         anuncio.save()
 
-    def login_loja(self, username='teste', password='secret'):
+    def login_loja(self, username="teste", password="secret"):
 
         url_login = reverse("knox_login")
-        data_login = {
-            'username': username,
-            'password': password
-        }
+        data_login = {"username": username, "password": password}
 
         response_login = self.client.post(url_login, data_login)
-        response_login = json.loads(response_login.content.decode('utf-8'))
-        self.token = response_login['token']
+        response_login = json.loads(response_login.content.decode("utf-8"))
+        self.token = response_login["token"]
 
     def logout_loja(self):
         url_logout = reverse("knox_logout")
-        self.client.post(url_logout, headers={
-            'Authorization': f'Bearer {self.token}'
-        })
+        self.client.post(url_logout, headers={"Authorization": f"Bearer {self.token}"})
