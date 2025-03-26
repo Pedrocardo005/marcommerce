@@ -6,7 +6,7 @@ Projeto para criação de um ecommerce de exemplo.
 
 Python 3.9.6
 
-Django 4.2.7
+Django 4.2.20
 
 Docker
 
