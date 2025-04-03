@@ -410,6 +410,8 @@ GET
         "valor": 1500.00,
         "data_hora": "24/10/2024 12:00",
         "mensagem": "Interesse na sua oferta",
+        "vendido": false,
+        "chat_room": "11_10",
         "anuncio": {
             "id": 1,
             "titulo": "Produto ofertado",

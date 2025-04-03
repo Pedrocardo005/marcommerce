@@ -258,7 +258,8 @@ class Oferta(models.Model):
 
     valor = models.DecimalField(decimal_places=2, max_digits=10)
 
-    mensagem = models.TextField()
+    mensagem = models.ForeignKey(
+        'Mensagem', on_delete=models.DO_NOTHING, related_name='ofertas')
 
     data_hora = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -284,6 +285,10 @@ class Favorito(models.Model):
     )
 
 
+class ChatRoom(models.Model):
+    nome = models.CharField(max_length=100)
+
+
 class Mensagem(models.Model):
     remetente = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name="enviadas"
@@ -294,5 +299,8 @@ class Mensagem(models.Model):
     )
 
     mensagem = models.TextField()
+
+    chat_room = models.ForeignKey(
+        ChatRoom, on_delete=models.CASCADE, related_name='mensages', null=True)
 
     data_hora = models.DateTimeField(auto_now_add=True)
