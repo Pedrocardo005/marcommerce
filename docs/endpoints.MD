@@ -539,3 +539,17 @@ POST
     "confirm_password": "newpassword123"
 }
 ```
+
+### `ws/chat/<room_name>/?token=pkamfkamsfkm`
+
+#### (WebSocket) Chat de mensagens
+
+Url para os chats dos usuários. É passado o token do usuário na url.
+Send
+```json
+{
+    "remetente_id": 1,
+    "destinatario_id": 2,
+    "mensagem": "texto qualquer"
+}
+```

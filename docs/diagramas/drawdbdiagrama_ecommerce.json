@@ -3,8 +3,8 @@
     {
       "id": 0,
       "name": "Usuario",
-      "x": -472.49598023664066,
-      "y": 211.78818775191425,
+      "x": -316.8550986480561,
+      "y": 97.19545075812121,
       "fields": [
         {
           "name": "id",
@@ -770,8 +770,8 @@
     {
       "id": 6,
       "name": "Mensagem",
-      "x": -137.65781189347695,
-      "y": 476.35826715996075,
+      "x": -724.3042117273731,
+      "y": 45.352748914649396,
       "fields": [
         {
           "name": "id",
@@ -838,6 +838,20 @@
           "increment": false,
           "comment": "",
           "id": 4,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "chat_room",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 5,
           "size": "",
           "values": []
         }
@@ -1030,6 +1044,43 @@
       "indices": [],
       "color": "#175e7a",
       "key": 1737511207218
+    },
+    {
+      "id": 10,
+      "name": "ChatRoom",
+      "x": -731.0599741585484,
+      "y": 370.9660927381935,
+      "fields": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "nome",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 255
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1743450485421
     }
   ],
   "relationships": [
@@ -1164,6 +1215,17 @@
       "deleteConstraint": "No action",
       "name": "fk_SubCategoria_id_Anuncio",
       "id": 11
+    },
+    {
+      "startTableId": 6,
+      "startFieldId": 5,
+      "endTableId": 10,
+      "endFieldId": 0,
+      "cardinality": "one_to_many",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_Mensagem_chat_room_ChatRoom",
+      "id": 12
     }
   ],
   "notes": [],
