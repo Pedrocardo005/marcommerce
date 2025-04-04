@@ -314,11 +314,11 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
 class MensagemSerializer(serializers.ModelSerializer):
     remetente = serializers.CharField(
         source='remetente.username', read_only=True)
-    remetente_id = serializers.CharField(source='remetente.id', read_only=True)
+    remetente_id = serializers.CharField(source='remetente.id')
     destinatario = serializers.CharField(
         source='destinatario.username', read_only=True)
     destinatario_id = serializers.CharField(
-        source='destinatario.id', read_only=True)
+        source='destinatario.id')
     data_hora = serializers.DateTimeField(
         format="%d/%m/%Y %H:%M", read_only=True
     )
@@ -327,3 +327,12 @@ class MensagemSerializer(serializers.ModelSerializer):
         model = Mensagem
         fields = ['id', 'remetente', 'remetente_id', 'destinatario',
                   'destinatario_id', 'data_hora', 'mensagem']
+
+    def create(self, validated_data):
+        remetente = validated_data.pop('remetente')
+        destinatario = validated_data.pop('destinatario')
+        data = validated_data.copy()
+        data['remetente_id'] = remetente['id']
+        data['destinatario_id'] = destinatario['id']
+        mensagem = super().create(data)
+        return mensagem

@@ -55,14 +55,15 @@ class ChatRoomWebsocket(AsyncWebsocketConsumer):
 
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
+        text_data_json['chat_room_id'] = self.chat_room.id
         serializer = MensagemSerializer(data=text_data_json)
         if serializer.is_valid():
-            serializer.save()
-
+            await sync_to_async(serializer.save)()
+            data = await sync_to_async(lambda: serializer.data)()
             await self.channel_layer.group_send(
                 # Chama o método chat_message, o '.' se transforma em '_'
                 self.room_group_name,
-                {"type": "chat.message", **serializer.data},
+                {"type": "chat.message", **data},
             )
 
     async def chat_message(self, event):
