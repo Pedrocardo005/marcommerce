@@ -3,7 +3,8 @@ from django.db import models
 from django.utils.translation import gettext as _
 from parler.models import TranslatableModel, TranslatedFields
 
-from loja.fields import AccountType, CompanySize, Conditions, Envios, Ofertas
+from loja.fields import (AccountType, CompanySize, Conditions, Envios, Ofertas,
+                         gerar_nome_aleatorio)
 from loja.managers import CustomUserManager
 
 
@@ -85,7 +86,7 @@ class ImagemProduto(models.Model):
         Produto, models.CASCADE, related_name="imagens")
 
     imagem = models.ImageField(
-        _(""), upload_to=None, height_field=None, width_field=None, max_length=None
+        _(""), upload_to=gerar_nome_aleatorio, height_field=None, width_field=None, max_length=None
     )
 
     def __str__(self) -> str:
@@ -119,7 +120,7 @@ class CustomUser(AbstractUser):
 
     foto = models.ImageField(
         _(""),
-        upload_to='usuario/foto',
+        upload_to=gerar_nome_aleatorio,
         height_field=None,
         width_field=None,
         max_length=None,
@@ -245,7 +246,7 @@ class FotoAnuncio(models.Model):
 
     ordem = models.IntegerField()
 
-    imagem = models.ImageField(upload_to='pictures/', null=True)
+    imagem = models.ImageField(upload_to=gerar_nome_aleatorio, null=True)
 
     class Meta:
         ordering = ['ordem']

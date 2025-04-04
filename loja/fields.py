@@ -1,3 +1,6 @@
+import os
+import uuid
+
 from django.db import models
 
 
@@ -45,3 +48,10 @@ class CompanySize(models.IntegerChoices):
     SBO = 1, "Small business owner"
 
     E = 2, "Entrepreneur (with VAT)"
+
+
+def gerar_nome_aleatorio(instance, filename):
+    ext = filename.split(
+        '.')[-1]
+    novo_nome = f"{uuid.uuid4().hex}.{ext}"
+    return os.path.join('uploads/', novo_nome)
