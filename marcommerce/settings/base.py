@@ -201,3 +201,12 @@ DEFAULT_FROM_EMAIL = "your@gmail.com"
 SITE_ID = 1
 
 FRONTEND_URL = ""
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}

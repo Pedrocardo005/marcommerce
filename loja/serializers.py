@@ -4,7 +4,7 @@ from django.utils.http import urlsafe_base64_decode
 from rest_framework import serializers
 
 from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
-                         Oferta, SubCategoria, Venda)
+                         Mensagem, Oferta, SubCategoria, Venda)
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -309,3 +309,21 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
 
         attrs["user"] = user
         return attrs
+
+
+class MensagemSerializer(serializers.ModelSerializer):
+    remetente = serializers.CharField(
+        source='remetente.username', read_only=True)
+    remetente_id = serializers.CharField(source='remetente.id', read_only=True)
+    destinatario = serializers.CharField(
+        source='destinatario.username', read_only=True)
+    destinatario_id = serializers.CharField(
+        source='destinatario.id', read_only=True)
+    data_hora = serializers.DateTimeField(
+        format="%d/%m/%Y %H:%M", read_only=True
+    )
+
+    class Meta:
+        model = Mensagem
+        fields = ['id', 'remetente', 'remetente_id', 'destinatario',
+                  'destinatario_id', 'data_hora', 'mensagem']
