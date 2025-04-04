@@ -2,7 +2,7 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from loja.models import Oferta, Venda
+from loja.models import Anuncio, ChatRoom, Mensagem, Oferta, Venda
 from loja.serializers import (AceitarOfertaSerializer, CreateOfertaSerializer,
                               OfertaAnuncioSerializer)
 
@@ -15,10 +15,25 @@ class CreateOferta(generics.CreateAPIView):
             anuncio_id = request.data['id_anuncio']
             valor = request.data['valor']
             mensagem = request.data['mensagem']
-            oferta = Oferta.objects.create(
-                anuncio_id=anuncio_id, valor=valor,
-                mensagem=mensagem
+
+            anuncio = Anuncio.objects.filter(id=anuncio_id).first()
+
+            chat_room = ChatRoom.objects.create(
+                nome=f'{request.user.id}_{anuncio.usuario.pk}'
             )
+
+            obj_mensagem = Mensagem.objects.create(
+                remetente=request.user,
+                destinatario=anuncio.usuario,
+                mensagem=mensagem,
+                chat_room=chat_room
+            )
+
+            oferta = Oferta.objects.create(
+                anuncio=anuncio, valor=valor,
+                mensagem=obj_mensagem
+            )
+
             serializer = CreateOfertaSerializer(oferta)
             return Response(serializer.data, status.HTTP_201_CREATED)
         except Exception as error:

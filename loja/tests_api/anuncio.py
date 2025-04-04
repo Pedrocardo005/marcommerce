@@ -180,7 +180,8 @@ class AnuncioTestCase(BaseRegistredUser):
 
             anuncio.save()
             anuncios.append(anuncio)
-        url = reverse("loja.anuncios-subcategoria", kwargs={"pk": subcategoria.pk})
+        url = reverse("loja.anuncios-subcategoria",
+                      kwargs={"pk": subcategoria.pk})
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -403,7 +404,8 @@ class AnuncioTestCase(BaseRegistredUser):
         }
 
         response = self.client.post(
-            url_create_anuncio, data, headers={"Authorization": f"Bearer {self.token}"}
+            url_create_anuncio, data, headers={
+                "Authorization": f"Bearer {self.token}"}
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         response = json.loads(response.content.decode("utf-8"))
@@ -415,7 +417,8 @@ class AnuncioTestCase(BaseRegistredUser):
 
         data = {"vendendo": False}
         response = self.client.patch(
-            url_change_status, data, headers={"Authorization": f"Bearer {self.token}"}
+            url_change_status, data, headers={
+                "Authorization": f"Bearer {self.token}"}
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode("utf-8"))
@@ -423,14 +426,16 @@ class AnuncioTestCase(BaseRegistredUser):
 
         data = {"vendendo": True, "views": 12}
         response = self.client.patch(
-            url_change_status, data, headers={"Authorization": f"Bearer {self.token}"}
+            url_change_status, data, headers={
+                "Authorization": f"Bearer {self.token}"}
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode("utf-8"))
         self.assertEqual(response["vendendo"], True)
 
         # Verifica se alterou o número de visualizações
-        url_get_anuncio = reverse("loja.get-anuncio", kwargs={"pk": anuncio_id})
+        url_get_anuncio = reverse(
+            "loja.get-anuncio", kwargs={"pk": anuncio_id})
         response = self.client.get(url_get_anuncio)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode("utf-8"))
@@ -455,7 +460,8 @@ class AnuncioTestCase(BaseRegistredUser):
 
         data = {"vendendo": False}
         response = self.client.patch(
-            url_change_status, data, headers={"Authorization": f"Bearer {self.token}"}
+            url_change_status, data, headers={
+                "Authorization": f"Bearer {self.token}"}
         )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 

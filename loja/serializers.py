@@ -1,18 +1,10 @@
-from rest_framework import serializers
-from django.utils.http import urlsafe_base64_decode
-from django.utils.encoding import force_str
 from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
+from rest_framework import serializers
 
-from loja.models import (
-    Anuncio,
-    Categoria,
-    CustomUser,
-    Favorito,
-    FotoAnuncio,
-    Oferta,
-    SubCategoria,
-    Venda,
-)
+from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
+                         Mensagem, Oferta, SubCategoria, Venda)
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -50,9 +42,11 @@ class GetAnuncioSerializer(serializers.ModelSerializer):
 
     preco = serializers.FloatField()
 
-    id_anunciante = serializers.IntegerField(source="usuario.id", read_only=True)
+    id_anunciante = serializers.IntegerField(
+        source="usuario.id", read_only=True)
 
-    email_anunciante = serializers.CharField(source="usuario.email", read_only=True)
+    email_anunciante = serializers.CharField(
+        source="usuario.email", read_only=True)
 
     class Meta:
         model = Anuncio
@@ -209,6 +203,7 @@ class CreateFavoriteAnuncioSerializer(serializers.ModelSerializer):
 
 class CreateOfertaSerializer(serializers.ModelSerializer):
     id_anuncio = serializers.IntegerField(source="anuncio.pk")
+    mensagem = serializers.CharField(source='mensagem.mensagem')
 
     class Meta:
         model = Oferta
@@ -227,10 +222,13 @@ class AnuncioOfertadoSerializer(serializers.ModelSerializer):
 class OfertaAnuncioSerializer(serializers.ModelSerializer):
     anuncio = AnuncioOfertadoSerializer()
     vendido = serializers.SerializerMethodField()
+    mensagem = serializers.CharField(source='mensagem.mensagem')
+    chat_room = serializers.CharField(source='mensagem.chat_room.nome')
 
     class Meta:
         model = Oferta
-        fields = ["id", "valor", "data_hora", "mensagem", "anuncio", "vendido"]
+        fields = ["id", "valor", "data_hora", "mensagem",
+                  "anuncio", "vendido", 'chat_room']
 
     def get_vendido(self, obj):
         if obj.vendas.count() > 0:
@@ -284,7 +282,8 @@ class PasswordResetRequestSerializer(serializers.Serializer):
         try:
             self.user = CustomUser.objects.get(email=value)
         except CustomUser.DoesNotExist:
-            raise serializers.ValidationError("User with this email doesn't exist.")
+            raise serializers.ValidationError(
+                "User with this email doesn't exist.")
         return value
 
 
@@ -305,7 +304,35 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
             raise serializers.ValidationError({"token": "Invalid token"})
 
         if attrs["new_password"] != attrs["confirm_password"]:
-            raise serializers.ValidationError({"password": "Passwords don't match"})
+            raise serializers.ValidationError(
+                {"password": "Passwords don't match"})
 
         attrs["user"] = user
         return attrs
+
+
+class MensagemSerializer(serializers.ModelSerializer):
+    remetente = serializers.CharField(
+        source='remetente.username', read_only=True)
+    remetente_id = serializers.CharField(source='remetente.id')
+    destinatario = serializers.CharField(
+        source='destinatario.username', read_only=True)
+    destinatario_id = serializers.CharField(
+        source='destinatario.id')
+    data_hora = serializers.DateTimeField(
+        format="%d/%m/%Y %H:%M", read_only=True
+    )
+
+    class Meta:
+        model = Mensagem
+        fields = ['id', 'remetente', 'remetente_id', 'destinatario',
+                  'destinatario_id', 'data_hora', 'mensagem']
+
+    def create(self, validated_data):
+        remetente = validated_data.pop('remetente')
+        destinatario = validated_data.pop('destinatario')
+        data = validated_data.copy()
+        data['remetente_id'] = remetente['id']
+        data['destinatario_id'] = destinatario['id']
+        mensagem = super().create(data)
+        return mensagem

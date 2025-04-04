@@ -410,6 +410,8 @@ GET
         "valor": 1500.00,
         "data_hora": "24/10/2024 12:00",
         "mensagem": "Interesse na sua oferta",
+        "vendido": false,
+        "chat_room": "11_10",
         "anuncio": {
             "id": 1,
             "titulo": "Produto ofertado",
@@ -535,5 +537,19 @@ POST
     "token": "token-from-url",
     "new_password": "newpassword123",
     "confirm_password": "newpassword123"
+}
+```
+
+### `ws/chat/<room_name>/?token=pkamfkamsfkm`
+
+#### (WebSocket) Chat de mensagens
+
+Url para os chats dos usuários. É passado o token do usuário na url.
+Send
+```json
+{
+    "remetente_id": 1,
+    "destinatario_id": 2,
+    "mensagem": "texto qualquer"
 }
 ```
