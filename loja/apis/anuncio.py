@@ -60,6 +60,7 @@ class GetAnuncio(generics.RetrieveUpdateDestroyAPIView):
 class EditAnuncio(generics.RetrieveAPIView):
     queryset = Anuncio
     serializer_class = UpdateAnuncioSerializer
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
         anuncio = Anuncio.objects.filter(pk=kwargs["pk"]).first()
