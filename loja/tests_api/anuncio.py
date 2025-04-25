@@ -497,3 +497,43 @@ class AnuncioTestCase(BaseRegistredUser):
             headers={"Authorization": f"Bearer {self.token}"},
         )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
+    def test_get_three_first_anuncios(self):
+        url_get_three_first_anuncios = reverse('loja.get-three-first-anuncios')
+        subcategoria = SubCategoria.objects.last()
+        custom_user = CustomUser.objects.first()
+
+        anuncios = []
+        for idx in range(0, 3):
+            anuncio = Anuncio(
+                sub_categoria=subcategoria,
+                usuario=custom_user,
+                data_expirar=timezone.now(),
+                ativo=True,
+                views=0,
+                titulo=f"Produto {idx + 2}",
+                descricao=f"Descrição do produto {idx + 2}",
+                preco=100.7,
+                condicao=Conditions.NEW,
+                envio=Envios.DHL,
+                codigo_postal="40000-500",
+                cidade="Salvador",
+                rua="Rua A",
+                numero=15,
+                vendendo=True,
+                tipo_oferta=Ofertas.FIXO,
+                provedor=f"Fábrica {idx + 2}",
+                telefone="75999999999",
+            )
+
+            anuncio.save()
+            anuncios.append(anuncio)
+
+        response = self.client.get(url_get_three_first_anuncios)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode("utf-8"))
+        self.assertEqual(len(response), 3)
+        for idx, anuncio in enumerate(response):
+            self.assertEqual(anuncio["titulo"], anuncios[idx].titulo)
+            self.assertEqual(anuncio["url_foto"], anuncios[idx].url_foto)
+            self.assertEqual(anuncio["cidade"], anuncios[idx].cidade)

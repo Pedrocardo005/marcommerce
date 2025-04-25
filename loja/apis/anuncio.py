@@ -10,6 +10,7 @@ from loja.serializers import (AnuncioUsuarioSerializer,
                               ChangeStatusAnuncioSerializer,
                               CreateAnuncioSerializer,
                               CreateFavoriteAnuncioSerializer,
+                              FirstThreeAnuncioSerializer,
                               GetAnuncioSerializer, SearchAnuncioSerializer,
                               UpdateAnuncioSerializer)
 
@@ -164,3 +165,11 @@ class DeteleFavoriteAnuncio(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = CreateFavoriteAnuncioSerializer
     queryset = Favorito
+
+
+class GetThreeFirstAnuncio(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        anuncios = Anuncio.objects.order_by('-id')[:3]
+        anuncios = sorted(anuncios, key=lambda x: x.id)
+        data = FirstThreeAnuncioSerializer(anuncios, many=True).data
+        return Response(data)

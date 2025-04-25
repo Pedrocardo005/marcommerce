@@ -1,29 +1,17 @@
 from django.urls import path
 from knox import views as knox_views
 
-from loja.apis.anuncio import (
-    ChangeStatusAnuncio,
-    CreateAnuncio,
-    DeteleFavoriteAnuncio,
-    EditAnuncio,
-    FavoriteAnuncio,
-    GetAllAnuncioCategoria,
-    GetAllAnuncioSubCategoria,
-    GetAnuncio,
-    GetAnunciosUsuario,
-    SearchAnuncio,
-)
+from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio,
+                               DeteleFavoriteAnuncio, EditAnuncio,
+                               FavoriteAnuncio, GetAllAnuncioCategoria,
+                               GetAllAnuncioSubCategoria, GetAnuncio,
+                               GetAnunciosUsuario, GetThreeFirstAnuncio,
+                               SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
 from loja.apis.oferta import AceitarOferta, CreateOferta, GetOfertas
-from loja.apis.user import (
-    ChangeUserFotoView,
-    EditUserView,
-    LoginView,
-    RegisterUserView,
-    ChangeUserPassword,
-    PasswordResetRequestAPI,
-    PasswordResetConfirmAPI,
-)
+from loja.apis.user import (ChangeUserFotoView, ChangeUserPassword,
+                            EditUserView, LoginView, PasswordResetConfirmAPI,
+                            PasswordResetRequestAPI, RegisterUserView)
 
 urlpatterns = [
     path("cat-subcat/", CatSubCat.as_view(), name="loja.cat-subcat"),
@@ -55,21 +43,24 @@ urlpatterns = [
         ChangeStatusAnuncio.as_view(),
         name="loja.anuncio-change-status",
     ),
-    path("anuncios/favorite/", FavoriteAnuncio.as_view(), name="loja.favorite-anuncio"),
+    path("anuncios/favorite/", FavoriteAnuncio.as_view(),
+         name="loja.favorite-anuncio"),
     path(
         "anuncios/favorite/<int:pk>",
         DeteleFavoriteAnuncio.as_view(),
         name="loja.delete-favorite-anuncio",
     ),
     path("anuncios/ofertar", CreateOferta.as_view(), name="loja.ofertar-anuncio"),
-    path("anuncios/ofertados", GetOfertas.as_view(), name="loja.ofertados-anuncios"),
+    path("anuncios/ofertados", GetOfertas.as_view(),
+         name="loja.ofertados-anuncios"),
     path("ofertas/aceitar", AceitarOferta.as_view(), name="loja.aceitar-ofertas"),
     path(
         "usuarios/alterar-foto",
         ChangeUserFotoView.as_view(),
         name="loja.usuario-alterar-foto",
     ),
-    path("usuarios/editar_usuario", EditUserView.as_view(), name="loja.editar-usuario"),
+    path("usuarios/editar_usuario", EditUserView.as_view(),
+         name="loja.editar-usuario"),
     path(
         "usuarios/alterar_senha",
         ChangeUserPassword.as_view(),
@@ -85,4 +76,7 @@ urlpatterns = [
         PasswordResetConfirmAPI.as_view(),
         name="loja.confirmar-resetar-senha",
     ),
+    path("anuncios/primeiros", GetThreeFirstAnuncio.as_view(),
+         name="loja.get-three-first-anuncios"
+         ),
 ]

@@ -336,3 +336,11 @@ class MensagemSerializer(serializers.ModelSerializer):
         data['destinatario_id'] = destinatario['id']
         mensagem = super().create(data)
         return mensagem
+
+
+class FirstThreeAnuncioSerializer(serializers.ModelSerializer):
+    url_foto = serializers.ReadOnlyField()
+
+    class Meta:
+        model = Anuncio
+        fields = ["id", "titulo", "url_foto", "cidade"]
