@@ -29,6 +29,22 @@ class AnuncioTestCase(BaseRegistredUser):
         self.assertEqual(anuncio["preco"], 100.7)
         self.assertEqual(anuncio["condicao"], Conditions.NEW)
 
+        subcategoria = SubCategoria.objects.first()
+
+        response = self.client.get(
+            url, {"q": "o", "city": "salvador", "category": subcategoria.pk})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode("utf-8"))
+        self.assertEqual(len(response), 1)
+
+        subcategoria = SubCategoria.objects.last()
+
+        response = self.client.get(
+            url, {"q": "o", "city": "salvador", "category": subcategoria.pk})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        response = json.loads(response.content.decode("utf-8"))
+        self.assertEqual(len(response), 0)
+
     def test_get_anuncio(self):
         anuncio = Anuncio.objects.filter(
             titulo="Produto 1", descricao="Descrição do produto 1"

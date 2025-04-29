@@ -19,6 +19,7 @@ class SearchAnuncio(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         title = request.query_params.get("q", "")
         city_or_postal_code: str = request.query_params.get("city", "")
+        category_id: str = request.query_params.get("category", "")
 
         # Verifica se é texto
         if city_or_postal_code.isalpha():
@@ -31,6 +32,10 @@ class SearchAnuncio(generics.GenericAPIView):
                 Q(codigo_postal__icontains=city_or_postal_code)
                 | Q(titulo__icontains=title)
             )
+
+        if category_id:
+            anuncios = anuncios.filter(
+                sub_categoria__categoria__id=int(category_id))
 
         data = SearchAnuncioSerializer(anuncios, many=True).data
         return Response(data)
