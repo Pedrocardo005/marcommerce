@@ -35,7 +35,7 @@ class SearchAnuncioSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Anuncio
-        fields = ["id", "titulo", "preco", "descricao", "condicao"]
+        fields = ["id", "titulo", "preco", "descricao", "condicao", "url_foto"]
 
 
 class GetAnuncioSerializer(serializers.ModelSerializer):
