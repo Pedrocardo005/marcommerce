@@ -4,7 +4,7 @@ from django.utils.http import urlsafe_base64_decode
 from rest_framework import serializers
 
 from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
-                         Mensagem, Oferta, SubCategoria, Venda)
+                         Mensagem, Oferta, SubCategoria, SupportMessage, Venda)
 
 
 class SubCategoriaSerializer(serializers.ModelSerializer):
@@ -344,3 +344,14 @@ class FirstThreeAnuncioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Anuncio
         fields = ["id", "titulo", "url_foto", "cidade"]
+
+
+class SupportMessageSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
+    data_hora = serializers.DateTimeField(
+        format="%d/%m/%Y %H:%M", read_only=True
+    )
+
+    class Meta:
+        model = SupportMessage
+        fields = ["id", "assunto", "email", "mensagem", "data_hora"]

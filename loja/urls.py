@@ -9,6 +9,7 @@ from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio,
                                SearchAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
 from loja.apis.oferta import AceitarOferta, CreateOferta, GetOfertas
+from loja.apis.support import SendSupportMessage
 from loja.apis.user import (ChangeUserFotoView, ChangeUserPassword,
                             EditUserView, LoginView, PasswordResetConfirmAPI,
                             PasswordResetRequestAPI, RegisterUserView)
@@ -79,4 +80,7 @@ urlpatterns = [
     path("anuncios/primeiros", GetThreeFirstAnuncio.as_view(),
          name="loja.get-three-first-anuncios"
          ),
+    path("support/send-message", SendSupportMessage.as_view(),
+         name="loja.send-support-message"
+         )
 ]

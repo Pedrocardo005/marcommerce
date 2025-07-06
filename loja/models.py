@@ -305,3 +305,10 @@ class Mensagem(models.Model):
         ChatRoom, on_delete=models.CASCADE, related_name='mensages', null=True)
 
     data_hora = models.DateTimeField(auto_now_add=True)
+
+
+class SupportMessage(models.Model):
+    assunto = models.CharField(max_length=100)
+    email = models.EmailField()
+    mensagem = models.TextField()
+    data_hora = models.DateTimeField(auto_now_add=True)

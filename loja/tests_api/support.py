@@ -14,14 +14,22 @@ class SupportTestCase(APITestCase):
             'mensagem': 'Teste 123, testando mensagem.'
         }
 
-        response = self.client.post(url_send_suport_message, 400)
+        response = self.client.post(url_send_suport_message, data)
+        self.assertEqual(response.status_code, 400)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertIn('email', response)
+        self.assertEqual(response['email'][0], 'Este campo é obrigatório.')
 
         data = {
             'assunto': 'Pergunta geral',
             'email': 'example@example.com',
         }
 
-        response = self.client.post(url_send_suport_message, 400)
+        response = self.client.post(url_send_suport_message, data)
+        self.assertEqual(response.status_code, 400)
+        response = json.loads(response.content.decode('utf-8'))
+        self.assertIn('mensagem', response)
+        self.assertEqual(response['mensagem'][0], 'Este campo é obrigatório.')
 
         data = {
             'assunto': 'Pergunta geral',
