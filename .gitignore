@@ -159,3 +159,6 @@ env_project/
 
 # Arquivo com configurações adicionais
 /marcommerce/settings/others_config.py
+
+# Static files 
+/staticfiles
