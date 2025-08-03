@@ -88,3 +88,7 @@ SITE_ID = 1
 
 FRONTEND_URL = ""
 ```
+
+## Deploy no render
+
+Com base no arquivo `.env.example` insira as variáveis de ambiente no ambiente render com os valores corretos.
