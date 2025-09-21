@@ -92,3 +92,12 @@ FRONTEND_URL = ""
 ## Deploy no render
 
 Com base no arquivo `.env.example` insira as variáveis de ambiente no ambiente render com os valores corretos.
+
+## Rodar a aplicação assíncrona
+
+É possível rodar a aplicação de forma assíncrona e com múltiplas threads. Só iniciar a aplicação com o seguinte comando:
+```bash
+uvicorn marcommerce.asgi:application --workers 6
+```
+
+O texto `--workers 6` indica que 6 threads serão usadas. Se desejar utilizar mais, modifique esse valor a sua preferência.

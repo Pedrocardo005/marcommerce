@@ -9,18 +9,19 @@ https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/
 
 import os
 
-from channels.auth import AuthMiddlewareStack
+# from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from django.core.asgi import get_asgi_application
 
-from loja.middlewares import TokenAuthMiddleware
-from loja.routing import websocket_urlpatterns
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'marcommerce.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'marcommerce.settings.devp')
 
+# Inicia o django primeiro, evitando erros ao rodar aplicação com daphne
 django_asgi_application = get_asgi_application()
 
+from loja.routing import websocket_urlpatterns
+from loja.middlewares import TokenAuthMiddleware
 
 application = ProtocolTypeRouter({
     "http": django_asgi_application,
