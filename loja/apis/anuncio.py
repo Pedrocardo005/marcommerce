@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from loja.models import Anuncio, Favorito
+from loja.pagination import SmallResultsSetPagination
 from loja.serializers import (AnuncioUsuarioSerializer,
                               ChangeStatusAnuncioSerializer,
                               CreateAnuncioSerializer,
@@ -92,17 +93,15 @@ class GetAllAnuncioCategoria(generics.GenericAPIView):
         return Response(data, status.HTTP_200_OK)
 
 
-class GetAnunciosUsuario(generics.GenericAPIView):
+class GetAnunciosUsuario(generics.ListAPIView):
 
     permission_classes = [IsAuthenticated]
+    pagination_class = SmallResultsSetPagination
+    serializer_class = AnuncioUsuarioSerializer
 
-    def get(self, request, *args, **kwargs):
-        usuario_id = request.user.pk
-        anuncios = Anuncio.objects.filter(
-            usuario__pk=usuario_id).order_by('pk')
-
-        serializer = AnuncioUsuarioSerializer(anuncios, many=True)
-        return Response(serializer.data)
+    def get_queryset(self):
+        user = self.request.user
+        return user.anuncios.order_by('pk')
 
 
 class CreateAnuncio(generics.CreateAPIView):

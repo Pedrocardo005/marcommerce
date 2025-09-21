@@ -295,17 +295,18 @@ class AnuncioTestCase(BaseRegistredUser):
         self.login_loja("teste2", "secret2")
 
         response = self.client.get(
-            url, headers={"Authorization": f"Bearer {self.token}"}
+            url, {'page_size': 5}, headers={"Authorization": f"Bearer {self.token}"}
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = json.loads(response.content.decode("utf-8"))
-        self.assertEqual(len(response), 5)
+        self.assertEqual(response['count'], 5)
+        results = response['results']
 
         for idx, anuncio in enumerate(anuncios):
-            self.assertEqual(response[idx]["id"], anuncio.id)
-            self.assertEqual(response[idx]["ativo"], anuncio.ativo)
-            self.assertEqual(response[idx]["views"], anuncio.views)
-            self.assertEqual(response[idx]["preco"], anuncio.preco)
+            self.assertEqual(results[idx]["id"], anuncio.id)
+            self.assertEqual(results[idx]["ativo"], anuncio.ativo)
+            self.assertEqual(results[idx]["views"], anuncio.views)
+            self.assertEqual(results[idx]["preco"], anuncio.preco)
 
     def test_create_anuncio(self):
         self.login_loja()
