@@ -34,7 +34,7 @@ urlpatterns = [
     path("logout/", knox_views.LogoutView.as_view(), name="knox_logout"),
     path("register/", RegisterUserView.as_view(), name="loja.register"),
     path(
-        "anuncios/usuario/<int:pk>",
+        "anuncios/usuario",
         GetAnunciosUsuario.as_view(),
         name="loja.anuncios-usuario",
     ),

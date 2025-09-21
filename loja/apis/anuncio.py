@@ -97,7 +97,7 @@ class GetAnunciosUsuario(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
-        usuario_id = kwargs["pk"]
+        usuario_id = request.user.pk
         anuncios = Anuncio.objects.filter(
             usuario__pk=usuario_id).order_by('pk')
 

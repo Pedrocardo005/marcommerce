@@ -264,7 +264,7 @@ class AnuncioTestCase(BaseRegistredUser):
         custom_user.set_password("secret2")
 
         custom_user.save()
-        url = reverse("loja.anuncios-usuario", kwargs={"pk": custom_user.pk})
+        url = reverse("loja.anuncios-usuario")
 
         anuncios = []
         for idx in range(0, 5):
