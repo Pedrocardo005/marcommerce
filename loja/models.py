@@ -232,12 +232,18 @@ class Anuncio(models.Model):
 
     data_publicacao = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['id']
+
     @property
     def url_foto(self):
         foto = self.fotos.first()
         if foto:
             return foto.imagem.url
         return ''
+
+    def __str__(self):
+        return "{} - {} - {}".format(self.id, self.sub_categoria, self.titulo)
 
 
 class FotoAnuncio(models.Model):
