@@ -52,12 +52,17 @@ pip install -r requirements.txt
 
 7. Crie um arquivo `others_config.py` dentro da pasta marcommerce/settings.
 
-8. Rode a aplicação:
+8. Crie um super usuário:
+```bash
+python manage.py createsuperuser
+```
+
+9. Rode a aplicação:
 ```bash
 python manage.py runserver
 ```
 
-9. Aplique as migrações:
+10. Aplique as migrações:
 ```bash
 python manage.py migrate
 ```
