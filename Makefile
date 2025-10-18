@@ -7,7 +7,7 @@ without-docker:
 	python3 -m venv env_project;
 	env_project/bin/pip install -r $(FILE);
 
-	docker-compose -f $(WITHOUT_DOCKER) up -d;
+	docker compose -f $(WITHOUT_DOCKER) up -d;
 
 only-database:
-	docker-compose -f $(ONLY_DATABASE) up -d;
+	docker compose -f $(ONLY_DATABASE) up -d;

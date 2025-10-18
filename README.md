@@ -9,8 +9,10 @@ Python 3.9.6
 Django 4.2.20
 
 Docker
+ - (working 18-10-2025 28.5.1)
 
-Docker-compose
+Docker Compose 
+ - (working 18-10-2025 2.40.1)
 
 AWS
 
