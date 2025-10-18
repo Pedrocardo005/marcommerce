@@ -50,12 +50,14 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 
-7. Rode a aplicação:
+7. Crie um arquivo `others_config.py` dentro da pasta marcommerce/settings.
+
+8. Rode a aplicação:
 ```bash
 python manage.py runserver
 ```
 
-8. Aplique as migrações:
+9. Aplique as migrações:
 ```bash
 python manage.py migrate
 ```
