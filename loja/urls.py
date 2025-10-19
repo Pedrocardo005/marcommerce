@@ -6,7 +6,7 @@ from loja.apis.anuncio import (ChangeStatusAnuncio, CreateAnuncio,
                                FavoriteAnuncio, GetAllAnuncioCategoria,
                                GetAllAnuncioSubCategoria, GetAnuncio,
                                GetAnunciosUsuario, GetThreeFirstAnuncio,
-                               SearchAnuncio)
+                               SearchAnuncio, ToggleAnuncio)
 from loja.apis.categoria import AllCategorias, CatSubCat
 from loja.apis.oferta import AceitarOferta, CreateOferta, GetOfertas
 from loja.apis.support import SendSupportMessage
@@ -82,5 +82,7 @@ urlpatterns = [
          ),
     path("support/send-message", SendSupportMessage.as_view(),
          name="loja.send-support-message"
-         )
+         ),
+    path("anuncios/toggle-status/<int:pk>", ToggleAnuncio.as_view(),
+         name="loja.toggle-status-anuncio")
 ]

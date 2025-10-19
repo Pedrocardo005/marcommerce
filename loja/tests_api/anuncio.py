@@ -554,3 +554,40 @@ class AnuncioTestCase(BaseRegistredUser):
             self.assertEqual(anuncio["titulo"], anuncios[idx].titulo)
             self.assertEqual(anuncio["url_foto"], anuncios[idx].url_foto)
             self.assertEqual(anuncio["cidade"], anuncios[idx].cidade)
+
+    def test_toggle_status(self):
+        self.login_loja()
+        subcategoria = SubCategoria.objects.last()
+
+        url = reverse("loja.anuncios-criar")
+        
+        data = {
+            "sub_categoria_id": subcategoria.pk,
+            "data_expirar": "24/10/2100",
+            "ativo": True,
+            "vendendo": True,
+            "titulo": "Fiat Palio 2015",
+            "descricao": "Carro seminovo em perfeito estado, 10.000km rodados",
+            "preco": 40000.00,
+            "tipo_oferta": 1,
+            "condicao": "SH",
+            "envio": 2,
+            "pagamento_paypal": True,
+            "codigo_postal": "40000-000",
+            "cidade": "São Paulo",
+            "rua": "Rua São Marcelo",
+            "numero": 12,
+            "provedor": "Casas Bahia",
+            "telefone": "71984287792",
+        }
+
+        response = self.client.post(
+            url, data, headers={"Authorization": f"Bearer {self.token}"}
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        response = json.loads(response.content.decode('utf-8'))
+        anuncio_id = response['id']
+
+        url = reverse("loja.toggle-status-anuncio", kwargs={"pk": anuncio_id})
+        response = self.client.patch(url, headers={"Authorization": f"Bearer {self.token}"})
+        self.assertEqual(response.status_code, 200)

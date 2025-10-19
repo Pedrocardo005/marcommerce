@@ -356,3 +356,12 @@ class SupportMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = SupportMessage
         fields = ["id", "assunto", "email", "mensagem", "data_hora"]
+
+
+class ToggleAnuncioSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = Anuncio
+        fields = ["id", "ativo"]
+

@@ -12,7 +12,7 @@ from loja.serializers import (AnuncioUsuarioSerializer,
                               CreateAnuncioSerializer,
                               CreateFavoriteAnuncioSerializer,
                               FirstThreeAnuncioSerializer,
-                              GetAnuncioSerializer, SearchAnuncioSerializer,
+                              GetAnuncioSerializer, SearchAnuncioSerializer, ToggleAnuncioSerializer,
                               UpdateAnuncioSerializer)
 
 
@@ -177,3 +177,18 @@ class GetThreeFirstAnuncio(generics.GenericAPIView):
         anuncios = sorted(anuncios, key=lambda x: x.id)
         data = FirstThreeAnuncioSerializer(anuncios, many=True).data
         return Response(data)
+
+
+class ToggleAnuncio(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, *args, **kwargs):
+        anuncio_id = kwargs["pk"]
+        anuncio = Anuncio.objects.filter(pk=anuncio_id).first()
+        if request.user.id == anuncio.usuario.pk or request.user.is_superuser:
+            anuncio.ativo = not anuncio.ativo
+            anuncio.save()
+            data = ToggleAnuncioSerializer(anuncio).data
+            return Response(data, status.HTTP_200_OK)
+        raise NotAuthenticated
+
