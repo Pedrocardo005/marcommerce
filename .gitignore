@@ -162,3 +162,5 @@ env_project/
 
 # Static files 
 /staticfiles
+
+.vscode/
