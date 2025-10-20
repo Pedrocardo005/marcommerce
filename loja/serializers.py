@@ -10,7 +10,7 @@ from loja.models import (Anuncio, Categoria, CustomUser, Favorito, FotoAnuncio,
 class SubCategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCategoria
-        fields = ["name"]
+        fields = ["id", "name"]
 
 
 class CategoriaSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class CategoriaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Categoria
-        fields = ["nome", "subcategorias"]
+        fields = ["id", "nome", "subcategorias"]
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
