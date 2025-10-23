@@ -2,7 +2,7 @@ from django.db.models import Q
 from rest_framework import generics, status
 from rest_framework.exceptions import NotAuthenticated
 from rest_framework.parsers import MultiPartParser
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
 from loja.models import Anuncio, Favorito
@@ -172,6 +172,8 @@ class DeteleFavoriteAnuncio(generics.DestroyAPIView):
 
 
 class GetThreeFirstAnuncio(generics.GenericAPIView):
+    permission_classes = [AllowAny]
+
     def get(self, request, *args, **kwargs):
         anuncios = Anuncio.objects.order_by('-id')[:3]
         anuncios = sorted(anuncios, key=lambda x: x.id)

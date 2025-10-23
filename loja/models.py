@@ -222,6 +222,7 @@ class Anuncio(models.Model):
 
     numero = models.IntegerField(default=0)
 
+    # Se não estiver vendendo, está procurando por...
     vendendo = models.BooleanField(default=True)
 
     tipo_oferta = models.IntegerField(choices=Ofertas.choices)
