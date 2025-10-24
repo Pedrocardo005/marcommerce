@@ -12,9 +12,7 @@ services:
 
   web:
     build: .
-    stdin_open: true
-    tty: true
-    command: bash -c 'source env_project/bin/activate && python code/manage.py runserver 0.0.0.0:8080'
+    user: "${HOST_UID}:${HOST_GID}"
     volumes:
       - .:/code
     ports:
@@ -28,6 +26,12 @@ services:
       - DJANGO_SETTINGS_MODULE=marcommerce.settings.devp
     depends_on:
       - db
+
+  redis:
+    image: redis:7
+    expose:
+      - 6379
+    command: ["redis-server", "--appendonly", "yes"]
 
 volumes:
    bancodados:
