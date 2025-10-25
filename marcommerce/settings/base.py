@@ -213,4 +213,15 @@ CHANNEL_LAYERS = {
     },
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': os.getenv('DATABASE_HOST'),
+        'PORT': int(os.environ.setdefault('DATABASE_PORT', '5432')),
+    }
+}
+
 CORS_ALLOWED_ORIGINS = os.environ.setdefault('CORS_ALLOWED_ORIGINS', ' ').split(' ')

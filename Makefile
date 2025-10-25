@@ -11,3 +11,6 @@ without-docker:
 
 only-database:
 	docker compose -f $(ONLY_DATABASE) up -d;
+
+dev:
+	docker compose up -d;

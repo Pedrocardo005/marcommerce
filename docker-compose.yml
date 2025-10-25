@@ -1,4 +1,20 @@
 services:
+  web:
+    build: .
+    container_name: marcommerce-web
+    user: "${HOST_UID}:${HOST_GID}"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    expose:
+      - 8000
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+
   db:
     image: postgres:15.1
     container_name: marcommerce-db
@@ -8,21 +24,6 @@ services:
       - 5432
     env_file:
      - .env
-
-  web:
-    build: .
-    container_name: marcommerce-web
-    user: "${HOST_UID}:${HOST_GID}"
-    volumes:
-      - .:/code
-    ports:
-      - "8080:8080"
-    expose:
-      - 8080
-    env_file:
-     - .env
-    depends_on:
-      - db
 
   redis:
     container_name: marcommerce-redis

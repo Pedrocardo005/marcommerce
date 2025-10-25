@@ -18,7 +18,36 @@ AWS
 
 S3
 
-### Iniciando o projeto
+### Iniciando a aplicação
+
+1. Faça o clone do projeto no sua máquina com o comando:
+```bash
+git clone https://github.com/Pedrocardo005/marcommerce
+```
+
+2. Entre na pasta do projeto copiado:
+```bash
+cd marcommerce
+```
+
+3. Rode o banco de dados da aplicação com o docker-compose:
+```bash
+sudo make dev
+```
+
+4. Entre na aplicação para aplicar as migrações
+```bash
+docker exec -it marcommerce-web bash
+source env/bin/activate
+python manage.py migrate
+```
+
+5. Crie um super usuário
+```bash
+python manage.py createsuperuser
+```
+
+### Iniciando o projeto (Somente banco de dados)
 
 1. Faça o clone do projeto no sua máquina com o comando:
 ```bash
