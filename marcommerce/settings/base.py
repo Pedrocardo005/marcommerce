@@ -177,13 +177,13 @@ REST_FRAMEWORK = {
 
 REST_KNOX = {"AUTH_HEADER_PREFIX": "Bearer"}
 
-AWS_ACCESS_KEY_ID = "your-access-key-id"
-AWS_SECRET_ACCESS_KEY = "your-secret-access-key"
-AWS_STORAGE_BUCKET_NAME = "your-region"  # e.g., us-east-1
-AWS_S3_REGION_NAME = "us-east-1"
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')  # e.g., us-east-1
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-AWS_DEFAULT_ACL = "public-read"
-AWS_QUERYSTRING_AUTH = False
+AWS_DEFAULT_ACL = os.getenv('AWS_DEFAULT_ACL')
+AWS_QUERYSTRING_AUTH = False if os.getenv('AWS_QUERYSTRING_AUTH') == 'False' else True
 
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
@@ -194,26 +194,23 @@ if "test" in sys.argv:
     PASSWORD_HASHERS = ["django.contrib.auth.hashers.MD5PasswordHasher"]
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "your@gmail.com"
-EMAIL_HOST_PASSWORD = "your-app-password"
-DEFAULT_FROM_EMAIL = "your@gmail.com"
-SITE_ID = 1
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = True if os.getenv('EMAIL_USE_TLS') == 'True' else False
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+SITE_ID = os.environ.setdefault('SITE_ID', '1')
 
 FRONTEND_URL = ""
 
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "BACKEND": os.getenv('CHANNEL_BACKEND'),
         "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
+            "hosts": [(os.getenv('CHANNEL_HOST'), os.getenv('CHANNEL_PORT'))],
         },
     },
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://localhost:4200"
-]
+CORS_ALLOWED_ORIGINS = os.environ.setdefault('CORS_ALLOWED_ORIGINS', ' ').split(' ')
