@@ -164,3 +164,6 @@ env_project/
 /staticfiles
 
 .vscode/
+
+# Upload files
+/media/uploads/
